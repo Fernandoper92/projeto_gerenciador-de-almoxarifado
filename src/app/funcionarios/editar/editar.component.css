@@ -1,0 +1,54 @@
+p {
+    padding: 0;
+    margin: 0;
+    font-size: 14px;
+  }
+  
+  .btn.focus,
+  .btn:focus,
+  input:focus {
+    outline: 0;
+    box-shadow: none !important;
+  }
+  
+  .main-container {
+    background-color: white;
+    padding: 0 50px;
+  }
+  
+  .title-container {
+    display: flex;
+    align-items: center;
+    height: 75px;
+    /* padding: 50px 0; */
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    opacity: 1;
+  }
+  
+  .title {
+    font-size: 30px;
+    font-weight: bold;
+    opacity: 1;
+  }
+  
+  .subtitle {
+    font-size: 20px;
+    color: gray;
+    opacity: 1;
+  }
+
+  .form-container {
+      margin: 50px 400px;
+      padding: 10px;
+      box-shadow: 0px 0px 4px 0.5px gray;
+  }
+
+  .form-row-sizes {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+  }
+
+  .form-row-sizes>div{
+      width: 20%;
+  }

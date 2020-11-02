@@ -1,7 +1,19 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { MovimentacoesComponent } from './movimentacoes/movimentacoes.component';
 
-const routes: Routes = [];
+const routes: Routes = [
+  { path: '', redirectTo: 'movimentações', pathMatch: 'full' },
+  {
+    path: 'funcionarios',
+    loadChildren: () => import('./funcionarios/funcionarios.module').then(m => m.FuncionariosModule)
+  },
+  {
+    path: 'produtos',
+    loadChildren: () => import('./produtos/produtos.module').then(m => m.ProdutosModule)
+  },
+  { path: 'movimentações', component: MovimentacoesComponent },
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

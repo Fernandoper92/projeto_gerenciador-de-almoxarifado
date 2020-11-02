@@ -1,0 +1,69 @@
+<div class="main-container">
+    <div class="title-container">
+        <p class="title">MOVIMENTAÇÕES</p>
+        <p class="subtitle">&nbsp;/&nbsp;LISTAR</p>
+    </div>
+
+    <div class="filter-container">
+        <div class="input-group search">
+            <input type="text" class="form-control search-bar" placeholder="Pesquisar">
+            <span class="fas fa-search search-icon"></span>
+        </div>
+    </div>
+
+    <form class="form-container" [formGroup]="form" (ngSubmit)="onSubmit()">
+        <p class="title">Nova Movimentação</p>
+        <div class="form-row title-box">
+          <div class="col">
+            <input type="text" class="form-control" formControlName="employee" placeholder="Funcionario"  [ngClass]="cssErro('employee')">
+          </div>
+          <div class="col">
+            <input type="text" class="form-control" formControlName="product" placeholder="Produto"  [ngClass]="cssErro('product')">
+          </div>
+          <div class="col">
+            <input type="number" class="form-control" formControlName="input" placeholder="Entrada">
+          </div>
+          <div class="col">
+            <input type="number" class="form-control" formControlName="output" placeholder="Saida">
+          </div>
+          <button type="submit" class="btn btn-success">
+            Enviar</button>
+        </div>
+      </form>
+
+      <app-form-debug [form]="form"></app-form-debug>
+
+    <div class="table-container">
+        <table class="table">
+            <thead>
+                <tr class="table-head">
+                    <th class="colum-title" scope="col" *ngFor="let coluna of colunas" (click)="organize(coluna)">
+                        {{ coluna }}&nbsp;<i class="fas fa-sort colum-title-icon"></i></th>
+                    <th class="colum-title has-btn" scope="col"></th>
+                </tr>
+            </thead>
+            <tbody class="table-body">
+                <tr *ngFor="let movimentacao of movimentacoes" class="table-row">
+                    <td class="main-sub-container">
+                        <p class="main">{{ movimentacao.funcionario }}</p>
+                        <p class="sub">{{ movimentacao.setor }}</p>
+                    </td>
+                    <td>
+                        <P>{{ movimentacao.produto }}</P>
+                    </td>
+                    <td>
+                        <p *ngIf="movimentacao.Entrada" class="number">+
+                            {{ movimentacao.quantidade }}</p>
+                        <p *ngIf="movimentacao.saida" class="number">-
+                            {{ movimentacao.quantidade }}</p>
+                    </td>
+                    <td>{{ movimentacao.data }}</td>
+                    <td class="icon-container">
+                        <i class="far fa-trash-alt icon-btn"></i>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>

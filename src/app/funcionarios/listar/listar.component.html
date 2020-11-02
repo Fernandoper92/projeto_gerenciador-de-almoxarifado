@@ -1,0 +1,48 @@
+<div class="main-container">
+    <div class="title-container">
+        <p class="title">FUNCIONÁRIOS</p>
+        <p class="subtitle">&nbsp;/&nbsp;LISTAR</p>
+    </div>
+
+    <div class="filter-container">
+        <div class="input-group search">
+            <input type="text" class="form-control search-bar" placeholder="Pesquisar">
+            <span class="fas fa-search search-icon"></span>
+        </div>
+        <button type="button" class="btn btn-success"  routerLink="/funcionarios/novo">
+            Novo</button>
+    </div>
+
+    <div class="table-container">
+        <table class="table">
+            <thead>
+                <tr class="table-head">
+                    <th class="colum-title" scope="col" *ngFor="let coluna of colunas" (click)="organizar(coluna)">
+                        {{ coluna }}&nbsp;<i class="fas fa-sort colum-title-icon"></i></th>
+                    <th class="colum-title has-btn" scope="col"></th>
+                </tr>
+            </thead>
+            <tbody class="table-body">
+                <tr *ngFor="let funcionario of funcionarios" class="table-row">
+                    <td class="main-sub-container">
+                        <p class="main">{{ funcionario.nome }}</p>
+                        <p class="sub">{{ funcionario.sobrenome }}</p>
+                    </td>
+                    <td>#{{ funcionario.id }}</td>
+                    <td>
+                        <p>{{ funcionario.cargo }}</p>
+                    </td>
+                    <td>
+                        <p>{{ funcionario.setor }}</p>
+                    </td>
+                    <td class="icon-container">
+                        <i class="far fa-edit icon-btn"></i>
+                        &nbsp;&nbsp;
+                        <i class="far fa-trash-alt icon-btn"></i>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>

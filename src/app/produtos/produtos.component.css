@@ -1,0 +1,35 @@
+p {
+  padding: 0;
+  margin: 0;
+  font-size: 14px;
+}
+
+.btn.focus,
+.btn:focus,
+input:focus {
+  outline: 0;
+  box-shadow: none !important;
+}
+
+.main-container {
+  background-color: red;
+  padding: 0 50px;
+}
+
+.title-container {
+  display: flex;
+  align-items: center;
+  height: 75px;
+  padding: 50px 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.title {
+  font-size: 30px;
+  font-weight: bold;
+}
+
+.subtitle {
+  font-size: 20px;
+  color: gray;
+}
