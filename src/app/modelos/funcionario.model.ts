@@ -4,7 +4,7 @@ export class Funcionario {
     sobrenome?: string
     cargo?: string
     setor?: string
-    uniforme?: string
-    calcado?: number
-    luva?: number
+    tamanhoUniforme?: string
+    tamanhoCalcado?: number
+    tamanhoLuva?: number
 }
