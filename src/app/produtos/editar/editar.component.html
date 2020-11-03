@@ -5,44 +5,44 @@
   </div>
 
   <div class="form-container">
-    <form>
+    <form  [formGroup]="form" (ngSubmit)="onSubmit()">
       <div class="form-row">
         <div class="form-group col-md-12">
           <label for="name">Nome</label>
-          <input type="text" class="form-control" id="name">
+          <input type="text" class="form-control" formControlName="name" [ngClass]="cssErro('name')">
         </div>
       </div>
 
       <div class="form-row">
         <div class="form-group col-md-12">
           <label for="group">grupo</label>
-          <input type="text" class="form-control" id="group">
+          <input type="text" class="form-control" formControlName="group" [ngClass]="cssErro('group')">
         </div>
       </div>
 
       <div class="form-row">
         <div class="form-group col-md-12">
           <label for="cod">Código Estruturado</label>
-          <input type="number" class="form-control" id="cod">
+          <input type="text" class="form-control" formControlName="structureCode" [ngClass]="cssErro('structureCode')">
         </div>
       </div>
 
       <div class="form-row">
         <div class="form-group col-md-12">
           <label for="alt">Código Alternativo</label>
-          <input type="number" class="form-control" id="alt">
+          <input type="text" class="form-control" formControlName="alternativeCode">
         </div>
       </div>
 
       <div class="form-row form-row-sizes">
         <div class="form-group col-md-6">
           <label for="stock">Estoque</label>
-          <input type="number" class="form-control" id="stock">
+          <input type="number" class="form-control" formControlName="stock">
         </div>
 
         <div class="form-group col-md-6">
           <label for="min">Minimo</label>
-          <input type="number" class="form-control" id="min">
+          <input type="number" class="form-control" formControlName="minStock">
         </div>
       </div>
 
@@ -51,5 +51,7 @@
         <button type="submit" class="btn btn-success col-md-6">Confirmar</button>
       </div>
     </form>
+    
+    <app-form-debug [form]="form"></app-form-debug>
   </div>
 </div>

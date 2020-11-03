@@ -1,4 +1,6 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-editar',
@@ -6,15 +8,50 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./editar.component.css']
 })
 export class EditarComponent implements OnInit {
+
+  form: FormGroup;
+
+  constructor(
+    private formBuilder: FormBuilder,
+    private http: HttpClient
+    ) { }
+
+    ngOnInit(): void {
+      this.createFormGroup();
+    }
   
-  modal: HTMLElement;
-  btn: HTMLElement;
-  span: Element;
+    createFormGroup() {
+      this.form = this.formBuilder.group({
+        name: [null, Validators.required],
+        group: [null, Validators.required],
+        structureCode: [null, [Validators.required, Validators.minLength(12), Validators.maxLength(12)]],
+        alternativeCode: [null],
+        stock: [null],
+        minStock: [null]
+      });
+    }
 
-
-  constructor() { }
-
-  ngOnInit(): void {
-  }
+    onSubmit() {
+      this.http.post('http://httpbin.org/post', JSON.stringify(this.form.value)).pipe().subscribe(data => {
+        console.log(data)
+        this.form.reset();
+      },
+        (error: any) => alert('Erro ao enviar os dados, por favor tente de novo mais tarde!')
+      );
+    }
+  
+    cssErro(param) {
+      if (this.form.get(param).touched) {
+        const valid = this.form.get(param).valid;
+        return {
+          'is-invalid': !valid,
+          'is-valid': valid
+        }
+      }
+    }
+  
+    checkValidTouched(param) {
+      return !this.form.get(param).valid
+    }
 
 }

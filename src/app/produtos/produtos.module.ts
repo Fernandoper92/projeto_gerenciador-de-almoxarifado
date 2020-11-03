@@ -1,8 +1,11 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ReactiveFormsModule } from '@angular/forms';
+
 import { ListarComponent } from './listar/listar.component';
 import { EditarComponent } from './editar/editar.component';
 import { ProdutosRoutingModule } from './produtos-routing.module';
+import { SharedModule } from './../shared/shared.module';
 
 
 
@@ -13,7 +16,9 @@ import { ProdutosRoutingModule } from './produtos-routing.module';
   ],
   imports: [
     CommonModule,
-    ProdutosRoutingModule
+    ReactiveFormsModule,
+    ProdutosRoutingModule,
+    SharedModule
   ]
 })
 export class ProdutosModule { }

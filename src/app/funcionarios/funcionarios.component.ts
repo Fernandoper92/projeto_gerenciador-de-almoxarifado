@@ -9,10 +9,6 @@ export class FuncionariosComponent implements OnInit {
 
   constructor() { }
 
-  funcionarios = [
-    {  }
-  ]
-
   ngOnInit(): void {
   }
 

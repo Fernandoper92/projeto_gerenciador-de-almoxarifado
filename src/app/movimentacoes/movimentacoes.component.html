@@ -45,19 +45,19 @@
             <tbody class="table-body">
                 <tr *ngFor="let movimentacao of movimentacoes" class="table-row">
                     <td class="main-sub-container">
-                        <p class="main">{{ movimentacao.funcionario }}</p>
-                        <p class="sub">{{ movimentacao.setor }}</p>
+                        <p class="main">{{ movimentacao.employee }}</p>
+                        <p class="sub">{{ movimentacao.sector }}</p>
                     </td>
                     <td>
-                        <P>{{ movimentacao.produto }}</P>
+                        <P>{{ movimentacao.product }}</P>
                     </td>
                     <td>
-                        <p *ngIf="movimentacao.Entrada" class="number">+
-                            {{ movimentacao.quantidade }}</p>
-                        <p *ngIf="movimentacao.saida" class="number">-
-                            {{ movimentacao.quantidade }}</p>
+                        <p *ngIf="movimentacao.input" class="number">+
+                            {{ movimentacao.quantity }}</p>
+                        <p *ngIf="movimentacao.output" class="number">-
+                            {{ movimentacao.quantity }}</p>
                     </td>
-                    <td>{{ movimentacao.data }}</td>
+                    <td>{{ movimentacao.date }}</td>
                     <td class="icon-container">
                         <i class="far fa-trash-alt icon-btn"></i>
                     </td>

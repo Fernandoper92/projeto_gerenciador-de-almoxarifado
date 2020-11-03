@@ -9,31 +9,31 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class MovimentacoesComponent implements OnInit {
 
-  data = new Date;
-  today = `${this.data.getDay()}/${this.data.getMonth()}/${this.data.getFullYear()}`;
+  date = new Date;
+  today = `${this.date.getDay()}/${this.date.getMonth()}/${this.date.getFullYear()}`;
   ascendingOrder = true;
   form: FormGroup;
 
   colunas = ['Funcionario', 'Produto', 'Quantidade', 'Data'];
 
   movimentacoes = [
-    { funcionario: 'Lucas', setor: 'produção', produto: 'caneta azul', quantidade: +11, data: this.today, saida: false, Entrada: true },
-    { funcionario: 'Mateus', setor: 'expedição', produto: 'lapis', quantidade: 1, data: this.today, saida: true, Entrada: false },
-    { funcionario: 'Pedro', setor: 'produção', produto: 'luva 7', quantidade: 1, data: this.today, saida: true, Entrada: false },
-    { funcionario: 'Alex', setor: 'administração', produto: 'luva 8', quantidade: 2, data: this.today, saida: false, Entrada: true },
-    { funcionario: 'Franciele', setor: 'produção', produto: 'botina', quantidade: 1, data: this.today, saida: false, Entrada: true },
-    { funcionario: 'Gisele', setor: 'administração', produto: 'chave', quantidade: 3, data: this.today, saida: true, Entrada: false },
-    { funcionario: 'Natalia', setor: 'motorista', produto: 'fita adesiva', quantidade: 1, data: this.today, saida: false, Entrada: true },
-    { funcionario: 'joão', setor: 'expedição', produto: 'caneta vermelha', quantidade: 1, data: this.today, saida: false, Entrada: true },
-    { funcionario: 'katia', setor: 'administração', produto: 'caneta azul', quantidade: 2, data: this.today, saida: false, Entrada: true },
-    { funcionario: 'Lizabete', setor: 'produção', produto: 'capacete', quantidade: 30, data: this.today, saida: false, Entrada: true },
-    { funcionario: 'joão', setor: 'administração', produto: 'Fone', quantidade: 2, data: this.today, saida: false, Entrada: true },
-    { funcionario: 'Pedro', setor: 'produção', produto: 'rolo strech', quantidade: 1, data: this.today, saida: false, Entrada: true },
-    { funcionario: 'Leandro', setor: 'controle de qualidade', produto: 'papel hig.', quantidade: 1, data: this.today, saida: false, Entrada: true },
-    { funcionario: 'Pedro', setor: 'produção', produto: 'luva couro', quantidade: 5, data: this.today, saida: false, Entrada: true },
-    { funcionario: 'Fernando', setor: 'motorista', produto: 'parafuso', quantidade: 1, data: this.today, saida: false, Entrada: true },
-    { funcionario: 'Julio Cesar', setor: 'produção', produto: 'capa de chuva', quantidade: 1, data: this.today, saida: false, Entrada: true },
-    { funcionario: 'Julio Rodrigues', setor: 'produção', produto: 'canetaão azul', quantidade: 5, data: this.today, saida: false, Entrada: true },
+    { employee: 'Lucas', sector: 'produção', product: 'caneta azul', quantity: +11, date: this.today, output: false, input: true },
+    { employee: 'Mateus', sector: 'expedição', product: 'lapis', quantity: 1, date: this.today, output: true, input: false },
+    { employee: 'Pedro', sector: 'produção', product: 'luva 7', quantity: 1, date: this.today, output: true, input: false },
+    { employee: 'Alex', sector: 'administração', product: 'luva 8', quantity: 2, date: this.today, output: false, input: true },
+    { employee: 'Franciele', sector: 'produção', product: 'botina', quantity: 1, date: this.today, output: false, input: true },
+    { employee: 'Gisele', sector: 'administração', product: 'chave', quantity: 3, date: this.today, output: true, input: false },
+    { employee: 'Natalia', sector: 'motorista', product: 'fita adesiva', quantity: 1, date: this.today, output: false, input: true },
+    { employee: 'joão', sector: 'expedição', product: 'caneta vermelha', quantity: 1, date: this.today, output: false, input: true },
+    { employee: 'katia', sector: 'administração', product: 'caneta azul', quantity: 2, date: this.today, output: false, input: true },
+    { employee: 'Lizabete', sector: 'produção', product: 'capacete', quantity: 30, date: this.today, output: false, input: true },
+    { employee: 'joão', sector: 'administração', product: 'Fone', quantity: 2, date: this.today, output: false, input: true },
+    { employee: 'Pedro', sector: 'produção', product: 'rolo strech', quantity: 1, date: this.today, output: false, input: true },
+    { employee: 'Leandro', sector: 'controle de qualidade', product: 'papel hig.', quantity: 1, date: this.today, output: false, input: true },
+    { employee: 'Pedro', sector: 'produção', product: 'luva couro', quantity: 5, date: this.today, output: false, input: true },
+    { employee: 'Fernando', sector: 'motorista', product: 'parafuso', quantity: 1, date: this.today, output: false, input: true },
+    { employee: 'Julio Cesar', sector: 'produção', product: 'capa de chuva', quantity: 1, date: this.today, output: false, input: true },
+    { employee: 'Julio Rodrigues', sector: 'produção', product: 'canetaão azul', quantity: 5, date: this.today, output: false, input: true },
   ]
 
   constructor(
@@ -58,8 +58,8 @@ export class MovimentacoesComponent implements OnInit {
   onSubmit() {
     this.form.patchValue({date: this.today.toString()});
 
-    this.http.post('http://httpbin.org/post', JSON.stringify(this.form.value)).pipe().subscribe(data => {
-      console.log(data)
+    this.http.post('http://httpbin.org/post', JSON.stringify(this.form.value)).pipe().subscribe(date => {
+      console.log(date)
       this.form.reset();
     },
       (error: any) => alert('Erro ao enviar os dados, por favor tente de novo mais tarde!')

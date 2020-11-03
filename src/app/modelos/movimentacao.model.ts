@@ -3,9 +3,10 @@ import { Produto } from './produto.model'
 
 export class Movimentacao {
     key?: string
-    funcionario: Funcionario
-    produto: Produto
-    quantidade: number
-    data: Date
-    Tipo: boolean
+    employee: Funcionario
+    product: Produto
+    quantity: number
+    date: Date
+    input: boolean
+    output: boolean
 }
