@@ -13,17 +13,17 @@
 
     <form class="form-container" [formGroup]="form" (ngSubmit)="onSubmit()">
         <p class="title">Nova Movimentação</p>
-        <div class="form-row title-box">
-          <div class="col">
+        <div class="form-grid">
+          <div class="emplyee form-text-box">
             <input type="text" class="form-control" formControlName="employee" placeholder="Funcionario"  [ngClass]="cssErro('employee')">
           </div>
-          <div class="col">
+          <div class="product form-text-box">
             <input type="text" class="form-control" formControlName="product" placeholder="Produto"  [ngClass]="cssErro('product')">
           </div>
-          <div class="col">
+          <div class="input form-number-box">
             <input type="number" class="form-control" formControlName="input" placeholder="Entrada">
           </div>
-          <div class="col">
+          <div class="output form-number-box">
             <input type="number" class="form-control" formControlName="output" placeholder="Saida">
           </div>
           <button type="submit" class="btn btn-success">
@@ -31,7 +31,7 @@
         </div>
       </form>
 
-      <app-form-debug [form]="form"></app-form-debug>
+      <!-- <app-form-debug [form]="form"></app-form-debug> -->
 
     <div class="table-container">
         <table class="table">

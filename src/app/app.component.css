@@ -9,29 +9,16 @@ mat-sidenav-container {
 
 mat-sidenav {
     border: 0;
-    background-color: #49B96D;
+    background-color: #49b96d;
 }
 
 .logo {
     font-size: 70px;
     text-align: center;
-    color: #49B96D;
+    color: #49b96d;
     background-color: white;
     padding: 20px 0;
     margin-bottom: 20px;
-}
-
-.nav-user {
-    align-items: center;
-    color: white;
-}
-
-.img-user {
-    width: 30px;
-    height: 30px;
-    margin: 4px;
-    border: 1px solid white;
-    border-radius: 100%;
 }
 
 .nav-item {
@@ -45,7 +32,6 @@ mat-sidenav {
     align-content: center;
     outline: none;
     cursor: pointer;
-    
 }
 
 .nav-item i {
@@ -66,18 +52,17 @@ mat-sidenav {
 
 .nav-item:hover {
     background-color: whitesmoke;
-    color: #49B96D;
+    color: #49b96d;
 }
 
 .nav-item:active {
     background-color: white;
-    color: #49B96D;
-
+    color: #49b96d;
 }
 
 .active {
     background-color: white;
-    color: #49B96D;
+    color: #49b96d;
 }
 
 .flex-menu-container {
@@ -87,4 +72,21 @@ mat-sidenav {
 
 .main-container {
     background-color: white;
+}
+
+.btn-toggle {
+    display: none;
+    font-size: 35px;
+    margin: 10px;
+}
+
+@media only screen and (max-width: 1200px) {
+    .logo {
+        display: none;
+    }
+
+    .btn-toggle {
+        display: block;
+        float: left;
+    }
 }

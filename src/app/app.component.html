@@ -1,15 +1,9 @@
 <mat-sidenav-container autosize>
-  <mat-sidenav #sidenav mode="side" opened fixed>
+  <mat-sidenav #sideNav [opened]="mobileQuery.matches ? 'false' : 'true'" [mode]="mobileQuery.matches ? 'over' : 'side'">
 
     <div class="flex-menu-container logo">
       <i class="fab fa-gofore"></i>
     </div>
-
-    <!-- <div class="flex-menu-container nav-user">
-      <img class="img-user">
-      <p>Usuario</p>
-      <p>Tipo de conta</p>
-    </div> -->
 
     <div class="flex-menu-container">
       <p class="nav-sub">ALMOXARIFADO</p>
@@ -50,6 +44,7 @@
 
   </mat-sidenav>
   <mat-sidenav-content class="main-container">
+    <i class="fas fa-bars btn-toggle" (click)="sideNav.toggle()"></i>
     <router-outlet></router-outlet>
   </mat-sidenav-content>
 </mat-sidenav-container>
