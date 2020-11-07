@@ -77,7 +77,10 @@ mat-sidenav {
 .btn-toggle {
     display: none;
     font-size: 35px;
-    margin: 10px;
+    margin: 10px 10px;
+    float: left;
+    position: fixed;
+    z-index: 9999;
 }
 
 @media only screen and (max-width: 1200px) {
@@ -86,7 +89,10 @@ mat-sidenav {
     }
 
     .btn-toggle {
+        overflow: hidden;
         display: block;
         float: left;
+        position: fixed;
+        z-index: 9999;
     }
 }

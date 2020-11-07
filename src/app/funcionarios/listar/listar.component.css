@@ -19,8 +19,7 @@ input:focus {
 .title-container {
   display: flex;
   align-items: center;
-  height: 75px;
-  /* padding: 50px 0; */
+  padding: 20px 0;
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
 
@@ -87,10 +86,6 @@ input:focus {
   box-sizing: border-box;
 }
 
-.table-container {
-  margin: 0 50px;
-}
-
 .table {
   background-color: white;
   color: gray;
@@ -151,9 +146,6 @@ td {
   cursor: pointer;
 }
 
-.main-sub-container {
-}
-
 .main {
   color: initial;
   font-weight: bold;
@@ -162,4 +154,103 @@ td {
 .table-row:hover {
   border: none;
   background-color: #5eeb8b62;
+}
+
+@media only screen and (max-width: 1200px) {
+  .form-grid {
+    grid-template-columns: auto auto;
+  }
+}
+
+@media only screen and (max-width: 450px) {
+
+  .filter-container {
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .search {
+    width: 100%;
+  }
+
+  .form-grid {
+    grid-template-columns: auto;
+  }
+}
+
+@media only screen and (max-width: 760px), (min-device-width: 450px) and (max-device-width: 900px) {
+  .main-container {
+    background-color: white;
+    padding: 0 50px;
+  }
+
+  .title {
+    font-size: 20px;
+  }
+
+  .subtitle {
+    font-size: 16px;
+  }
+
+  /* Force table to not be like tables anymore */
+  table,
+  thead,
+  tbody,
+  th,
+  td,
+  tr {
+    display: block;
+  }
+
+  /* Hide table headers (but not display: none;, for accessibility) */
+  thead tr {
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+  }
+
+  tr {
+    border: 1px solid #ccc;
+  }
+
+  tr:nth-child(odd) {
+    background: rgb(160, 255, 163);
+  }
+
+  td {
+    /* Behave  like a "row" */
+    border: none;
+    border-bottom: 1px solid #eee;
+    position: relative;
+    padding-left: 50%;
+    text-align: left;
+  }
+
+  .table-row {
+    color: black;
+  }
+
+  td:before {
+    /* Now like a table header */
+    position: absolute;
+    /* Top/left values mimic padding */
+    top: 6px;
+    left: 6px;
+    width: 45%;
+    padding-right: 10px;
+    white-space: nowrap;
+  }
+
+  /*
+	Label the data
+	*/
+  td:nth-of-type(1):before {
+    content: "Nome";
+  }
+  td:nth-of-type(2):before {
+    content: "Cargo";
+  }
+  td:nth-of-type(3):before {
+    content: "Função";
+  }
 }
