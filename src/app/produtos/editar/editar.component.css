@@ -1,64 +1,93 @@
 p {
-    padding: 0;
-    margin: 0;
-    font-size: 14px;
-  }
-  
-  .btn.focus,
-  .btn:focus,
-  input:focus {
-    outline: 0;
-    box-shadow: none !important;
-  }
-  
-  .main-container {
-    background-color: white;
-    padding: 0 50px;
-  }
-  
-  .title-container {
-    display: flex;
-    align-items: center;
-    height: 75px;
-    /* padding: 50px 0; */
-    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-    opacity: 1;
-  }
-  
+  padding: 0;
+  margin: 0;
+  font-size: 14px;
+}
+
+.btn.focus,
+.btn:focus,
+input:focus {
+  outline: 0;
+  box-shadow: none !important;
+}
+
+.main-container {
+  background-color: white;
+  padding: 0 50px;
+}
+
+.title-container {
+  display: flex;
+  align-items: center;
+  height: 75px;
+  /* padding: 50px 0; */
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  opacity: 1;
+}
+
+.title {
+  font-size: 30px;
+  font-weight: bold;
+  opacity: 1;
+}
+
+.subtitle {
+  font-size: 20px;
+  color: gray;
+  opacity: 1;
+}
+
+.form-container {
+  margin: 50px auto;
+  height: fit-content;
+  width: 350px;
+  padding: 10px;
+  box-shadow: 0px 0px 4px 0.5px gray;
+}
+
+.flex-row-input {
+  display: flex;
+  flex-direction: row;
+  justify-items: left;
+}
+
+.flex-row-input > div {
+  margin: 5px;
+  width: 100px;
+}
+
+.flex-row-btn {
+  margin-top: 20px;
+  padding: 5px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.btn {
+  padding: 0;
+  height: 40px;
+  width: 95px;
+  font-size: 16px;
+}
+
+@media only screen and (max-width: 450px) {
   .title {
-    font-size: 30px;
-    font-weight: bold;
-    opacity: 1;
-  }
-  
-  .subtitle {
     font-size: 20px;
-    color: gray;
-    opacity: 1;
+  }
+
+  .subtitle {
+    font-size: 16px;
   }
 
   .form-container {
-      margin: 50px 400px;
-      padding: 10px;
-      box-shadow: 0px 0px 4px 0.5px gray;
+    width: 200px;
   }
 
-  .form-row-sizes {
-      display: flex;
-      flex-direction: row;
-      justify-content: space-between;
+  .btn {
+    padding: 0;
+    height: 30px;
+    width: 75px;
+    font-size: 14px;
   }
-
-  .form-row-sizes>div{
-      width: 20%;
-  }
-
-  .form-row-sizes {
-      display: flex;
-      flex-direction: row;
-      justify-content: space-between;
-  }
-
-  .form-row-sizes>div, .form-row-sizes>button{
-      width: 20%;
-  }
+}

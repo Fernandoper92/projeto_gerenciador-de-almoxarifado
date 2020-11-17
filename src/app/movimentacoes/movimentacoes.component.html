@@ -6,7 +6,7 @@
 
     <div class="filter-container">
         <div class="input-group search">
-            <input type="text" class="form-control search-bar" placeholder="Pesquisar">
+            <input type="text" class="form-control search-bar" placeholder="Pesquisar" [formControl]="busca">
             <span class="fas fa-search search-icon"></span>
         </div>
     </div>
@@ -21,10 +21,10 @@
             <input type="text" class="form-control" formControlName="product" placeholder="Produto"  [ngClass]="cssErro('product')">
           </div>
           <div class="input form-number-box">
-            <input type="number" class="form-control" formControlName="input" placeholder="Entrada">
+            <input type="number" class="form-control" formControlName="input" placeholder="Entrada" #input>
           </div>
           <div class="output form-number-box">
-            <input type="number" class="form-control" formControlName="output" placeholder="Saida">
+            <input type="number" class="form-control" formControlName="output" placeholder="Saida" #output>
           </div>
           <button type="submit" class="btn btn-success">
             Enviar</button>
@@ -37,13 +37,13 @@
         <table class="table">
             <thead>
                 <tr class="table-head">
-                    <th class="colum-title" scope="col" *ngFor="let coluna of colunas" (click)="organize(coluna)">
-                        {{ coluna }}&nbsp;<i class="fas fa-sort colum-title-icon"></i></th>
+                    <th class="colum-title" scope="col" *ngFor="let coluna of colunas" (click)="organize(coluna.ref)">
+                        {{ coluna.name }}&nbsp;<i class="fas fa-sort colum-title-icon"></i></th>
                     <th class="colum-title has-btn" scope="col"></th>
                 </tr>
             </thead>
             <tbody class="table-body">
-                <tr *ngFor="let movimentacao of movimentacoes" class="table-row">
+                <tr *ngFor="let movimentacao of teste" class="table-row">
                     <td class="main-sub-container">
                         <p class="main">{{ movimentacao.employee }}</p>
                         <p class="sub">{{ movimentacao.sector }}</p>

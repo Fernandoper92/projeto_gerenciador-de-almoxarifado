@@ -6,7 +6,7 @@
 
     <div class="filter-container">
         <div class="input-group search">
-            <input type="text" class="form-control search-bar" placeholder="Pesquisar">
+            <input type="text" class="form-control search-bar" placeholder="Pesquisar" [formControl]="busca">
             <span class="fas fa-search search-icon"></span>
         </div>
         <button type="button" class="btn btn-success"  routerLink="/produtos/novo">Novo</button>
@@ -22,7 +22,7 @@
                 </tr>
             </thead>
             <tbody class="table-body">
-                <tr *ngFor="let produto of produtos" class="table-row">
+                <tr *ngFor="let produto of teste" class="table-row">
                     <td class="main-sub-container">
                         <p class="main">{{ produto.nome }}</p>
                     </td>

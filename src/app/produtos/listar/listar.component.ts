@@ -1,4 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { FormControl } from '@angular/forms';
+import { debounceTime, distinctUntilChanged, map } from 'rxjs/operators';
 
 import { Produto } from 'src/app/modelos/produto.model';
 import { EditarComponent } from '../editar/editar.component';
@@ -11,7 +13,9 @@ import { EditarComponent } from '../editar/editar.component';
 export class ListarComponent implements OnInit {
 
   ordemCrescente = true;
-  @ViewChild('modal', { static: true }) modal: EditarComponent;
+  // @ViewChild('modal', { static: true }) modal: EditarComponent;
+  public busca = new FormControl('');
+  teste: {}[] = [];
 
   colunas = ['Nome', 'Cod.Estruturado', 'cod.Alternativo', 'estoque'];
 
@@ -29,19 +33,38 @@ export class ListarComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    this.teste = this.produtos;
+    this.reactiveFilter();
   }
 
-  organizar(parametro: string) {
-    this.produtos.sort((a, b) => this.ordenar(a, b, parametro))
+  reactiveFilter() {
+    this.busca.valueChanges.pipe(
+      map(value => value.trim()),
+      debounceTime(500),
+      distinctUntilChanged(),
+    ).subscribe((filterWord: string) => {
+      console.log(filterWord)
+      if (this.busca.value) this.filterArray(filterWord);
+      if (!this.busca.value) this.teste = this.produtos;
+    })
+  }
+
+  filterArray(filterWord) {
+    filterWord = filterWord.toLowerCase()
+    this.teste = this.produtos.filter((el: Produto) => el.nome.toLocaleLowerCase().includes(filterWord))
+  }
+
+  organizar(param: string) {
+    this.teste.sort((a, b) => this.ordenar(a, b, param))
     this.ordemCrescente = !this.ordemCrescente;
   }
 
-  ordenar(a, b, parametro) {
+  ordenar(a, b, param) {
 
-    parametro = parametro.toLowerCase();
+    param = param.toLowerCase();
 
-    let modeloA = a[`${parametro}`];
-    let modeloB = b[`${parametro}`];
+    let modeloA = a[param];
+    let modeloB = b[param];
 
     if (typeof modeloA === 'string' && typeof modeloB === 'string') {
       console.log('works')
