@@ -21,12 +21,18 @@
         <div class="form-row">
           <div class="form-group col-md-12">
             <label for="position">Cargo</label>
-            <input type="text" class="form-control" formControlName="position">
+            <select formControlName="position" class="form-control">
+              <option *ngFor="let position of positions" [ngValue]="position"> {{ position }} </option>
+            </select>
+            <!-- <input type="text" class="form-control" formControlName="position"> -->
           </div>
   
           <div class="form-group col-md-12">
             <label for="sector">Setor</label>
-            <input type="text" class="form-control" formControlName="sector">
+            <select formControlName="sector" class="form-control">
+              <option *ngFor="let sector of sectors" [ngValue]="sector"> {{ sector }} </option>
+            </select>
+            <!-- <input type="text" class="form-control" formControlName="sector"> -->
           </div>
         </div>
   

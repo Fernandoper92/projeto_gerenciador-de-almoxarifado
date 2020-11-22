@@ -6,4 +6,5 @@ export class Produto {
     estoque: number
     estoqueMin?: number
     grupo: string
+    fornecedor?: string
 }

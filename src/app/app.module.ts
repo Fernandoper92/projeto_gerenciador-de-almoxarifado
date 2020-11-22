@@ -15,10 +15,12 @@ import { FuncionariosModule } from './funcionarios/funcionarios.module';
 import { ContaModule } from './conta/conta.module';
 import { MovimentacoesModule } from './movimentacoes/movimentacoes.module';
 import { SharedModule } from './shared/shared.module';
+import { ConfigurationComponent } from './configuration/configuration.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    ConfigurationComponent
   ],
   imports: [
     BrowserModule,

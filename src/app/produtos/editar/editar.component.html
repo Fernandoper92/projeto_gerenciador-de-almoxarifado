@@ -16,7 +16,9 @@
       <div class="form-row">
         <div class="form-group col-md-12">
           <label for="group">grupo</label>
-          <input type="text" class="form-control" formControlName="group" [ngClass]="cssErro('group')">
+          <select formControlName="group" class="form-control" [ngClass]="cssErro('group')">
+            <option *ngFor="let group of groups" [ngValue]="group"> {{ group }} </option>
+          </select>
         </div>
       </div>
 

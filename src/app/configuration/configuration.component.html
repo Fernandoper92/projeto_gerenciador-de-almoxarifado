@@ -1,0 +1,66 @@
+<div class="main-container">
+
+    <div class="title-container">
+        <p class="title">CONFIGURAÇÕES</p>
+    </div>
+
+    <div class="Collapse-container">
+        <div class="container-menu">
+            <button class="collapsible">PRODUTOS</button>
+            <div class="content">
+                <div class="select-container">
+                    <h3 class="title-select-container">Editar seleção de grupos</h3>
+                    <label for="groupName">Nome do grupo</label>
+                    <input class="input-box" type="text" name="groupName" #groupName>
+                    <button class="btn btn-success">Adicionar</button>
+                    <div class="items-container">
+                        <div *ngFor="let group of groups">
+                            {{ group }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-menu">
+            <button class="collapsible">FUNCIONÁRIOS</button>
+            <div class="content">
+                <div class="select-container">
+                    <div class="select-box">
+                        <h3 class="title-select-container">Editar seleção de setores</h3>
+                        <label for="sectorName">Nome do setor</label>
+                        <input class="input-box" type="text" name="sectorName" #sectorName>
+                        <button class="btn btn-success">Adicionar</button>
+                        <div class="items-container">
+                            <div *ngFor="let sector of sectors">
+                                {{ sector }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="select-box">
+                        <h3 class="title-select-container">Editar seleção de funções</h3>
+                        <label for="functionName">Nome da função</label>
+                        <input class="input-box" type="text" name="functionName" #functionName>
+                        <button class="btn btn-success">Adicionar</button>
+                        <div class="items-container">
+                            <div *ngFor="let group of groups">
+                                {{ group }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-menu">
+            <button class="collapsible">MOVIMENTAÇÕES</button>
+            <div class="content">
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore
+                    et
+                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+                    aliquip
+                    ex
+                    ea commodo consequat.</p>
+            </div>
+        </div>
+    </div>
+
+</div>

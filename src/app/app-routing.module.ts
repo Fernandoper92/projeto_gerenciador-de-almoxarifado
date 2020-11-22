@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
+
 import { Routes, RouterModule } from '@angular/router';
 import { MovimentacoesComponent } from './movimentacoes/movimentacoes.component';
+import { ConfigurationComponent } from './configuration/configuration.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'movimentações', pathMatch: 'full' },
@@ -13,6 +15,7 @@ const routes: Routes = [
     loadChildren: () => import('./produtos/produtos.module').then(m => m.ProdutosModule)
   },
   { path: 'movimentações', component: MovimentacoesComponent },
+  { path: 'configurações', component: ConfigurationComponent },
 ];
 
 @NgModule({

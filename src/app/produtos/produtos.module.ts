@@ -19,6 +19,6 @@ import { SharedModule } from './../shared/shared.module';
     ReactiveFormsModule,
     ProdutosRoutingModule,
     SharedModule
-  ]
+  ],
 })
 export class ProdutosModule { }
