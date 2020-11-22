@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { debounceTime, distinctUntilChanged, map } from 'rxjs/operators';
 
-import { Funcionario } from 'src/app/modelos/funcionario.model';
+import { Employee } from './../../models/employee.model';
 
 @Component({
   selector: 'app-listar',
@@ -17,22 +17,12 @@ export class ListarComponent implements OnInit {
 
   colunas = ['Nome', 'ID', 'Cargo', 'Setor'];
 
-  funcionarios: Funcionario[] = [
-    { id: 1, nome: 'Fernando', sobrenome: 'Pereira', setor: 'Almoxarifado', cargo: 'Auxiliar de Almoxarifado' },
-    { id: 2, nome: 'João', sobrenome: 'Manjoli', setor: 'Expedição', cargo: 'Gerente de Expedição' },
-    { id: 3, nome: 'Eduardo', sobrenome: 'Vilarinho', setor: 'Expedição', cargo: 'Auxiliar de Expedição' },
-    { id: 4, nome: 'Ivonete', sobrenome: 'Teresinha', setor: 'Recursos Humanos', cargo: 'Gerente de RH' },
-    { id: 5, nome: 'Jonas', sobrenome: 'Pavi', setor: 'Comercial', cargo: 'Gerente Comercial' },
-    { id: 6, nome: 'Julio', sobrenome: 'da Silva', setor: 'Produção', cargo: 'Gerente de Produção' },
-    { id: 7, nome: 'Maria', sobrenome: 'do Bairro', setor: 'Produção', cargo: 'Auxiliar de Produção' },
-    { id: 8, nome: 'Raquel', sobrenome: 'Bagatini', setor: 'Vendas', cargo: 'Auxiliar de Vendas' },
-    { id: 9, nome: 'Leticia', sobrenome: 'Melo', setor: 'Vendas', cargo: 'Gerente de Vendas' },
-  ]
+  Employees: Employee[] = [];
 
   constructor() { }
 
   ngOnInit(): void {
-    this.teste = this.funcionarios;
+    this.teste = this.Employees;
     this.reactiveFilter();
   }
 
@@ -44,13 +34,13 @@ export class ListarComponent implements OnInit {
     ).subscribe((filterWord: string) => {
       console.log(filterWord)
       if (this.busca.value) this.filterArray(filterWord);
-      if (!this.busca.value) this.teste = this.funcionarios;
+      if (!this.busca.value) this.teste = this.Employees;
     })
   }
 
   filterArray(filterWord) {
     filterWord = filterWord.toLowerCase()
-    this.teste = this.funcionarios.filter((el: Funcionario) => el.nome.toLocaleLowerCase().includes(filterWord))
+    this.teste = this.Employees.filter((el: Employee) => el.name.toLocaleLowerCase().includes(filterWord))
   }
 
   organizar(param:string) {

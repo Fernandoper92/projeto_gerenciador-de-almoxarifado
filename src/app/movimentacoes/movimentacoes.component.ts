@@ -1,4 +1,4 @@
-import { Movimentacao } from './../modelos/movimentacao.model';
+import { Moviment } from './../models/moviment.model';;
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
@@ -24,25 +24,7 @@ export class MovimentacoesComponent implements OnInit {
     {ref:'date', name:'Data' }
   ]
 
-  movimentacoes: Movimentacao[] = [
-    { employee: 'Lucas', sector: 'produção', product: 'caneta azul', quantity: +11, date: this.date.toLocaleDateString(), output: false, input: true },
-    { employee: 'Mateus', sector: 'expedição', product: 'lapis', quantity: 1, date: this.date.toLocaleDateString(), output: true, input: false },
-    { employee: 'Pedro', sector: 'produção', product: 'luva 7', quantity: 1, date: this.date.toLocaleDateString(), output: true, input: false },
-    { employee: 'Alex', sector: 'administração', product: 'luva 8', quantity: 2, date: this.date.toLocaleDateString(), output: false, input: true },
-    { employee: 'Franciele', sector: 'produção', product: 'botina', quantity: 1, date: this.date.toLocaleDateString(), output: false, input: true },
-    { employee: 'Gisele', sector: 'administração', product: 'chave', quantity: 3, date: this.date.toLocaleDateString(), output: true, input: false },
-    { employee: 'Natalia', sector: 'motorista', product: 'fita adesiva', quantity: 1, date: this.date.toLocaleDateString(), output: false, input: true },
-    { employee: 'joão', sector: 'expedição', product: 'caneta vermelha', quantity: 1, date: this.date.toLocaleDateString(), output: false, input: true },
-    { employee: 'katia', sector: 'administração', product: 'caneta azul', quantity: 2, date: this.date.toLocaleDateString(), output: false, input: true },
-    { employee: 'Lizabete', sector: 'produção', product: 'capacete', quantity: 30, date: this.date.toLocaleDateString(), output: false, input: true },
-    { employee: 'joão', sector: 'administração', product: 'Fone', quantity: 2, date: this.date.toLocaleDateString(), output: false, input: true },
-    { employee: 'Pedro', sector: 'produção', product: 'rolo strech', quantity: 1, date: this.date.toLocaleDateString(), output: false, input: true },
-    { employee: 'Leandro', sector: 'controle de qualidade', product: 'papel hig.', quantity: 1, date: this.date.toLocaleDateString(), output: false, input: true },
-    { employee: 'Pedro', sector: 'produção', product: 'luva couro', quantity: 5, date: this.date.toLocaleDateString(), output: false, input: true },
-    { employee: 'Fernando', sector: 'motorista', product: 'parafuso', quantity: 1, date: this.date.toLocaleDateString(), output: false, input: true },
-    { employee: 'Julio Cesar', sector: 'produção', product: 'capa de chuva', quantity: 1, date: this.date.toLocaleDateString(), output: false, input: true },
-    { employee: 'Julio Rodrigues', sector: 'produção', product: 'canetaão azul', quantity: 5, date: this.date.toLocaleDateString(), output: false, input: true },
-  ]
+  movimentacoes: Moviment[] = []
 
   constructor(
     private formBuilder: FormBuilder,
@@ -90,7 +72,7 @@ export class MovimentacoesComponent implements OnInit {
 
   filterArray(filterWord) {
     filterWord = filterWord.toLowerCase()
-    this.teste = this.movimentacoes.filter((el: Movimentacao) => el.employee.toLocaleLowerCase().includes(filterWord))
+    this.teste = this.movimentacoes.filter((el: Moviment) => el.mover.name.toLocaleLowerCase().includes(filterWord))
   }
 
   cssErro(param) {
@@ -108,11 +90,11 @@ export class MovimentacoesComponent implements OnInit {
   }
 
   organize(param: string) {
-    this.teste.sort((a: Movimentacao, b: Movimentacao) => this.sort(a, b, param))
+    this.teste.sort((a: Moviment, b: Moviment) => this.sort(a, b, param))
     this.ascendingOrder = !this.ascendingOrder;
   }
 
-  sort(a: Movimentacao, b: Movimentacao, param: string) {
+  sort(a: Moviment, b: Moviment, param: string) {
 
     param = param.toLowerCase();
 
