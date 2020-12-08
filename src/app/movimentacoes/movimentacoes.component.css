@@ -11,6 +11,10 @@ input:focus {
     box-shadow: none !important;
 }
 
+.form-control {
+    padding: 5px;
+}
+
 .main-container {
     background-color: white;
     padding: 0 50px;
@@ -40,16 +44,14 @@ input:focus {
     align-items: center;
     background-color: white;
     margin: 20px 0;
-    /* border-bottom:  1px solid rgba(0, 0, 0, 0.1); */
 }
 
 .search {
-    margin: 20px 0;
     width: 300px;
     border: none;
     align-items: center;
     background-color: white;
-    box-shadow: 0px 0px 4px 0.5px gray;
+    border: 1px solid rgb(232, 232, 232);
 }
 
 .search-icon {
@@ -63,54 +65,66 @@ input:focus {
     height: 40px;
 }
 
-.btn {
-    color: white;
-    height: 25px;
-    width: 50px;
-    font-size: 14px;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    box-shadow: 0px 0px 4px 0.5px gray;
-}
-
-.btn-success {
-    height: 40px;
-    width: 120px;
-    font-size: 20px;
-}
-
-.btn-text {
-    display: block;
-    margin: 0;
-    padding-left: 5px;
-    box-sizing: border-box;
-}
-
 .form-container {
-    padding: 0 50px;
-    padding-bottom: 20px;
-}
-
-.form-container > .title {
-    margin: 10px 0;
-    font-size: 20px;
-    align-self: center;
+    border: 1px solid rgb(232, 232, 232);
+    border-radius: 5px;
+    padding: 5px;
+    margin: 20px 0;
 }
 
 .form-grid {
-    display: grid;
-    justify-content: center;
-    grid-template-columns: 200px 200px 100px 100px auto;
-    gap: 20px;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
 }
 
+.form-select-box,
 .form-text-box {
-    width: 200px;
+    width: 300px;
 }
 
-.form-number-box {
-    width: 100px;
+.form-number-box,
+.btn {
+    width: 80px;
+}
+
+.btn-success {
+    padding: 0;
+    height: 40px;
+    font-size: 20px;
+}
+
+.collapsible {
+    background-color: white;
+    cursor: pointer;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 20px;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.collapsible:after {
+    color: #49b96d;
+    content: "\002B";
+    font-weight: bold;
+    float: right;
+}
+
+.active:after {
+    content: "\2212";
+}
+
+.content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.2s ease-out;
+}
+
+.table-container {
+    margin: 20px 0;
 }
 
 .table {
@@ -120,28 +134,28 @@ input:focus {
     cursor: default;
 }
 
-.colum-title {
+.column-title {
     border: none;
     font-size: 20px;
     padding-left: 25px;
     font-weight: normal;
-    color: black;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.5);
+    color: gray;
+    border-bottom: 1px solid rgb(232, 232, 232);
 }
 
-.colum-title:active {
+.column-title:active {
     background-color: whitesmoke;
 }
 
-.colum-title-icon {
+.column-title-icon {
     opacity: 0;
 }
 
-.colum-title:hover {
+.column-title:hover {
     cursor: pointer;
 }
 
-.colum-title:hover > .colum-title-icon {
+.column-title:hover > .column-title-icon {
     opacity: 1;
 }
 
@@ -189,19 +203,56 @@ td {
     min-width: 50px;
 }
 
-@media only screen and (max-width: 800px) {
-    .form-grid {
-        grid-template-columns: auto auto;
+/* responsive */
+
+@media (max-width: 1000px) {
+    .form-select-box,
+    .form-text-box {
+        width: 250px;
     }
 }
 
-@media only screen and (max-width: 540px) {
-    .form-grid {
-        grid-template-columns: auto;
+@media (max-width: 900px) {
+    .form-select-box,
+    .form-text-box {
+        width: 200px;
     }
 }
 
-@media only screen and (max-width: 760px), (min-device-width: 450px) and (max-device-width: 900px) {
+@media (max-width: 800px) {
+    .form-grid {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .form-select-box,
+    .form-text-box {
+        width: 300px;
+    }
+
+    .form-control,
+    .btn {
+        margin: 5px 0;
+    }
+}
+
+@media (max-width: 440px) {
+    .form-select-box,
+    .form-text-box {
+        width: 200px;
+    }
+}
+
+@media (max-width: 330px) {
+    .form-select-box,
+    .form-text-box {
+        width: 150px;
+    }
+}
+
+/* convert table to column */
+
+@media (max-device-width: 900px) {
     .main-container {
         background-color: white;
         padding: 0 50px;

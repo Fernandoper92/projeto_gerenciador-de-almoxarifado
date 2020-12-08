@@ -12,52 +12,63 @@
     </div>
 
     <form class="form-container" [formGroup]="form" (ngSubmit)="onSubmit()">
-        <p class="title">Nova Movimentação</p>
-        <div class="form-grid">
-          <div class="emplyee form-text-box">
-            <input type="text" class="form-control" formControlName="employee" placeholder="Funcionario"  [ngClass]="cssErro('employee')">
-          </div>
-          <div class="product form-text-box">
-            <input type="text" class="form-control" formControlName="product" placeholder="Produto"  [ngClass]="cssErro('product')">
-          </div>
-          <div class="input form-number-box">
-            <input type="number" class="form-control" formControlName="input" placeholder="Entrada" #input>
-          </div>
-          <div class="output form-number-box">
-            <input type="number" class="form-control" formControlName="output" placeholder="Saida" #output>
-          </div>
-          <button type="submit" class="btn btn-success">
-            Enviar</button>
-        </div>
-      </form>
+        <p class="collapsible">Nova Movimentação</p>
+        <div class="content form-grid">
 
-      <!-- <app-form-debug [form]="form"></app-form-debug> -->
+              <select formControlName="employee" class="form-control form-select-box employee-form" [ngClass]="cssErro('employee')">
+                <option [ngValue]=""></option>
+              </select>
+              <select formControlName="product" class="form-control form-select-box product-form" [ngClass]="cssErro('product')">
+                <option [ngValue]=""></option>
+              </select>
+              
+            <!-- <div class="emplyee form-text-box">
+                <input type="text" class="form-control" formControlName="employee" placeholder="Funcionario"
+                    [ngClass]="cssErro('employee')">
+            </div>
+            <div class="product form-text-box">
+                <input type="text" class="form-control" formControlName="product" placeholder="Produto"
+                    [ngClass]="cssErro('product')">
+            </div> -->
+
+            <div class="input form-number-box">
+                <input type="number" class="form-control" formControlName="input" placeholder="Entrada" #input>
+            </div>
+            <div class="output form-number-box">
+                <input type="number" class="form-control" formControlName="output" placeholder="Saida" #output>
+            </div>
+            <button type="submit" class="btn btn-success">
+                Enviar</button>
+        </div>
+    </form>
+
+    <!-- <app-form-debug [form]="form"></app-form-debug> -->
 
     <div class="table-container">
         <table class="table">
             <thead>
                 <tr class="table-head">
-                    <th class="colum-title" scope="col" *ngFor="let coluna of colunas" (click)="organize(coluna.ref)">
-                        {{ coluna.name }}&nbsp;<i class="fas fa-sort colum-title-icon"></i></th>
-                    <th class="colum-title has-btn" scope="col"></th>
+                    <th class="column-title" scope="col" *ngFor="let column of columns" (click)="organize(column.ref)">
+                        {{ column.name }}&nbsp;<i class="fas fa-sort column-title-icon"></i></th>
+                    <th class="column-title has-btn" scope="col"></th>
                 </tr>
             </thead>
             <tbody class="table-body">
-                <tr *ngFor="let movimentacao of teste" class="table-row">
+                <tr *ngFor="let moviment of moviments" class="table-row">
                     <td class="main-sub-container">
-                        <p class="main">{{ movimentacao.employee }}</p>
-                        <p class="sub">{{ movimentacao.sector }}</p>
+                        <p class="main">{{ moviment.employee }}</p>
+                        <p class="sub">{{ moviment.sector }}</p>
                     </td>
                     <td>
-                        <P>{{ movimentacao.product }}</P>
+                        <P>{{ moviment.product }}</P>
                     </td>
                     <td>
-                        <p *ngIf="movimentacao.input" class="number">+
-                            {{ movimentacao.quantity }}</p>
-                        <p *ngIf="movimentacao.output" class="number">-
-                            {{ movimentacao.quantity }}</p>
+                        <p *ngIf="moviment.input" class="number">+
+                            {{ moviment.quantity }}</p>
+                        <p *ngIf="moviment.output" class="number">-
+                            {{ moviment.quantity }}</p>
                     </td>
-                    <td>{{ movimentacao.date }}</td>
+                    <td>{{ moviment.date }}</td>
                     <td class="icon-container">
                         <i class="far fa-trash-alt icon-btn"></i>
                     </td>

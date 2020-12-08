@@ -21,7 +21,6 @@ select:focus {
   display: flex;
   align-items: center;
   height: 75px;
-  /* padding: 50px 0; */
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
   opacity: 1;
 }

@@ -1,8 +1,9 @@
-import { Moviment } from './../models/moviment.model';;
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { map, distinctUntilChanged, debounceTime } from 'rxjs/operators';
+
+import { Moviment } from './../models/moviment.model';
 
 @Component({
   selector: 'app-movimentacoes',
@@ -14,17 +15,17 @@ export class MovimentacoesComponent implements OnInit {
   date = new Date;
   ascendingOrder = true;
   form: FormGroup;
+  moviments: Moviment[] = [];
+  movimentsTemp: Moviment[] = [];
   public busca = new FormControl('');
-  teste: {}[] = [];
 
-  colunas = [
+  columns = [
     {ref:'employee', name:'Funcionario' },
     {ref:'product', name:'Produto' },
     {ref:'quantity', name:'Quantidade' },
     {ref:'date', name:'Data' }
   ]
 
-  movimentacoes: Moviment[] = []
 
   constructor(
     private formBuilder: FormBuilder,
@@ -32,9 +33,10 @@ export class MovimentacoesComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.teste = this.movimentacoes;
+    this.moviments = this.movimentsTemp;
     this.createFormGroup();
     this.reactiveFilter();
+    this.collapseMenu();
   }
 
   createFormGroup() {
@@ -66,13 +68,13 @@ export class MovimentacoesComponent implements OnInit {
     ).subscribe((filterWord: string) => {
       console.log(filterWord)
       if (this.busca.value) this.filterArray(filterWord);
-      if (!this.busca.value) this.teste = this.movimentacoes;
+      if (!this.busca.value) this.moviments = this.movimentsTemp;
     })
   }
 
   filterArray(filterWord) {
     filterWord = filterWord.toLowerCase()
-    this.teste = this.movimentacoes.filter((el: Moviment) => el.mover.name.toLocaleLowerCase().includes(filterWord))
+    this.moviments = this.movimentsTemp.filter((el: Moviment) => el.mover.name.toLocaleLowerCase().includes(filterWord))
   }
 
   cssErro(param) {
@@ -90,7 +92,7 @@ export class MovimentacoesComponent implements OnInit {
   }
 
   organize(param: string) {
-    this.teste.sort((a: Moviment, b: Moviment) => this.sort(a, b, param))
+    this.moviments.sort((a: Moviment, b: Moviment) => this.sort(a, b, param))
     this.ascendingOrder = !this.ascendingOrder;
   }
 
@@ -121,4 +123,22 @@ export class MovimentacoesComponent implements OnInit {
     return -1;
   }
 
+  
+  collapseMenu() {
+    var coll = document.getElementsByClassName("collapsible");
+    var i;
+    
+    for (i = 0; i < coll.length; i++) {
+      coll[i].addEventListener("click", function () {
+        this.classList.toggle("active");
+        var content = this.nextElementSibling;
+        if (content.style.maxHeight) {
+          content.style.maxHeight = null;
+        } else {
+          content.style.maxHeight = content.scrollHeight + "px";
+        }
+      });
+    }
+  }
 }
+  

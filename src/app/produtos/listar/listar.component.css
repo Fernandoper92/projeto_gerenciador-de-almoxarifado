@@ -35,19 +35,19 @@ input:focus {
 
 .filter-container {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
   background-color: white;
   margin: 20px 0;
 }
 
 .search {
-  margin: 20px;
   width: 300px;
   border: none;
   align-items: center;
   background-color: white;
-  box-shadow: 0px 0px 4px 0.5px gray;
+  margin-right: 10px;
+  border: 1px solid rgb(232, 232, 232);
 }
 
 .search-icon {
@@ -61,28 +61,11 @@ input:focus {
   height: 40px;
 }
 
-.btn {
-  color: white;
-  height: 25px;
-  width: 50px;
-  font-size: 14px;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  box-shadow: 0px 0px 4px 0.5px gray;
-}
-
 .btn-success {
+  padding: 0;
   height: 40px;
-  width: 120px;
+  width: 80px;
   font-size: 20px;
-}
-
-.btn-text {
-  display: block;
-  margin: 0;
-  padding-left: 5px;
-  box-sizing: border-box;
 }
 
 .table {
@@ -97,8 +80,8 @@ input:focus {
   font-size: 20px;
   padding-left: 25px;
   font-weight: normal;
-  color: black;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.5);
+  color: gray;
+  border-bottom: 1px solid rgb(232, 232, 232);
 }
 
 .colum-title:active {
@@ -143,9 +126,6 @@ td {
   cursor: pointer;
 }
 
-.main-sub-container {
-}
-
 .main {
   color: initial;
   font-weight: bold;
@@ -174,15 +154,15 @@ td {
 
   .filter-container {
     flex-direction: column;
-    justify-content: center;
+    align-items: start;
   }
 
   .search {
     width: 100%;
   }
 
-  .form-grid {
-    grid-template-columns: auto;
+  .btn-success {
+    margin-top: 20px;
   }
 }
 

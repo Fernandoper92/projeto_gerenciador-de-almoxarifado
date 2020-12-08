@@ -15,7 +15,7 @@ export class ListarComponent implements OnInit {
   public busca = new FormControl('');
   teste: {}[] = [];
 
-  colunas = ['Nome', 'Cod.Estruturado', 'cod.Alternativo', 'estoque'];
+  colunas = ['Nome', 'Cod. Estruturado', 'Cod. Alternativo', 'Estoque'];
 
   Products: Product[] = []
 
