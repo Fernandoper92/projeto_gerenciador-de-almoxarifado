@@ -8,7 +8,7 @@ import { Moviment } from './../models/moviment.model';
 @Component({
   selector: 'app-movimentacoes',
   templateUrl: './movimentacoes.component.html',
-  styleUrls: ['./movimentacoes.component.css']
+  styleUrls: ['./movimentacoes.component.scss']
 })
 export class MovimentacoesComponent implements OnInit {
 

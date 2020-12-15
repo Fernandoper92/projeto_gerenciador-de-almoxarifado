@@ -3,48 +3,58 @@ import { FormControl } from '@angular/forms';
 import { debounceTime, distinctUntilChanged, map } from 'rxjs/operators';
 
 import { Employee } from './../../models/employee.model';
+import { EmployeesService } from '../employees.service';
 
 @Component({
   selector: 'app-listar',
   templateUrl: './listar.component.html',
-  styleUrls: ['./listar.component.css']
+  styleUrls: ['./listar.component.scss']
 })
 export class ListarComponent implements OnInit {
 
   ordemCrescente = true;
+  employees: Employee[];
+  employeesTemp: Employee[];
   public busca = new FormControl('');
-  teste: {}[] = [];
 
   colunas = ['Nome', 'ID', 'Cargo', 'Setor'];
 
-  Employees: Employee[] = [];
 
-  constructor() { }
+  constructor(private employeeService: EmployeesService) { }
 
   ngOnInit(): void {
-    this.teste = this.Employees;
-    this.reactiveFilter();
+    this.getAllEmplyees();
   }
 
-  reactiveFilter() {
+  getAllEmplyees() {
+    this.employeeService.getAllEmployee().subscribe(data => this.reactiveFilter(data));
+  }
+
+  deleteEmployee(id) {
+    this.employeeService.deleteEmployee(id).subscribe(data => console.log('Deletado com sucesso!'));
+    this.getAllEmplyees();
+  }
+
+  reactiveFilter(data) {
+    this.employeesTemp = data;
+    this.employees = this.employeesTemp;
     this.busca.valueChanges.pipe(
       map(value => value.trim()),
       debounceTime(500),
       distinctUntilChanged(),
     ).subscribe((filterWord: string) => {
-      console.log(filterWord)
       if (this.busca.value) this.filterArray(filterWord);
-      if (!this.busca.value) this.teste = this.Employees;
+      if (!this.busca.value) this.employees = this.employeesTemp;
     })
   }
 
   filterArray(filterWord) {
     filterWord = filterWord.toLowerCase()
-    this.teste = this.Employees.filter((el: Employee) => el.name.toLocaleLowerCase().includes(filterWord))
+    this.employees = this.employeesTemp.filter((el: Employee) => el.name.toLocaleLowerCase().includes(filterWord))
   }
 
   organizar(param:string) {
-    this.teste.sort((a,b) => this.ordenar(a,b,param))
+    this.employees.sort((a,b) => this.ordenar(a,b,param))
     this.ordemCrescente = !this.ordemCrescente;
   }
 

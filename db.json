@@ -1,0 +1,24 @@
+{
+  "employees": [
+    {
+      "id": 1,
+      "type": "employee",
+      "name": "Fernando",
+      "lastName": "Pereira",
+      "role": {
+        "role": "Auxiliar de Expedição",
+        "sector": "Expedição"
+      }
+    },
+    {
+      "id": 2,
+      "type": "employee",
+      "name": "Franciele",
+      "lastName": "da Silva",
+      "role": {
+        "role": "Auxiliar de Produção",
+        "sector": "Produção"
+      }
+    }
+  ]
+}

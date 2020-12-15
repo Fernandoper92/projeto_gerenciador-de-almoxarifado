@@ -7,7 +7,7 @@ import { LocalDataService } from 'src/app/shared/local-data.service';
 @Component({
   selector: 'app-editar',
   templateUrl: './editar.component.html',
-  styleUrls: ['./editar.component.css']
+  styleUrls: ['./editar.component.scss']
 })
 export class EditarComponent implements OnInit {
 

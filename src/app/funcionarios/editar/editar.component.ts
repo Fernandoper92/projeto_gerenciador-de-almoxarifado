@@ -2,12 +2,14 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
+import { Employee } from './../../models/employee.model';
 import { LocalDataService } from 'src/app/shared/local-data.service';
+import { EmployeesService } from '../employees.service';
 
 @Component({
   selector: 'app-editar',
   templateUrl: './editar.component.html',
-  styleUrls: ['./editar.component.css']
+  styleUrls: ['./editar.component.scss']
 })
 export class EditarComponent implements OnInit {
 
@@ -15,12 +17,13 @@ export class EditarComponent implements OnInit {
 
   sectors: string[] = this.localData.sectors;
 
-  positions: string[] = this.localData.positions;
+  roles: string[] = this.localData.positions;
 
   constructor(
     private formBuilder: FormBuilder,
     private http: HttpClient,
-    private localData: LocalDataService
+    private localData: LocalDataService,
+    private employeeService: EmployeesService
   ) { }
 
   ngOnInit(): void {
@@ -31,21 +34,26 @@ export class EditarComponent implements OnInit {
     this.form = this.formBuilder.group({
       name: [null, Validators.required],
       lastName: [null, Validators.required],
-      position: [null],
-      sector: [null],
+      type: ["employee"],
+      
+      role: this.formBuilder.group({
+        role: [null],
+        sector: [null]
+      }),
+      
       uniformSize: [null],
       shoeSize: [null],
       GloveSize: [null]
     });
   }
 
-  onSubmit() {
-    this.http.post('http://httpbin.org/post', JSON.stringify(this.form.value)).pipe().subscribe(data => {
-      console.log(data)
+  onSubmit(form) {
+    this.postEmployee(form.value);
       this.form.reset();
-    },
-      (error: any) => alert('Erro ao enviar os dados, por favor tente de novo mais tarde!')
-    );
+  }
+
+  postEmployee(employee) {
+    this.employeeService.postEmployee(employee).subscribe(data => console.log('Enviado com sucesso!'));
   }
 
   cssErro(param) {

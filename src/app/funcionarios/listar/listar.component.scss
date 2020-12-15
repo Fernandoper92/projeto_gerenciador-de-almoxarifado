@@ -1,3 +1,5 @@
+@import "../../shared/colors.scss";
+
 p {
   padding: 0;
   margin: 0;
@@ -20,7 +22,7 @@ input:focus {
   display: flex;
   align-items: center;
   padding: 20px 0;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  border-bottom: 1px solid $gray;
 }
 
 .title {
@@ -47,12 +49,12 @@ input:focus {
   align-items: center;
   background-color: white;
   margin-right: 10px;
-  border: 1px solid rgb(232, 232, 232);
+  border: 1px solid $gray;
 }
 
 .search-icon {
   width: 30px;
-  color: #49b96d;
+  color: $white_green;
   margin: 0 10px;
 }
 
@@ -81,7 +83,7 @@ input:focus {
   padding-left: 25px;
   font-weight: normal;
   color: gray;
-  border-bottom: 1px solid rgb(232, 232, 232);
+  border-bottom: 1px solid $gray;
 }
 
 .colum-title:active {
@@ -110,7 +112,7 @@ td {
   vertical-align: middle;
   align-items: center;
   padding: 5px 0;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  border-bottom: 1px solid $gray;
 }
 
 .main-sub-container {
@@ -123,6 +125,10 @@ td {
 
 .icon-btn {
   cursor: pointer;
+}
+
+.main-sub-container {
+  padding-left: 20px;
 }
 
 .main {
@@ -195,7 +201,7 @@ td {
     background: whitesmoke;
   }
 
-  td {
+  td,.main-sub-container {
     /* Behave  like a "row" */
     border: none;
     border-bottom: 1px solid #eee;
