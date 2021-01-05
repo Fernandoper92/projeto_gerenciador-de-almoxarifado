@@ -1,5 +1,9 @@
 @import "../../shared/colors.scss";
 
+* {
+  transition: all 0.25s;
+}
+
 p {
   padding: 0;
   margin: 0;
@@ -141,6 +145,34 @@ td {
   background-color: #5eeb8b62;
 }
 
+.loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  * {
+    margin: 10px;
+  }
+  
+  .loader-animation {
+    border: 16px solid #f3f3f3; /* Light grey */
+    border-top: 16px solid $white_green; /* Green */
+    border-radius: 50%;
+    width: 120px;
+    height: 120px;
+    animation: spin 2s linear infinite;
+  }
+
+  .loader-text {
+    font-size: 24px;
+  }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
 @media only screen and (max-width: 1200px) {
   .form-grid {
     grid-template-columns: auto auto;
@@ -162,7 +194,7 @@ td {
   }
 }
 
-@media only screen and (max-width: 760px), (min-device-width: 450px) and (max-device-width: 900px) {
+@media only screen and (max-device-width: 700px) {
   .main-container {
     background-color: white;
     padding: 0 50px;
@@ -174,6 +206,10 @@ td {
 
   .subtitle {
     font-size: 16px;
+  }
+
+  .icon-container, .id-container {
+    display: none;
   }
 
   /* Force table to not be like tables anymore */
@@ -230,9 +266,6 @@ td {
 	*/
   td:nth-of-type(1):before {
     content: "Nome";
-  }
-  td:nth-of-type(2):before {
-    content: "ID";
   }
   td:nth-of-type(3):before {
     content: "Cargo";

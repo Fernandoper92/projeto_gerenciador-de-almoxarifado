@@ -1,24 +1,95 @@
 {
   "employees": [
     {
-      "id": 1,
-      "type": "employee",
-      "name": "Fernando",
-      "lastName": "Pereira",
+      "name": "Mateus",
+      "lastName": "Ferreira",
+      "type": null,
       "role": {
-        "role": "Auxiliar de Expedição",
-        "sector": "Expedição"
-      }
+        "role": "Gerente de Produção",
+        "sector": "Produção"
+      },
+      "uniformSize": null,
+      "shoeSize": null,
+      "GloveSize": null,
+      "id": 3
     },
     {
-      "id": 2,
-      "type": "employee",
-      "name": "Franciele",
-      "lastName": "da Silva",
+      "name": "Ana",
+      "lastName": "de Oliveira",
+      "type": null,
       "role": {
         "role": "Auxiliar de Produção",
         "sector": "Produção"
-      }
+      },
+      "uniformSize": null,
+      "shoeSize": null,
+      "GloveSize": null,
+      "id": 4
+    },
+    {
+      "name": "Larissa",
+      "lastName": "Pires",
+      "type": null,
+      "role": {
+        "role": "Auxiliar de Classificação",
+        "sector": "Classificação"
+      },
+      "uniformSize": null,
+      "shoeSize": null,
+      "GloveSize": null,
+      "id": 5
+    },
+    {
+      "name": "Junior",
+      "lastName": "Lopez",
+      "type": null,
+      "role": {
+        "role": "Auxiliar de Produção",
+        "sector": "Produção"
+      },
+      "uniformSize": null,
+      "shoeSize": null,
+      "GloveSize": null,
+      "id": 6
+    },
+    {
+      "name": "Francisco",
+      "lastName": "Duarte",
+      "type": null,
+      "role": {
+        "role": "Auxiliar de expedição",
+        "sector": "Expedição"
+      },
+      "uniformSize": null,
+      "shoeSize": null,
+      "GloveSize": null,
+      "id": 7
+    },
+    {
+      "name": "Marcela",
+      "lastName": "Tavarez",
+      "type": null,
+      "role": {
+        "role": "Compras",
+        "sector": "Administração"
+      },
+      "uniformSize": null,
+      "shoeSize": null,
+      "GloveSize": null,
+      "id": 8
+    },
+    {
+      "name": "Daniel",
+      "lastName": "Soarez",
+      "type": "employee",
+      "role": {
+        "role": "Auxiliar de Produção",
+        "sector": "Produção"
+      },
+      "uniformSize": null,
+      "shoeSize": null,
+      "GloveSize": null,
+      "id": 9
     }
   ]
 }

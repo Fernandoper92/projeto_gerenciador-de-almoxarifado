@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { debounceTime, distinctUntilChanged, map } from 'rxjs/operators';
+import { debounceTime, delay, distinctUntilChanged, map } from 'rxjs/operators';
 
 import { Employee } from './../../models/employee.model';
 import { EmployeesService } from '../employees.service';
@@ -17,7 +17,7 @@ export class ListarComponent implements OnInit {
   employeesTemp: Employee[];
   public busca = new FormControl('');
 
-  colunas = ['Nome', 'ID', 'Cargo', 'Setor'];
+  colunas = ['Name', 'ID', 'Role', 'Sector'];
 
 
   constructor(private employeeService: EmployeesService) { }
@@ -27,17 +27,16 @@ export class ListarComponent implements OnInit {
   }
 
   getAllEmplyees() {
-    this.employeeService.getAllEmployee().subscribe(data => this.reactiveFilter(data));
+    this.employeeService.getAllEmployee().pipe(delay(2000)).subscribe(data => this.reactiveFilter(data));
   }
 
   deleteEmployee(id) {
-    this.employeeService.deleteEmployee(id).subscribe(data => console.log('Deletado com sucesso!'));
-    this.getAllEmplyees();
+    this.employeeService.deleteEmployee(id).subscribe(data => this.getAllEmplyees());
   }
 
   reactiveFilter(data) {
     this.employeesTemp = data;
-    this.employees = this.employeesTemp;
+    this.employees = data;
     this.busca.valueChanges.pipe(
       map(value => value.trim()),
       debounceTime(500),
@@ -59,17 +58,25 @@ export class ListarComponent implements OnInit {
   }
 
   ordenar(a, b, param) {
+    let modeloA;
+    let modeloB;
 
     param = param.toLowerCase();
 
-    let modeloA = a[param];
-    let modeloB = b[param];
-
-    if(typeof modeloA === 'string' && typeof modeloB === 'string') {
-      console.log('works')
-    modeloA = modeloA.toUpperCase();
-    modeloB = modeloB.toUpperCase();
+    if (param === 'role' || param === 'sector') {
+      modeloA = a['role'];
+      modeloA = modeloA[param];
+      modeloB = b['role'];
+      modeloB = modeloB[param];
+    } else {
+      modeloA = a[param];
+      modeloB = b[param];
     }
+
+    // if(typeof modeloA === 'string' && typeof modeloB === 'string') {
+    // modeloA = modeloA.toUpperCase();
+    // modeloB = modeloB.toUpperCase();
+    // }
 
     if(this.ordemCrescente) return this.ordenarCrescente(modeloA, modeloB);
     return this.ordernarDecrescente(modeloA, modeloB);

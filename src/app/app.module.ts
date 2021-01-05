@@ -1,6 +1,6 @@
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { LOCALE_ID, NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
@@ -9,13 +9,13 @@ import {MatTableModule} from '@angular/material/table';
 import { MatSidenavModule } from '@angular/material/sidenav';
 
 import { AppComponent } from './app.component';
+import { ConfigurationComponent } from './configuration/configuration.component';
 import { AppRoutingModule } from './app-routing.module';
 import { ProdutosModule } from './produtos/produtos.module';
 import { FuncionariosModule } from './funcionarios/funcionarios.module';
 import { ContaModule } from './conta/conta.module';
 import { MovimentacoesModule } from './movimentacoes/movimentacoes.module';
 import { SharedModule } from './shared/shared.module';
-import { ConfigurationComponent } from './configuration/configuration.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +37,6 @@ import { ConfigurationComponent } from './configuration/configuration.component'
     MovimentacoesModule,
     SharedModule
   ],
-  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

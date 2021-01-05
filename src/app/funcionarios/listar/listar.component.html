@@ -9,7 +9,7 @@
             <input type="text" class="form-control search-bar" placeholder="Pesquisar por nome" [formControl]="busca">
             <span class="fas fa-search search-icon"></span>
         </div>
-        <button type="button" class="btn btn-success"  routerLink="/funcionarios/novo">
+        <button type="button" class="btn btn-success" routerLink="/funcionarios/novo">
             Novo</button>
     </div>
 
@@ -23,31 +23,34 @@
                 </tr>
             </thead>
             <tbody class="table-body">
-                <tr *ngFor="let funcionario of employees" class="table-row">
+                <tr *ngFor="let employee of employees" class="table-row">
                     <td class="main-sub-container">
-                        <p class="main">{{ funcionario.name }}</p>
-                        <p class="sub">{{ funcionario.lastName }}</p>
+                        <p class="main">{{ employee.name }}</p>
+                        <p class="sub">{{ employee.lastName }}</p>
+                    </td>
+                    <td class="id-container">
+                        <p>#{{ employee.id }}</p>
                     </td>
                     <td>
-                        <p>#{{ funcionario.id }}</p>
+                        <p>{{ employee.role.role }}</p>
                     </td>
                     <td>
-                        <p>{{ funcionario.role.role }}</p>
-                    </td>
-                    <td>
-                        <p>{{ funcionario.role.sector }}</p>
+                        <p>{{ employee.role.sector }}</p>
                     </td>
                     <td class="icon-container">
-                        <i class="fas fa-search icon-btn"></i>
+                        <i class="fas fa-search info-icon icon-btn"></i>
                         &nbsp;&nbsp;
-                        <i class="far fa-trash-alt icon-btn" (click)='deleteEmployee(funcionario.id)'></i>
+                        <i class="far fa-trash-alt delete-icon icon-btn" (click)='deleteEmployee(employee.id)'></i>
                     </td>
                 </tr>
             </tbody>
         </table>
-                <ng-template #loading>
-                    <span>Carregando Funcionários...</span>
-                </ng-template>
+        <ng-template #loading>
+            <div class="loading">
+                <div class="loader-animation"></div>
+                <span class="loader-text">Carregando Funcionários...</span>
+            </div>
+        </ng-template>
     </div>
 
 </div>
