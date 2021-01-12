@@ -25,7 +25,6 @@
             <select formControlName="role" class="form-control">
               <option *ngFor="let role of roles" [ngValue]="role"> {{ role }} </option>
             </select>
-            <!-- <input type="text" class="form-control" formControlName="position"> -->
           </div>
 
           <div class="form-group col-md-12">
@@ -33,7 +32,6 @@
             <select formControlName="sector" class="form-control">
               <option *ngFor="let sector of sectors" [ngValue]="sector"> {{ sector }} </option>
             </select>
-            <!-- <input type="text" class="form-control" formControlName="sector"> -->
           </div>
         </div>
       </div>
@@ -56,7 +54,7 @@
       </div>
 
       <div class="form-row flex-row-btn">
-        <button type="button" class="btn btn-secondary" routerLink="/funcionarios">Cancelar</button>
+        <button type="button" class="btn btn-secondary" routerLink="/funcionarios">Voltar</button>
         <button type="submit" class="btn btn-success">Confirmar</button>
       </div>
     </form>

@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { EditarComponent } from './editar/editar.component';
 import { ListarComponent } from './listar/listar.component';
+import { EditarComponent } from './editar/editar.component';
 
 const routes: Routes = [
     {
@@ -10,9 +10,8 @@ const routes: Routes = [
         children: [
             { path: '', redirectTo: 'listar', pathMatch: 'full' },
             { path: 'listar', component: ListarComponent },
-            { path: 'novo', component: EditarComponent },
-            // { path: ':id', component: EditarComponent },
-            // { path: ':id/editar', component: EditarComponent },
+            { path: ':id', component: EditarComponent },
+            { path: ':id/editar', component: EditarComponent },
         ]
     },
 ];

@@ -120,6 +120,7 @@ td {
 }
 
 .main-sub-container {
+  padding-left: 20px;
   text-align: left;
 }
 
@@ -129,10 +130,7 @@ td {
 
 .icon-btn {
   cursor: pointer;
-}
-
-.main-sub-container {
-  padding-left: 20px;
+  color: $white_green;
 }
 
 .main {

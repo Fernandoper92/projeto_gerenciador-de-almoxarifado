@@ -16,6 +16,10 @@ import { FuncionariosModule } from './funcionarios/funcionarios.module';
 import { ContaModule } from './conta/conta.module';
 import { MovimentacoesModule } from './movimentacoes/movimentacoes.module';
 import { SharedModule } from './shared/shared.module';
+import { AngularFireModule } from '@angular/fire';
+import { AngularFireDatabaseModule } from '@angular/fire/database';
+import { environment } from 'src/environments/environment';
+
 
 @NgModule({
   declarations: [
@@ -35,7 +39,9 @@ import { SharedModule } from './shared/shared.module';
     FuncionariosModule,
     ContaModule,
     MovimentacoesModule,
-    SharedModule
+    SharedModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFireDatabaseModule
   ],
   bootstrap: [AppComponent]
 })

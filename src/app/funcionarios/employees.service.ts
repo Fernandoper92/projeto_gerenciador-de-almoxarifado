@@ -1,6 +1,5 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { AngularFireDatabase, AngularFireList } from '@angular/fire/database';
 
 import { Employee } from '../models/employee.model';
 
@@ -9,25 +8,29 @@ import { Employee } from '../models/employee.model';
 })
 export class EmployeesService {
 
-  private readonly API = 'http://localhost:3000/employees';
-  httpOptions = {
-    headers: new HttpHeaders({
-      'Content-Type': 'application/json'
-    })
+  dbPath = '/funcionários'
+
+  EmployeesList: AngularFireList<Employee> = null;
+
+
+  constructor(private db: AngularFireDatabase) {
+    this.EmployeesList = db.list(this.dbPath);
+   }
+
+  listAllEmployees(): AngularFireList<Employee> {
+    return this.EmployeesList;
   }
 
-  constructor(private http: HttpClient) { }
-
-  getAllEmployee(): Observable<Employee[]> {
-    return this.http.get<Employee[]>(this.API);
+  pushEmployee(emplyee: Employee) {
+    this.db.list(this.dbPath).push(emplyee).then((result: any) => {
+    });
   }
 
-  postEmployee(employee): Observable<Employee> {
-    console.log(employee)
-    return this.http.post<Employee>(this.API, JSON.stringify(employee), this.httpOptions);
+  updateEmployee(key: string, value: any): Promise<void> {
+    return this.EmployeesList.update(key, value);
   }
 
-  deleteEmployee(id): Observable<Employee> {
-    return this.http.delete<Employee>(this.API + '/' + id, this.httpOptions);
+  deleteEmployee2(key: string): Promise<void> {
+    return this.EmployeesList.remove(key);
   }
 }

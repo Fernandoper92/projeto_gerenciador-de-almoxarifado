@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { LocalDataService } from 'src/app/shared/local-data.service';
+import { ProductsService } from './../products.service';
 
 @Component({
   selector: 'app-editar',
@@ -17,8 +18,8 @@ export class EditarComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private http: HttpClient,
-    private localData: LocalDataService
+    private localData: LocalDataService,
+    private productService: ProductsService
     ) { }
 
     ngOnInit(): void {
@@ -29,20 +30,20 @@ export class EditarComponent implements OnInit {
       this.form = this.formBuilder.group({
         name: [null, Validators.required],
         group: [null, Validators.required],
-        structureCode: [null, [Validators.required, Validators.minLength(12), Validators.maxLength(12)]],
-        alternativeCode: [null],
+        provider: [null],
+        code: [null],
         stock: [null],
         minStock: [null]
       });
     }
 
-    onSubmit() {
-      this.http.post('http://httpbin.org/post', JSON.stringify(this.form.value)).pipe().subscribe(data => {
-        console.log(data)
-        this.form.reset();
-      },
-        (error: any) => alert('Erro ao enviar os dados, por favor tente de novo mais tarde!')
-      );
+    onSubmit(form) {
+      this.pushProduct(form.value);
+      this.form.reset()
+    }
+
+    pushProduct(product) {
+      this.productService.pushProduct(product);
     }
   
     cssErro(param) {

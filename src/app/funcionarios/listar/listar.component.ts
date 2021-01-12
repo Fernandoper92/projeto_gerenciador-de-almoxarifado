@@ -16,81 +16,88 @@ export class ListarComponent implements OnInit {
   employees: Employee[];
   employeesTemp: Employee[];
   public busca = new FormControl('');
-
-  colunas = ['Name', 'ID', 'Role', 'Sector'];
-
+  
+  colunas = ['Name', 'Role', 'Sector'];
 
   constructor(private employeeService: EmployeesService) { }
 
   ngOnInit(): void {
-    this.getAllEmplyees();
+    this.listAllEmployees();
   }
 
-  getAllEmplyees() {
-    this.employeeService.getAllEmployee().pipe(delay(2000)).subscribe(data => this.reactiveFilter(data));
+  listAllEmployees() {
+    this.employeeService.listAllEmployees().snapshotChanges().pipe(
+      map(changes =>
+        changes.map(c =>
+          ({ key: c.payload.key, ...c.payload.val() })
+        )
+      )
+    ).subscribe(data => {
+      this.reactiveFilter(data);
+    });
+}
+
+deleteEmployee(key) {
+  this.employeeService.deleteEmployee2(key);
+}
+
+reactiveFilter(data) {
+  this.employeesTemp = data;
+  this.employees = data;
+  this.busca.valueChanges.pipe(
+    map(value => value.trim()),
+    debounceTime(500),
+    distinctUntilChanged(),
+  ).subscribe((filterWord: string) => {
+    if (this.busca.value) this.filterArray(filterWord);
+    if (!this.busca.value) this.employees = this.employeesTemp;
+  })
+}
+
+filterArray(filterWord) {
+  filterWord = filterWord.toLowerCase()
+  this.employees = this.employeesTemp.filter((el: Employee) => el.name.toLocaleLowerCase().includes(filterWord))
+}
+
+organizar(param: string) {
+  this.employees.sort((a, b) => this.ordenar(a, b, param))
+  this.ordemCrescente = !this.ordemCrescente;
+}
+
+ordenar(a, b, param) {
+  let modeloA;
+  let modeloB;
+
+  param = param.toLowerCase();
+
+  if (param === 'role' || param === 'sector') {
+    modeloA = a['role'];
+    modeloA = modeloA[param];
+    modeloB = b['role'];
+    modeloB = modeloB[param];
+  } else {
+    modeloA = a[param];
+    modeloB = b[param];
   }
 
-  deleteEmployee(id) {
-    this.employeeService.deleteEmployee(id).subscribe(data => this.getAllEmplyees());
-  }
+  // if(typeof modeloA === 'string' && typeof modeloB === 'string') {
+  // modeloA = modeloA.toUpperCase();
+  // modeloB = modeloB.toUpperCase();
+  // }
 
-  reactiveFilter(data) {
-    this.employeesTemp = data;
-    this.employees = data;
-    this.busca.valueChanges.pipe(
-      map(value => value.trim()),
-      debounceTime(500),
-      distinctUntilChanged(),
-    ).subscribe((filterWord: string) => {
-      if (this.busca.value) this.filterArray(filterWord);
-      if (!this.busca.value) this.employees = this.employeesTemp;
-    })
-  }
+  if (this.ordemCrescente) return this.ordenarCrescente(modeloA, modeloB);
+  return this.ordernarDecrescente(modeloA, modeloB);
+}
 
-  filterArray(filterWord) {
-    filterWord = filterWord.toLowerCase()
-    this.employees = this.employeesTemp.filter((el: Employee) => el.name.toLocaleLowerCase().includes(filterWord))
-  }
+ordenarCrescente(modeloA, modeloB): number {
+  if (modeloA > modeloB) return 1;
+  return -1;
+}
 
-  organizar(param:string) {
-    this.employees.sort((a,b) => this.ordenar(a,b,param))
-    this.ordemCrescente = !this.ordemCrescente;
-  }
-
-  ordenar(a, b, param) {
-    let modeloA;
-    let modeloB;
-
-    param = param.toLowerCase();
-
-    if (param === 'role' || param === 'sector') {
-      modeloA = a['role'];
-      modeloA = modeloA[param];
-      modeloB = b['role'];
-      modeloB = modeloB[param];
-    } else {
-      modeloA = a[param];
-      modeloB = b[param];
-    }
-
-    // if(typeof modeloA === 'string' && typeof modeloB === 'string') {
-    // modeloA = modeloA.toUpperCase();
-    // modeloB = modeloB.toUpperCase();
-    // }
-
-    if(this.ordemCrescente) return this.ordenarCrescente(modeloA, modeloB);
-    return this.ordernarDecrescente(modeloA, modeloB);
-  }
-
-  ordenarCrescente(modeloA, modeloB): number {
-    if(modeloA > modeloB) return 1;
-    return -1;
-  }
-
-  ordernarDecrescente(modeloA, modeloB): number {
-    if(modeloA < modeloB) return 1;
-    return -1;
-  }
+ordernarDecrescente(modeloA, modeloB): number {
+  if (modeloA < modeloB) return 1;
+  return -1;
+}
 
 
 }

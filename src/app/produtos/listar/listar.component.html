@@ -6,43 +6,49 @@
 
     <div class="filter-container">
         <div class="input-group search">
-            <input type="text" class="form-control search-bar" placeholder="Pesquisar" [formControl]="busca">
+            <input type="text" class="form-control search-bar" placeholder="Pesquisar por nome" [formControl]="busca">
             <span class="fas fa-search search-icon"></span>
         </div>
         <button type="button" class="btn btn-success"  routerLink="/produtos/novo">Novo</button>
     </div>
 
     <div class="table-container">
-        <table class="table">
+        <table class="table" *ngIf="products; else loading">
             <thead>
                 <tr class="table-head">
-                    <th class="colum-title" scope="col" *ngFor="let coluna of colunas" (click)="organizar(coluna)">
-                        {{ coluna }}&nbsp;<i class="fas fa-sort colum-title-icon"></i></th>
+                    <th class="colum-title" scope="col" *ngFor="let column of columns" (click)="organizar(column)">
+                        {{ column }}&nbsp;<i class="fas fa-sort colum-title-icon"></i></th>
                     <th class="colum-title has-btn" scope="col"></th>
                 </tr>
             </thead>
             <tbody class="table-body">
-                <tr *ngFor="let produto of teste" class="table-row">
+                <tr *ngFor="let product of products" class="table-row">
                     <td class="main-sub-container">
-                        <p class="main">{{ produto.nome }}</p>
+                        <p class="main">{{ product.name }}</p>
                     </td>
-                    <td class="cod-structured">
-                        <p class="number">{{ produto.codigoEstruturado }}</p>
-                    </td>
-                    <td>
-                        <p class="number">{{ produto.codigoAlternativo }}</p>
+                    <td class="cod">
+                        <p class="number">{{ product.code }}</p>
                     </td>
                     <td>
-                        <p class="number">{{ produto.estoque }}</p>
+                        <p class="">{{ product.provider }}</p>
+                    </td>
+                    <td>
+                        <p class="number">{{ product.stock }}</p>
                     </td>
                     <td class="icon-container">
                         <i class="fas fa-search icon-btn"></i>
                         &nbsp;&nbsp;
-                        <i class="far fa-trash-alt icon-btn"></i>
+                        <i class="far fa-trash-alt icon-btn" (click)='deleteProduct(product.key)'></i>
                     </td>
                 </tr>
             </tbody>
         </table>
+        <ng-template #loading>
+            <div class="loading">
+                <div class="loader-animation"></div>
+                <span class="loader-text">Carregando Produtos...</span>
+            </div>
+        </ng-template>
     </div>
 
 </div>

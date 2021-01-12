@@ -5,7 +5,7 @@
   </div>
 
   <div class="form-container">
-    <form  [formGroup]="form" (ngSubmit)="onSubmit()">
+    <form  [formGroup]="form" (ngSubmit)="onSubmit(form)">
       <div class="form-row">
         <div class="form-group col-md-12">
           <label for="name">Nome</label>
@@ -24,15 +24,15 @@
 
       <div class="form-row">
         <div class="form-group col-md-12">
-          <label for="cod">Código Estruturado</label>
-          <input type="text" class="form-control" formControlName="structureCode" [ngClass]="cssErro('structureCode')">
+          <label for="cod">Código</label>
+          <input type="text" class="form-control" formControlName="code" [ngClass]="cssErro('code')">
         </div>
       </div>
 
       <div class="form-row">
         <div class="form-group col-md-12">
-          <label for="alt">Código Alternativo</label>
-          <input type="text" class="form-control" formControlName="alternativeCode">
+          <label for="alt">Fornecedor</label>
+          <input type="text" class="form-control" formControlName="provider">
         </div>
       </div>
 
@@ -49,7 +49,7 @@
       </div>
 
       <div class="form-row flex-row-btn">
-        <button type="submit" class="btn btn-secondary">Cancelar</button>
+        <button type="button" class="btn btn-secondary" routerLink="/produtos">voltar</button>
         <button type="submit" class="btn btn-success">Confirmar</button>
       </div>
     </form>

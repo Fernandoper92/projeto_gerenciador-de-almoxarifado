@@ -1,8 +1,6 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
-import { Employee } from './../../models/employee.model';
 import { LocalDataService } from 'src/app/shared/local-data.service';
 import { EmployeesService } from '../employees.service';
 
@@ -21,7 +19,6 @@ export class EditarComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private http: HttpClient,
     private localData: LocalDataService,
     private employeeService: EmployeesService
   ) { }
@@ -48,12 +45,12 @@ export class EditarComponent implements OnInit {
   }
 
   onSubmit(form) {
-    this.postEmployee(form.value);
+    this.pushEmployee(form.value);
       this.form.reset();
   }
 
-  postEmployee(employee) {
-    this.employeeService.postEmployee(employee).subscribe(data => console.log('Enviado com sucesso!'));
+  pushEmployee(Employee) {
+    this.employeeService.pushEmployee(Employee);
   }
 
   cssErro(param) {

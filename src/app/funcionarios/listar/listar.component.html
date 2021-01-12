@@ -28,9 +28,6 @@
                         <p class="main">{{ employee.name }}</p>
                         <p class="sub">{{ employee.lastName }}</p>
                     </td>
-                    <td class="id-container">
-                        <p>#{{ employee.id }}</p>
-                    </td>
                     <td>
                         <p>{{ employee.role.role }}</p>
                     </td>
@@ -40,7 +37,7 @@
                     <td class="icon-container">
                         <i class="fas fa-search info-icon icon-btn"></i>
                         &nbsp;&nbsp;
-                        <i class="far fa-trash-alt delete-icon icon-btn" (click)='deleteEmployee(employee.id)'></i>
+                        <i class="far fa-trash-alt delete-icon icon-btn" (click)='deleteEmployee(employee.key)'></i>
                     </td>
                 </tr>
             </tbody>

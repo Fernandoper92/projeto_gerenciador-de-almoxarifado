@@ -3,8 +3,7 @@ import { Provider } from './provider.model';
 export class Product {
     id: string;
     name: string;
-    structuredCode?: number;
-    alternativeCode?: number;
+    code?: number;
     stock?: number;
     minStock?: number;
     group: string;
