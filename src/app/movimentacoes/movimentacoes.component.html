@@ -11,66 +11,52 @@
         </div>
     </div>
 
-    <form class="form-container" [formGroup]="form" (ngSubmit)="onSubmit()">
+    <form class="form-container" [formGroup]="form" (ngSubmit)="onSubmit(form)">
         <p class="collapsible">Nova Movimentação</p>
         <div class="content form-grid">
-
-              <select formControlName="employee" class="form-control form-select-box employee-form" [ngClass]="cssErro('employee')">
-                <option [ngValue]=""></option>
-              </select>
-              <select formControlName="product" class="form-control form-select-box product-form" [ngClass]="cssErro('product')">
-                <option [ngValue]=""></option>
-              </select>
-              
-            <!-- <div class="emplyee form-text-box">
-                <input type="text" class="form-control" formControlName="employee" placeholder="Funcionario"
-                    [ngClass]="cssErro('employee')">
-            </div>
-            <div class="product form-text-box">
-                <input type="text" class="form-control" formControlName="product" placeholder="Produto"
-                    [ngClass]="cssErro('product')">
-            </div> -->
-
+            <select formControlName="mover" class="form-control form-select-box employee-form">
+                <option *ngFor="let employee of employees" [ngValue]="employee.name">{{ employee.name }} {{
+                    employee.lastName }}</option>
+            </select>
+            <select formControlName="product" class="form-control form-select-box product-form">
+                <option *ngFor="let product of products" [ngValue]="product.name">{{ product.name }}</option>
+            </select>
             <div class="input form-number-box">
-                <input type="number" class="form-control" formControlName="input" placeholder="Entrada" #input>
+                <input type="number" class="form-control" formControlName="input" placeholder="Entrada">
             </div>
             <div class="output form-number-box">
-                <input type="number" class="form-control" formControlName="output" placeholder="Saida" #output>
+                <input type="number" class="form-control" formControlName="output" placeholder="Saida">
             </div>
             <button type="submit" class="btn btn-success">
                 Enviar</button>
         </div>
     </form>
 
-    <!-- <app-form-debug [form]="form"></app-form-debug> -->
+    <app-form-debug [form]="form"></app-form-debug>
 
     <div class="table-container">
         <table class="table">
             <thead>
                 <tr class="table-head">
                     <th class="column-title" scope="col" *ngFor="let column of columns" (click)="organize(column.ref)">
-                        {{ column.name }}&nbsp;<i class="fas fa-sort column-title-icon"></i></th>
+                        {{ column }}&nbsp;<i class="fas fa-sort column-title-icon"></i></th>
                     <th class="column-title has-btn" scope="col"></th>
                 </tr>
             </thead>
             <tbody class="table-body">
                 <tr *ngFor="let moviment of moviments" class="table-row">
                     <td class="main-sub-container">
-                        <p class="main">{{ moviment.employee }}</p>
-                        <p class="sub">{{ moviment.sector }}</p>
+                        <p class="main">{{ moviment.mover }}</p>
                     </td>
                     <td>
                         <P>{{ moviment.product }}</P>
                     </td>
                     <td>
-                        <p *ngIf="moviment.input" class="number">+
-                            {{ moviment.quantity }}</p>
-                        <p *ngIf="moviment.output" class="number">-
-                            {{ moviment.quantity }}</p>
+                        <p class="number">{{ moviment.quantity }}</p>
                     </td>
-                    <td>{{ moviment.date }}</td>
+                    <td>{{ moviment.date | date:"dd/MM/yyyy" }}</td>
                     <td class="icon-container">
-                        <i class="far fa-trash-alt icon-btn"></i>
+                        <i class="far fa-trash-alt icon-btn" (click)="deleteMoviment(moviment.key)"></i>
                     </td>
                 </tr>
             </tbody>

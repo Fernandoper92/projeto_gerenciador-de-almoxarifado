@@ -6,7 +6,7 @@ export class Moviment {
     quantity: number;
     input: boolean;
     output: boolean;
-    date: string;
+    date: Date;
     mover: Mover;
     product: Product;
 }

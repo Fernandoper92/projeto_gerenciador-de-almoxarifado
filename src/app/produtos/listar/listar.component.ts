@@ -51,7 +51,7 @@ reactiveFilter(data) {
   ).subscribe((filterWord: string) => {
     if (this.busca.value) this.filterArray(filterWord);
     if (!this.busca.value) this.products = this.productsTemp;
-  })
+  });
 }
 
 filterArray(filterWord) {

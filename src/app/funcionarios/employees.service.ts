@@ -10,15 +10,15 @@ export class EmployeesService {
 
   dbPath = '/funcionários'
 
-  EmployeesList: AngularFireList<Employee> = null;
+  employeesList: AngularFireList<Employee> = null;
 
 
   constructor(private db: AngularFireDatabase) {
-    this.EmployeesList = db.list(this.dbPath);
+    this.employeesList = db.list(this.dbPath);
    }
 
   listAllEmployees(): AngularFireList<Employee> {
-    return this.EmployeesList;
+    return this.employeesList;
   }
 
   pushEmployee(emplyee: Employee) {
@@ -27,10 +27,10 @@ export class EmployeesService {
   }
 
   updateEmployee(key: string, value: any): Promise<void> {
-    return this.EmployeesList.update(key, value);
+    return this.employeesList.update(key, value);
   }
 
   deleteEmployee2(key: string): Promise<void> {
-    return this.EmployeesList.remove(key);
+    return this.employeesList.remove(key);
   }
 }

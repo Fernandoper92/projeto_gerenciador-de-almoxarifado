@@ -1,9 +1,13 @@
-import { HttpClient } from '@angular/common/http';
+import { MovimentsService } from './moviments.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { map, distinctUntilChanged, debounceTime } from 'rxjs/operators';
 
 import { Moviment } from './../models/moviment.model';
+import { Product } from '../models/product.model';
+import { Employee } from './../models/employee.model';
+import { ProductsService } from '../produtos/products.service';
+import { EmployeesService } from '../funcionarios/employees.service';
 
 @Component({
   selector: 'app-movimentacoes',
@@ -12,64 +16,120 @@ import { Moviment } from './../models/moviment.model';
 })
 export class MovimentacoesComponent implements OnInit {
 
-  date = new Date;
   ascendingOrder = true;
   form: FormGroup;
   moviments: Moviment[] = [];
   movimentsTemp: Moviment[] = [];
+  products: Product[] = [];
+  employees: Employee[] = [];
   public busca = new FormControl('');
 
-  columns = [
-    {ref:'employee', name:'Funcionario' },
-    {ref:'product', name:'Produto' },
-    {ref:'quantity', name:'Quantidade' },
-    {ref:'date', name:'Data' }
-  ]
+  columns = ['employee', 'product', 'quantity', 'date']
 
 
   constructor(
     private formBuilder: FormBuilder,
-    private http: HttpClient
+    private movimentsService: MovimentsService,
+    private productsService: ProductsService,
+    private employeesService: EmployeesService
   ) { }
 
   ngOnInit(): void {
-    this.moviments = this.movimentsTemp;
+    this.listAllMoviments();
+    this.listAllProducts();
+    this.listAllEmployees();
     this.createFormGroup();
-    this.reactiveFilter();
     this.collapseMenu();
+  }
+
+  listAllProducts() {
+    this.productsService.listAllProducts().snapshotChanges().pipe(
+      map(changes =>
+        changes.map(c =>
+          ({ key: c.payload.key, ...c.payload.val() })
+        )
+      )
+    ).subscribe(data => {
+      this.products = data;
+    });
+  }
+
+  listAllEmployees() {
+    return this.employeesService.listAllEmployees().snapshotChanges().pipe(
+      map(changes =>
+        changes.map(c =>
+          ({ key: c.payload.key, ...c.payload.val() })
+        )
+      )
+    ).subscribe(data => {
+      this.employees = data;
+    });
+  }
+
+  listAllMoviments() {
+    return this.movimentsService.listAllMoviments().snapshotChanges().pipe(
+      map(changes =>
+        changes.map(c =>
+          ({ key: c.payload.key, ...c.payload.val() })
+        )
+      )
+    ).subscribe(data => {
+      this.reactiveFilter(data);
+    });
+  }
+
+  deleteMoviment(key) {
+    this.movimentsService.deleteMoviment(key);
   }
 
   createFormGroup() {
     this.form = this.formBuilder.group({
-      employee: [null, Validators.required],
-      product: [null, Validators.required],
-      input: [null],
-      output: [null],
-      date: [null]
+      quantity: [null],
+      input: [0],
+      output: [0],
+      date: [null],
+      mover: [null, Validators.required],
+      product: [null, Validators.required]
     });
   }
 
-  onSubmit() {
-    this.form.patchValue({date: this.date.toLocaleDateString()});
-
-    this.http.post('http://httpbin.org/post', JSON.stringify(this.form.value)).pipe().subscribe(data => {
-      console.log(data)
-      this.form.reset();
-    },
-      (error: any) => alert('Erro ao enviar os dados, por favor tente de novo mais tarde!')
-    );
+  pushMoviments(moviment) {
+    this.movimentsService.pushMoviment(moviment);
   }
 
-  reactiveFilter() {
+  onSubmit(form) {
+    const quantity = this.form.value.input - this.form.value.output;
+    const newDate = Date.now();
+    this.form.patchValue({quantity: quantity, date: newDate})
+    this.pushMoviments(form.value);
+    this.form.reset({
+      input: 0,
+      output: 0,
+      date: newDate
+    });
+  }
+
+  // getDate() {
+  //   var today = new Date();
+  //   var dd = String(today.getDate()).padStart(2, '0');
+  //   var mm = String(today.getMonth() + 1).padStart(2, '0');
+  //   var yyyy = today.getFullYear();
+  //   var date = mm + '/' + dd + '/' + yyyy;
+  //   return date;
+  // }
+
+  reactiveFilter(data) {
+    console.log(data);
+    this.movimentsTemp = data;
+    this.moviments = data;
     this.busca.valueChanges.pipe(
       map(value => value.trim()),
       debounceTime(500),
       distinctUntilChanged(),
     ).subscribe((filterWord: string) => {
-      console.log(filterWord)
       if (this.busca.value) this.filterArray(filterWord);
       if (!this.busca.value) this.moviments = this.movimentsTemp;
-    })
+    });
   }
 
   filterArray(filterWord) {
@@ -78,7 +138,7 @@ export class MovimentacoesComponent implements OnInit {
   }
 
   cssErro(param) {
-    if (this.form.get(param).touched) {
+    if (this.form && this.form.get(param).touched) {
       const valid = this.form.get(param).valid;
       return {
         'is-invalid': !valid,
@@ -123,11 +183,11 @@ export class MovimentacoesComponent implements OnInit {
     return -1;
   }
 
-  
+
   collapseMenu() {
     var coll = document.getElementsByClassName("collapsible");
     var i;
-    
+
     for (i = 0; i < coll.length; i++) {
       coll[i].addEventListener("click", function () {
         this.classList.toggle("active");
@@ -141,4 +201,3 @@ export class MovimentacoesComponent implements OnInit {
     }
   }
 }
-  
