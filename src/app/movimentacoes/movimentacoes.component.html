@@ -14,13 +14,15 @@
     <form class="form-container" [formGroup]="form" (ngSubmit)="onSubmit(form)">
         <p class="collapsible">Nova Movimentação</p>
         <div class="content form-grid">
-            <select formControlName="mover" class="form-control form-select-box employee-form">
-                <option *ngFor="let employee of employees" [ngValue]="employee.name">{{ employee.name }} {{
+            <input formControlName="mover" class="form-control form-select-box employee-form" list="employees">
+            <datalist id="employees">
+                <option *ngFor="let employee of employees" [ngValue]="employee">{{ employee.name }} {{
                     employee.lastName }}</option>
-            </select>
-            <select formControlName="product" class="form-control form-select-box product-form">
-                <option *ngFor="let product of products" [ngValue]="product.name">{{ product.name }}</option>
-            </select>
+            </datalist>
+            <input formControlName="product" class="form-control form-select-box product-form" list="products">
+            <datalist id="products">
+                <option *ngFor="let product of products" [ngValue]="product">{{ product.name }}</option>
+            </datalist>
             <div class="input form-number-box">
                 <input type="number" class="form-control" formControlName="input" placeholder="Entrada">
             </div>
@@ -32,24 +34,25 @@
         </div>
     </form>
 
-    <app-form-debug [form]="form"></app-form-debug>
+    <!-- <app-form-debug [form]="form"></app-form-debug> -->
 
     <div class="table-container">
         <table class="table">
             <thead>
                 <tr class="table-head">
-                    <th class="column-title" scope="col" *ngFor="let column of columns" (click)="organize(column.ref)">
+                    <th class="column-title" scope="col" *ngFor="let column of columns" (click)="organize(column)">
                         {{ column }}&nbsp;<i class="fas fa-sort column-title-icon"></i></th>
                     <th class="column-title has-btn" scope="col"></th>
                 </tr>
             </thead>
             <tbody class="table-body">
                 <tr *ngFor="let moviment of moviments" class="table-row">
-                    <td class="main-sub-container">
-                        <p class="main">{{ moviment.mover }}</p>
+                    <td class="mover-container">
+                        <p class="name">{{ moviment.mover.name }}</p>
+                        <p class="last-name">{{ moviment.mover.lastName }}</p>
                     </td>
-                    <td>
-                        <P>{{ moviment.product }}</P>
+                    <td class="product-container">
+                        <P class="product">{{ moviment.product.name }}</P>
                     </td>
                     <td>
                         <p class="number">{{ moviment.quantity }}</p>

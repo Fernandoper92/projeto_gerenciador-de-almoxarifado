@@ -24,7 +24,7 @@ export class MovimentacoesComponent implements OnInit {
   employees: Employee[] = [];
   public busca = new FormControl('');
 
-  columns = ['employee', 'product', 'quantity', 'date']
+  columns = ['mover', 'product', 'quantity', 'date']
 
 
   constructor(
@@ -70,11 +70,11 @@ export class MovimentacoesComponent implements OnInit {
     return this.movimentsService.listAllMoviments().snapshotChanges().pipe(
       map(changes =>
         changes.map(c =>
-          ({ key: c.payload.key, ...c.payload.val() })
+          ({ key: c.payload.key, ...c.payload.val()})
         )
       )
-    ).subscribe(data => {
-      this.reactiveFilter(data);
+    ).subscribe(movimentsList => {
+      this.reactiveFilter(movimentsList);
     });
   }
 
@@ -102,6 +102,7 @@ export class MovimentacoesComponent implements OnInit {
     const newDate = Date.now();
     this.form.patchValue({quantity: quantity, date: newDate})
     this.pushMoviments(form.value);
+    this.productStockAdjust(form.value);
     this.form.reset({
       input: 0,
       output: 0,
@@ -109,17 +110,13 @@ export class MovimentacoesComponent implements OnInit {
     });
   }
 
-  // getDate() {
-  //   var today = new Date();
-  //   var dd = String(today.getDate()).padStart(2, '0');
-  //   var mm = String(today.getMonth() + 1).padStart(2, '0');
-  //   var yyyy = today.getFullYear();
-  //   var date = mm + '/' + dd + '/' + yyyy;
-  //   return date;
-  // }
+  productStockAdjust(formValue) {
+    let key = formValue.rpoduct.key;
+    let product = formValue.product;
+    this.productsService.updateProduct(key, product);
+  }
 
   reactiveFilter(data) {
-    console.log(data);
     this.movimentsTemp = data;
     this.moviments = data;
     this.busca.valueChanges.pipe(
@@ -152,22 +149,16 @@ export class MovimentacoesComponent implements OnInit {
   }
 
   organize(param: string) {
-    this.moviments.sort((a: Moviment, b: Moviment) => this.sort(a, b, param))
+    this.moviments.sort((a, b) => this.sort(a, b, param))
     this.ascendingOrder = !this.ascendingOrder;
   }
 
-  sort(a: Moviment, b: Moviment, param: string) {
+  sort(a, b, param) {
+    let modelA;
+    let modelB;
 
-    param = param.toLowerCase();
-
-    let modelA = a[param];
-    let modelB = b[param];
-
-    if (typeof modelA === 'string' && typeof modelB === 'string') {
-      modelA = modelA.toLowerCase();
-      modelB = modelB.toLowerCase();
-    }
-
+    modelA = a[param];
+    modelB = b[param];
 
     if (this.ascendingOrder) return this.sortAscending(modelA, modelB);
     return this.sortDescending(modelA, modelB);

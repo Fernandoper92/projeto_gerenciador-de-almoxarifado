@@ -1,8 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { map } from 'rxjs/operators';
+import { ConfigurationService } from 'src/app/configuration/configuration.service';
 
-import { LocalDataService } from 'src/app/shared/local-data.service';
 import { ProductsService } from './../products.service';
 
 @Component({
@@ -13,51 +14,63 @@ import { ProductsService } from './../products.service';
 export class EditarComponent implements OnInit {
 
   form: FormGroup;
-
-  groups: string[] = this.localData.groups;
+  groups: any;
 
   constructor(
     private formBuilder: FormBuilder,
-    private localData: LocalDataService,
+    private configurationService: ConfigurationService,
     private productService: ProductsService
-    ) { }
+  ) { }
 
-    ngOnInit(): void {
-      this.createFormGroup();
-    }
-  
-    createFormGroup() {
-      this.form = this.formBuilder.group({
-        name: [null, Validators.required],
-        group: [null, Validators.required],
-        provider: [null],
-        code: [null],
-        stock: [null],
-        minStock: [null]
-      });
-    }
+  ngOnInit(): void {
+    this.createFormGroup();
+    this.listAllOptions('group');
+  }
 
-    onSubmit(form) {
-      this.pushProduct(form.value);
-      this.form.reset()
-    }
+  listAllOptions(option) {
+    this.configurationService.listAllOptions(option).snapshotChanges().pipe(
+      map(changes =>
+        changes.map(c =>
+          ({ key: c.payload.key, ...c.payload.val() })
+        )
+      )
+    ).subscribe(data => {
+      this.groups = data;
+    });
+  }
 
-    pushProduct(product) {
-      this.productService.pushProduct(product);
-    }
-  
-    cssErro(param) {
-      if (this.form.get(param).touched) {
-        const valid = this.form.get(param).valid;
-        return {
-          'is-invalid': !valid,
-          'is-valid': valid
-        }
+  createFormGroup() {
+    this.form = this.formBuilder.group({
+      name: [null, Validators.required],
+      group: [null, Validators.required],
+      code: [null, Validators.required],
+      provider: [null],
+      stock: [null],
+      minStock: [null]
+    });
+  }
+
+  onSubmit(form) {
+    this.pushProduct(form.value);
+    this.form.reset()
+  }
+
+  pushProduct(product) {
+    this.productService.pushProduct(product);
+  }
+
+  cssErro(param) {
+    if (this.form.get(param).touched) {
+      const valid = this.form.get(param).valid;
+      return {
+        'is-invalid': !valid,
+        'is-valid': valid
       }
     }
-  
-    checkValidTouched(param) {
-      return !this.form.get(param).valid
-    }
+  }
+
+  checkValidTouched(param) {
+    return !this.form.get(param).valid
+  }
 
 }

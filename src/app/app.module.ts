@@ -9,7 +9,6 @@ import {MatTableModule} from '@angular/material/table';
 import { MatSidenavModule } from '@angular/material/sidenav';
 
 import { AppComponent } from './app.component';
-import { ConfigurationComponent } from './configuration/configuration.component';
 import { AppRoutingModule } from './app-routing.module';
 import { ProdutosModule } from './produtos/produtos.module';
 import { FuncionariosModule } from './funcionarios/funcionarios.module';
@@ -18,13 +17,14 @@ import { MovimentacoesModule } from './movimentacoes/movimentacoes.module';
 import { SharedModule } from './shared/shared.module';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { environment } from 'src/environments/environment';
+import { ConfigurationModule } from './configuration/configuration.module';
 
 
 @NgModule({
   declarations: [
-    AppComponent,
-    ConfigurationComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
@@ -41,7 +41,9 @@ import { environment } from 'src/environments/environment';
     MovimentacoesModule,
     SharedModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
-    AngularFireDatabaseModule
+    AngularFireDatabaseModule,
+    AngularFirestoreModule,
+    ConfigurationModule
   ],
   bootstrap: [AppComponent]
 })

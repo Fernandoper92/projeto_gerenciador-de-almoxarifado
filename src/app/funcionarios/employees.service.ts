@@ -21,6 +21,12 @@ export class EmployeesService {
     return this.employeesList;
   }
 
+  getEmployee(employeeKey) {
+   return this.db.database.ref(this.dbPath).child(employeeKey).once('value').then((snapshot) => {
+     snapshot.val();
+   })
+  }
+
   pushEmployee(emplyee: Employee) {
     this.db.list(this.dbPath).push(emplyee).then((result: any) => {
     });
@@ -30,7 +36,7 @@ export class EmployeesService {
     return this.employeesList.update(key, value);
   }
 
-  deleteEmployee2(key: string): Promise<void> {
+  deleteEmployee(key: string): Promise<void> {
     return this.employeesList.remove(key);
   }
 }

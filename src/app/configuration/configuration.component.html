@@ -12,10 +12,10 @@
                     <h3 class="title-select-container">Editar seleção de grupos</h3>
                     <label for="groupName">Nome do grupo</label>
                     <input class="input-box" type="text" name="groupName" #groupName>
-                    <button class="btn btn-success">Adicionar</button>
+                    <button class="btn btn-success" (click)="pushOption(groupName.value, 'group')">Adicionar</button>
                     <div class="items-container">
                         <div *ngFor="let group of groups">
-                            {{ group }}
+                            {{ group.value }}
                         </div>
                     </div>
                 </div>
@@ -29,21 +29,21 @@
                         <h3 class="title-select-container">Editar seleção de setores</h3>
                         <label for="sectorName">Nome do setor</label>
                         <input class="input-box" type="text" name="sectorName" #sectorName>
-                        <button class="btn btn-success">Adicionar</button>
-                        <div class="items-container">
+                        <button class="btn btn-success" (click)="pushOption(sectorName.value, 'sector')">Adicionar</button>
+                        <div *ngIf="sectors" class="items-container">
                             <div *ngFor="let sector of sectors">
-                                {{ sector }}
+                                {{ sector.value }}
                             </div>
                         </div>
                     </div>
                     <div class="select-box">
                         <h3 class="title-select-container">Editar seleção de funções</h3>
-                        <label for="functionName">Nome da função</label>
-                        <input class="input-box" type="text" name="functionName" #functionName>
-                        <button class="btn btn-success">Adicionar</button>
-                        <div class="items-container">
+                        <label for="positionName">Nome do cargo</label>
+                        <input class="input-box" type="text" name="positionName" #positionName>
+                        <button class="btn btn-success" (click)="pushOption(positionName.value, 'position')">Adicionar</button>
+                        <div *ngIf="positions" class="items-container">
                             <div *ngFor="let position of positions">
-                                {{ position }}
+                                {{ position.value }}
                             </div>
                         </div>
                     </div>

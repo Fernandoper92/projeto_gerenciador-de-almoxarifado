@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { map } from 'rxjs/operators';
 
-import { LocalDataService } from '../shared/local-data.service';
-
+import { ConfigurationService } from './configuration.service';
 
 @Component({
   selector: 'app-configuration',
@@ -10,20 +10,57 @@ import { LocalDataService } from '../shared/local-data.service';
 })
 export class ConfigurationComponent implements OnInit {
 
-  groups: string[] = this.localData.groups;
-  sectors: string[] = this.localData.sectors;
-  positions: string[] = this.localData.positions;
+  groups: any;
+  sectors: any;
+  positions: any;
 
   constructor(
-    private localData: LocalDataService
+    private configurationService: ConfigurationService
   ) { }
 
   ngOnInit(): void {
     this.collapseMenu();
+    this.listAllOptions('group');
+    this.listAllOptions('sector');
+    this.listAllOptions('position');
   }
 
-  addGroup(paramName:string, paramType) {
-    console.log(this.localData[paramType].push([paramName]))
+  listAllOptions(option) {
+    return this.configurationService.listAllOptions(option).snapshotChanges().pipe(
+      map(changes =>
+        changes.map(c =>
+        ({
+          key: c.payload.key, ...c.payload.val()
+        })
+        )
+      )
+    ).subscribe(data => {
+      switch (option) {
+        case 'group':
+          this.groups = data;
+          break;
+        case 'sector':
+          this.sectors = data;
+          break;
+        case 'position':
+          this.positions = data;
+          break;
+      }
+    });
+  }
+
+  pushOption(value: any, option: string) {
+
+    const item = {
+      value: value,
+      date: Date.now()
+    }
+
+    this.configurationService.pushOption(item, option);
+  }
+
+  deleteOption(key: string, option: string) {
+    this.configurationService.deleteOption(key, option);
   }
 
   collapseMenu() {

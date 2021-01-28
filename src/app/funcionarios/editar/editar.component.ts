@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { map } from 'rxjs/operators';
 
-import { LocalDataService } from 'src/app/shared/local-data.service';
+import { ConfigurationService } from './../../configuration/configuration.service';
 import { EmployeesService } from '../employees.service';
 
 @Component({
@@ -12,19 +13,38 @@ import { EmployeesService } from '../employees.service';
 export class EditarComponent implements OnInit {
 
   form: FormGroup;
-
-  sectors: string[] = this.localData.sectors;
-
-  roles: string[] = this.localData.positions;
+  sectors: any;
+  positions: any;
 
   constructor(
     private formBuilder: FormBuilder,
-    private localData: LocalDataService,
+    private configurationService: ConfigurationService,
     private employeeService: EmployeesService
   ) { }
 
   ngOnInit(): void {
     this.createFormGroup();
+    this.listAllOptions('sector');
+    this.listAllOptions('position');
+  }
+
+  listAllOptions(option) {
+    this.configurationService.listAllOptions(option).snapshotChanges().pipe(
+      map(changes =>
+        changes.map(c =>
+          ({ key: c.payload.key, ...c.payload.val() })
+        )
+      )
+    ).subscribe(data => {
+      switch (option) {
+        case 'sector':
+          this.sectors = data;
+          break;
+        case 'position':
+          this.positions = data;
+          break;
+      }
+    });
   }
 
   createFormGroup() {
@@ -32,12 +52,12 @@ export class EditarComponent implements OnInit {
       name: [null, Validators.required],
       lastName: [null, Validators.required],
       type: ["employee"],
-      
-      role: this.formBuilder.group({
-        role: [null],
+
+      position: this.formBuilder.group({
+        position: [null],
         sector: [null]
       }),
-      
+
       uniformSize: [null],
       shoeSize: [null],
       GloveSize: [null]
@@ -46,7 +66,7 @@ export class EditarComponent implements OnInit {
 
   onSubmit(form) {
     this.pushEmployee(form.value);
-      this.form.reset();
+    this.form.reset();
   }
 
   pushEmployee(Employee) {

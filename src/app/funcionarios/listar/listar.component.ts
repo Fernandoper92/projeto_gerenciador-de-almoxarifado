@@ -17,7 +17,7 @@ export class ListarComponent implements OnInit {
   employeesTemp: Employee[];
   public busca = new FormControl('');
   
-  colunas = ['Name', 'Role', 'Sector'];
+  colunas = ['name', 'role', 'sector'];
 
   constructor(private employeeService: EmployeesService) { }
 
@@ -38,7 +38,7 @@ export class ListarComponent implements OnInit {
 }
 
 deleteEmployee(key) {
-  this.employeeService.deleteEmployee2(key);
+  this.employeeService.deleteEmployee(key);
 }
 
 reactiveFilter(data) {
@@ -68,8 +68,6 @@ ordenar(a, b, param) {
   let modeloA;
   let modeloB;
 
-  param = param.toLowerCase();
-
   if (param === 'role' || param === 'sector') {
     modeloA = a['role'];
     modeloA = modeloA[param];
@@ -79,11 +77,6 @@ ordenar(a, b, param) {
     modeloA = a[param];
     modeloB = b[param];
   }
-
-  // if(typeof modeloA === 'string' && typeof modeloB === 'string') {
-  // modeloA = modeloA.toUpperCase();
-  // modeloB = modeloB.toUpperCase();
-  // }
 
   if (this.ordemCrescente) return this.ordenarCrescente(modeloA, modeloB);
   return this.ordernarDecrescente(modeloA, modeloB);

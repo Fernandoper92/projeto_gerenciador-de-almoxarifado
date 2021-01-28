@@ -1,5 +1,5 @@
 import { Mover } from '../interfaces/mover.model';
-import { Role } from './role.model';
+import { Position } from './position.model';
 
 export class Employee implements Mover {
     id: number;
@@ -9,5 +9,5 @@ export class Employee implements Mover {
     uniformSize?: string;
     shoeSize?: number;
     gloveSize?: number;
-    role: Role | {};
+    role: Position | {};
 }
