@@ -151,6 +151,16 @@ td {
   min-width: 50px;
 }
 
+.provider {
+  padding-left: 20px;
+  text-align: left;
+}
+
+.is-zero {
+  color: $red;
+  border-color: $red;
+}
+
 @media only screen and (max-width: 1200px) {
   .form-grid {
     grid-template-columns: auto auto;

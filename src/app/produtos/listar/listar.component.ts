@@ -32,9 +32,13 @@ export class ListarComponent implements OnInit {
           ({ key: c.payload.key, ...c.payload.val() })
         )
       )
-    ).subscribe(data => {
-      this.reactiveFilter(data);
+    ).subscribe(products => {
+      this.reactiveFilter(products);
     });
+}
+
+ifZero(number) {
+  if(number < 1) return 'is-zero';
 }
 
 deleteProduct(key) {

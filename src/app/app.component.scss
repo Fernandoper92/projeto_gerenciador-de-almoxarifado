@@ -66,6 +66,7 @@ mat-sidenav {
     float: left;
     position: fixed;
     z-index: 9999;
+    cursor: pointer;
 }
 
  @media only screen and (max-width: 1200px) {

@@ -78,6 +78,10 @@ export class MovimentacoesComponent implements OnInit {
     });
   }
 
+  isNegative(number) {
+    if(number < 0) return 'is-negative';
+  }
+
   deleteMoviment(key) {
     this.movimentsService.deleteMoviment(key);
   }

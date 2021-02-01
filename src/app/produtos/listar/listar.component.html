@@ -9,7 +9,16 @@
             <input type="text" class="form-control search-bar" placeholder="Pesquisar por nome" [formControl]="busca">
             <span class="fas fa-search search-icon"></span>
         </div>
-        <button type="button" class="btn btn-success"  routerLink="/produtos/novo">Novo</button>
+        <div class="buttons">
+            <button type="button" class="btn btn-outline-secondary">
+                <i class="fas fa-filter"></i>
+            </button>
+            &nbsp;
+            <button type="button" class="btn btn-outline-success" routerLink="/produtos/novo">
+                <i class="fas fa-hard-hat"></i>
+                <i class="fas fa-plus"></i>
+            </button>
+        </div>
     </div>
 
     <div class="table-container">
@@ -30,15 +39,15 @@
                         <p class="number">{{ product.code }}</p>
                     </td>
                     <td>
-                        <p class="">{{ product.provider }}</p>
+                        <p class="provider">{{ product.provider }}</p>
                     </td>
                     <td>
-                        <p class="number">{{ product.stock }}</p>
+                        <p class="number" [ngClass]="ifZero(product.stock)">{{ product.stock }}</p>
                     </td>
                     <td class="icon-container">
-                        <i class="fas fa-search icon-btn"></i>
+                        <i class="fas fa-edit icon-btn"></i>
                         &nbsp;&nbsp;
-                        <i class="far fa-trash-alt icon-btn" (click)='deleteProduct(product.key)'></i>
+                        <i class="fas fa-trash-alt icon-btn" (click)='deleteProduct(product.key)'></i>
                     </td>
                 </tr>
             </tbody>

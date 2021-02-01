@@ -55,7 +55,7 @@
                         <P class="product">{{ moviment.product.name }}</P>
                     </td>
                     <td>
-                        <p class="number">{{ moviment.quantity }}</p>
+                        <p class="number" [ngClass]="isNegative(moviment.quantity)">{{ moviment.quantity }}</p>
                     </td>
                     <td>{{ moviment.date | date:"dd/MM/yyyy" }}</td>
                     <td class="icon-container">

@@ -9,14 +9,23 @@
             <input type="text" class="form-control search-bar" placeholder="Pesquisar por nome" [formControl]="busca">
             <span class="fas fa-search search-icon"></span>
         </div>
-        <button type="button" class="btn btn-success" routerLink="/funcionarios/novo">
-            Novo</button>
+        <div class="buttons">
+            <button type="button" class="btn btn-outline-secondary">
+                <i class="fas fa-filter"></i>
+            </button>
+            &nbsp;
+            <button type="button" class="btn btn-outline-success" routerLink="/funcionarios/novo">
+                <i class="fas fa-user"></i>
+                <i class="fas fa-plus"></i>
+            </button>
+        </div>
     </div>
 
     <div class="table-container">
         <table class="table" *ngIf="employees; else loading">
             <thead>
                 <tr class="table-head">
+                    <th class="colum-title has-btn" scope="col"></th>
                     <th class="colum-title" scope="col" *ngFor="let coluna of colunas" (click)="organizar(coluna)">
                         {{ coluna }}&nbsp;<i class="fas fa-sort colum-title-icon"></i></th>
                     <th class="colum-title has-btn" scope="col"></th>
@@ -24,18 +33,21 @@
             </thead>
             <tbody class="table-body">
                 <tr *ngFor="let employee of employees" class="table-row">
+                    <td>
+                        <i class="far fa-user"></i>
+                    </td>
                     <td class="main-sub-container">
-                        <p class="main">{{ employee.name }}</p>
-                        <p class="sub">{{ employee.lastName }}</p>
+                        <p class="main text-format">{{ employee.name }}</p>
+                        <p class="sub text-format">{{ employee.lastName }}</p>
                     </td>
                     <td>
-                        <p>{{ employee.position.position }}</p>
+                        <p class="text-format">{{ employee.position.position }}</p>
                     </td>
                     <td>
-                        <p>{{ employee.position.sector }}</p>
+                        <p class="text-format">{{ employee.position.sector }}</p>
                     </td>
                     <td class="icon-container">
-                        <i class="fas fa-search info-icon icon-btn"></i>
+                        <i class="far fa-edit info-icon icon-btn"></i>
                         &nbsp;&nbsp;
                         <i class="far fa-trash-alt delete-icon icon-btn" (click)='deleteEmployee(employee.key)'></i>
                     </td>
