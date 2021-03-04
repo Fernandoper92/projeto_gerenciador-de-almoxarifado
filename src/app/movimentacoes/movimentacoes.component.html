@@ -55,7 +55,7 @@
             <thead>
                 <tr class="table-head">
                     <th class="column-title" scope="col" *ngFor="let column of columns" (click)="organize(column)">
-                        {{ column }}&nbsp;<i class="fas fa-sort column-title-icon"></i></th>
+                        {{ column | titlecase}}&nbsp;<i class="fas fa-sort column-title-icon"></i></th>
                     <th class="column-title has-btn" scope="col"></th>
                 </tr>
             </thead>

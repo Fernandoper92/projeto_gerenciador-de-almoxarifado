@@ -10,6 +10,7 @@ mat-sidenav-container {
 }
 
 mat-sidenav {
+    border-radius: 0 15px 15px 0;
     border: 0;
     background-color: $white_green;
     width: 100px;
@@ -35,19 +36,19 @@ mat-sidenav {
     outline: none;
     cursor: pointer;
     transition: all 0.25s;
-}
 
-.nav-item i {
-    font-size: 40px;
-}
+    &:hover {
+        background-color: whitesmoke;
+        color: $white_green;
+    }
 
-.nav-item p {
-    font-size: 12px;
-}
-
-.nav-item:hover {
-    background-color: whitesmoke;
-    color: $white_green;
+    i {
+        font-size: 40px;
+    }
+    
+    p {
+        font-size: 12px;
+    }
 }
 
 .active {
@@ -69,8 +70,7 @@ mat-sidenav {
     cursor: pointer;
 }
 
- @media only screen and (max-width: 1200px) {
-
+@media only screen and (max-width: 1200px) {
     .logo {
         display: none;
     }
@@ -87,7 +87,8 @@ mat-sidenav {
         z-index: 9999;
     }
 
-    .nav-item:hover, .active {
+    .nav-item:hover,
+    .active {
         border-radius: 0;
     }
 }

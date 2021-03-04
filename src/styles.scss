@@ -1,6 +1,86 @@
 /* You can add global styles to this file, and also import other style files */
+@import "./app/shared/colors.scss";
+$table-border-radius: 8px;
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Georgia, 'Times New Roman', Times, serif; }
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Georgia, "Times New Roman", Times, serif;
+}
 
+// CSS OF TABLES
+.table-container {
+  margin: 20px 0;
+}
 
+.table {
+  background-color: white;
+  color: gray;
+  text-align: center;
+  cursor: default;
+
+  .table-head {
+    background-color: $white_green;
+
+    .column-title {
+      border: none;
+      font-size: 20px;
+      padding-left: 25px;
+      font-weight: normal;
+      color: white;
+      border-bottom: 1px solid rgb(232, 232, 232);
+
+      &:first-child {
+        border-radius: $table-border-radius 0 0 0;
+      }
+
+      &:last-child {
+        border-radius: 0 $table-border-radius 0 0;
+      }
+
+      &:active {
+        background-color: #33824c;
+      }
+
+      &:hover {
+        cursor: pointer;
+      }
+
+      &:hover > .column-title-icon {
+        opacity: 1;
+      }
+    }
+  }
+
+  .table-body {
+    .table-row {
+      &:hover {
+        border: none;
+        background-color: #5eeb8b62;
+      }
+    }
+
+    td {
+      border: none;
+      vertical-align: middle;
+      align-items: center;
+      padding: 5px 10px;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    }
+  }
+}
+
+.column-title-icon {
+  opacity: 0;
+}
+
+.has-btn .has-btn {
+  &:hover,
+  &:active {
+    cursor: default;
+    background-color: initial;
+  }
+}

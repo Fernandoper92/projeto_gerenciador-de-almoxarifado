@@ -29,9 +29,9 @@
         <table class="table" *ngIf="products; else loading">
             <thead>
                 <tr class="table-head">
-                    <th class="colum-title" scope="col" *ngFor="let column of columns" (click)="organizar(column)">
-                        {{ column }}&nbsp;<i class="fas fa-sort colum-title-icon"></i></th>
-                    <th class="colum-title has-btn" scope="col"></th>
+                    <th class="column-title" scope="col" *ngFor="let column of columns" (click)="organizar(column)">
+                        {{ column | titlecase }}&nbsp;<i class="fas fa-sort column-title-icon"></i></th>
+                    <th class="column-title has-btn" scope="col"></th>
                 </tr>
             </thead>
             <tbody class="table-body">

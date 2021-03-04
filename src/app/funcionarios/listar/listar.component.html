@@ -29,10 +29,10 @@
         <table class="table" *ngIf="employees; else loading">
             <thead>
                 <tr class="table-head">
-                    <th class="colum-title has-btn" scope="col"></th>
-                    <th class="colum-title" scope="col" *ngFor="let coluna of colunas" (click)="organizar(coluna)">
-                        {{ coluna }}&nbsp;<i class="fas fa-sort colum-title-icon"></i></th>
-                    <th class="colum-title has-btn" scope="col"></th>
+                    <th class="column-title has-btn" scope="col"></th>
+                    <th class="column-title" scope="col" *ngFor="let coluna of colunas" (click)="organizar(coluna)">
+                        {{ coluna }}&nbsp;<i class="fas fa-sort column-title-icon"></i></th>
+                    <th class="column-title has-btn" scope="col"></th>
                 </tr>
             </thead>
             <tbody class="table-body">
