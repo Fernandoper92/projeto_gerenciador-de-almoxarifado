@@ -49,6 +49,7 @@ export class EditarComponent implements OnInit {
 
   createFormGroup() {
     this.form = this.formBuilder.group({
+      code: [null, Validators.minLength(6)],
       name: [null, Validators.required],
       lastName: [null, Validators.required],
       type: ["employee"],

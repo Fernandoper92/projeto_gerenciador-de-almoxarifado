@@ -22,6 +22,10 @@ export class MovimentacoesComponent implements OnInit {
   movimentsTemp: Moviment[] = [];
   products: Product[] = [];
   employees: Employee[] = [];
+  currentEmployee: string = "";
+  selectedEmployee: Employee;
+  currentProduct: string = "";
+  selectedProduct: Product;
   public busca = new FormControl('');
 
   columns = ['mover', 'product', 'quantity', 'date']
@@ -46,7 +50,7 @@ export class MovimentacoesComponent implements OnInit {
     this.productsService.listAllProducts().snapshotChanges().pipe(
       map(changes =>
         changes.map(c =>
-          ({ key: c.payload.key, ...c.payload.val() })
+          ({ key: c.payload.key, ...c.payload.val()})
         )
       )
     ).subscribe(data => {
@@ -70,7 +74,7 @@ export class MovimentacoesComponent implements OnInit {
     return this.movimentsService.listAllMoviments().snapshotChanges().pipe(
       map(changes =>
         changes.map(c =>
-          ({ key: c.payload.key, ...c.payload.val()})
+          ({ key: c.payload.key, ...c.payload.val() })
         )
       )
     ).subscribe(movimentsList => {
@@ -79,11 +83,13 @@ export class MovimentacoesComponent implements OnInit {
   }
 
   isNegative(number) {
-    if(number < 0) return 'is-negative';
+    if (number < 0) return 'is-negative';
   }
 
   deleteMoviment(key) {
-    this.movimentsService.deleteMoviment(key);
+    if (confirm("Tem certeza que deseja deletar essa movimentação ?")) {
+      this.movimentsService.deleteMoviment(key);
+    }
   }
 
   createFormGroup() {
@@ -104,7 +110,13 @@ export class MovimentacoesComponent implements OnInit {
   onSubmit(form) {
     const quantity = this.form.value.input - this.form.value.output;
     const newDate = Date.now();
-    this.form.patchValue({quantity: quantity, date: newDate})
+    this.form.patchValue({
+      quantity: quantity,
+      date: newDate,
+      mover: this.getEmployeeByName(form.value.mover),
+      product: this.getProductByName(form.value.product)
+    })
+    console.log(form.value);
     this.pushMoviments(form.value);
     this.productStockAdjust(form.value);
     this.form.reset({
@@ -114,10 +126,32 @@ export class MovimentacoesComponent implements OnInit {
     });
   }
 
+  onEmployeeChange(employeeName) {
+    console.log(employeeName);
+    this.selectedEmployee = this.getEmployeeByName(employeeName);
+    console.log(this.selectedEmployee);
+}
+
+  getEmployeeByName(name: string): Employee {
+    return this.employees.find(employee => `${employee.name} ${employee.lastName}` === name);
+  }
+
+  onProductChange(productName) {
+    console.log(productName);
+    this.selectedEmployee = this.getEmployeeByName(productName);
+    console.log(this.selectedProduct);
+}
+
+  getProductByName(name: string): Product {
+    return this.products.find(product => `${product.name}` === name);
+  }
+
   productStockAdjust(formValue) {
-    let key = formValue.rpoduct.key;
-    let product = formValue.product;
-    this.productsService.updateProduct(key, product);
+    let formProduct = formValue.product;
+    let key = formProduct.key;
+    formProduct.stock = formProduct.stock + formValue.quantity;
+    console.log(formProduct.stock)
+    this.productsService.updateProduct(key, formProduct);
   }
 
   reactiveFilter(data) {

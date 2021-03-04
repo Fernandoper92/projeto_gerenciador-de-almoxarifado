@@ -3,6 +3,7 @@ import { Position } from './position.model';
 
 export class Employee implements Mover {
     id: number;
+    code?: number;
     type = "employee";
     name: string;
     lastName: string;

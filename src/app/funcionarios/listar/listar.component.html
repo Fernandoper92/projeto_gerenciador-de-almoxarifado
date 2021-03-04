@@ -11,11 +11,15 @@
         </div>
         <div class="buttons">
             <button type="button" class="btn btn-outline-secondary">
+                <i class="fas fa-file-export"></i>
+            </button>
+            &nbsp;
+            <button type="button" class="btn btn-outline-secondary">
                 <i class="fas fa-filter"></i>
             </button>
             &nbsp;
             <button type="button" class="btn btn-outline-success" routerLink="/funcionarios/novo">
-                <i class="fas fa-user"></i>
+                <i class="fas fa-user" style="margin-right: 2px;"></i>
                 <i class="fas fa-plus"></i>
             </button>
         </div>
@@ -39,6 +43,9 @@
                     <td class="main-sub-container">
                         <p class="main text-format">{{ employee.name }}</p>
                         <p class="sub text-format">{{ employee.lastName }}</p>
+                    </td>
+                    <td>
+                        <p class="">{{ employee.code }}</p>
                     </td>
                     <td>
                         <p class="text-format">{{ employee.position.position }}</p>

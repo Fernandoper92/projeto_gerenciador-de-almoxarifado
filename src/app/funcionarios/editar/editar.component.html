@@ -7,6 +7,12 @@
   <div class="form-container">
     <form [formGroup]="form" (ngSubmit)="onSubmit(form)">
       <div class="form-row">
+
+        <div class="form-group col-md-12">
+          <label for="code">Código</label>
+          <input type="text" class="form-control" formControlName="code" [ngClass]="cssErro('code')">
+        </div>
+
         <div class="form-group col-md-12">
           <label for="name">Nome</label>
           <input type="text" class="form-control" formControlName="name" [ngClass]="cssErro('name')">

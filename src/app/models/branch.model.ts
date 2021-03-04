@@ -1,7 +1,8 @@
 import { Mover } from '../interfaces/mover.model';
 
 export class Branch implements Mover{
-    public id: number;
-    public name: string;
-    public type = "branch";
+    id: number;
+    code?: number;
+    name: string;
+    type = "branch";
 }

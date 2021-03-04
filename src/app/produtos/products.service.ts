@@ -28,6 +28,7 @@ export class ProductsService {
   }
 
   updateProduct(key: string, value: any): Promise<void> {
+    console.log(key, value)
     return this.ProductsList.update(key, value);
   }
 

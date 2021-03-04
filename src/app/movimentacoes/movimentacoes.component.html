@@ -9,12 +9,26 @@
             <input type="text" class="form-control search-bar" placeholder="Pesquisar" [formControl]="busca">
             <span class="fas fa-search search-icon"></span>
         </div>
+        <div class="buttons">
+            <button type="button" class="btn btn-outline-secondary">
+                <i class="fas fa-file-export"></i>
+            </button>
+            &nbsp;
+            <button type="button" class="btn btn-outline-secondary">
+                <i class="fas fa-filter"></i>
+            </button>
+            &nbsp;
+            <!-- <button type="button" class="btn btn-outline-success" routerLink="/produtos/novo">
+                <i class="fas fa-exchange-alt" style="margin-right: 2px;"></i>
+                <i class="fas fa-plus"></i>
+            </button> -->
+        </div>
     </div>
 
     <form class="form-container" [formGroup]="form" (ngSubmit)="onSubmit(form)">
         <p class="collapsible">Nova Movimentação</p>
         <div class="content form-grid">
-            <input formControlName="mover" class="form-control form-select-box employee-form" list="employees">
+            <input formControlName="mover" class="form-control form-select-box employee-form" list="employees"/>
             <datalist id="employees">
                 <option *ngFor="let employee of employees" [ngValue]="employee">{{ employee.name }} {{
                     employee.lastName }}</option>

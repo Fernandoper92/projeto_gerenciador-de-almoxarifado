@@ -42,29 +42,40 @@ input:focus {
 
 .filter-container {
     display: flex;
-    justify-content: flex-start;
+    justify-content: space-between;
     align-items: center;
     background-color: white;
     margin: 20px 0;
-}
 
-.search {
-    width: 300px;
-    border: none;
-    align-items: center;
-    background-color: white;
-    border: 1px solid rgb(232, 232, 232);
-}
+    .search {
+        width: 300px;
+        border: none;
+        align-items: center;
+        background-color: white;
+        border: 1px solid rgb(232, 232, 232);
+    }
 
-.search-icon {
-    width: 30px;
-    color: #49b96d;
-    margin: 0 10px;
-}
+    .search-icon {
+        width: 30px;
+        color: #49b96d;
+        margin: 0 10px;
+    }
 
-.search-bar {
-    border: none;
-    height: 40px;
+    .search-bar {
+        border: none;
+        height: 40px;
+    }
+
+    .btn {
+        font-size: 22px;
+        padding: 5px;
+        height: 40px;
+        width: 40px;
+
+        &.btn-outline-success {
+            width: 60px;
+        }
+    }
 }
 
 .form-container {
@@ -134,6 +145,10 @@ input:focus {
     color: gray;
     text-align: center;
     cursor: default;
+
+    .table-head {
+        background-color: $white_green;
+    }
 }
 
 .column-title {
@@ -141,7 +156,7 @@ input:focus {
     font-size: 20px;
     padding-left: 25px;
     font-weight: normal;
-    color: gray;
+    color: white;
     border-bottom: 1px solid rgb(232, 232, 232);
 }
 
@@ -186,6 +201,7 @@ td {
 
 .icon-btn {
     cursor: pointer;
+    font-size: 20px;
 }
 
 .main {
@@ -209,7 +225,7 @@ td {
 .is-negative {
     color: $red;
     border-color: $red;
-  }
+}
 
 /* responsive */
 
