@@ -74,57 +74,6 @@ input:focus {
   }
 }
 
-.table {
-  background-color: white;
-  color: gray;
-  text-align: center;
-  cursor: default;
-
-  .table-head {
-    background-color: $white_green;
-  }
-}
-
-.colum-title {
-  border: none;
-  font-size: 20px;
-  padding-left: 25px;
-  font-weight: normal;
-  color: white;
-  border-bottom: 1px solid rgb(232, 232, 232);
-}
-
-.colum-title:active {
-  background-color: whitesmoke;
-}
-
-.colum-title-icon {
-  opacity: 0;
-}
-
-.colum-title:hover {
-  cursor: pointer;
-}
-
-.colum-title:hover > .colum-title-icon {
-  transition: all 0.25s;
-  opacity: 1;
-}
-
-.has-btn:hover,
-.has-btn:active {
-  cursor: default;
-  background-color: initial;
-}
-
-td {
-  border: none;
-  vertical-align: middle;
-  align-items: center;
-  padding: 10px 0;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-}
-
 .main-sub-container {
   padding-left: 20px;
   text-align: left;

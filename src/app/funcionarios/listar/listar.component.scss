@@ -89,44 +89,6 @@ input:focus {
     }
 }
 
-.colum-title {
-  border: none;
-  font-size: 20px;
-  padding-left: 25px;
-  font-weight: normal;
-  color: white;
-  border-bottom: 1px solid $gray;
-}
-
-.colum-title:active {
-  background-color: whitesmoke;
-}
-
-.colum-title-icon {
-  opacity: 0;
-}
-
-.colum-title:hover {
-  cursor: pointer;
-}
-
-.colum-title:hover > .colum-title-icon {
-  opacity: 1;
-}
-
-.has-btn:hover, .has-btn:active {
-  cursor: default;
-  background-color: initial;
-}
-
-td {
-  border: none;
-  vertical-align: middle;
-  align-items: center;
-  padding: 5px 0;
-  border-bottom: 1px solid $gray;
-}
-
 .text-format {
   padding-left: 20px;
   text-align: left;
