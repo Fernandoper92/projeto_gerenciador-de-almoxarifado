@@ -1,130 +1,17 @@
 @import "../../shared/colors.scss";
 
-* {
-  // transition: all 0.25s;
-}
-
-p {
-  padding: 0;
-  margin: 0;
-  font-size: 14px;
-}
-
-.btn.focus,
-.btn:focus,
-input:focus {
-  outline: 0;
-  box-shadow: none !important;
-}
-
-.main-container {
-  background-color: white;
-  padding: 0 50px;
-}
-
-.title-container {
-  display: flex;
-  align-items: center;
-  padding: 20px 0;
-  border-bottom: 1px solid $gray;
-}
-
-.title {
-  font-size: 30px;
-  font-weight: bold;
-}
-
-.subtitle {
-  font-size: 20px;
-  color: gray;
-}
-
-.filter-container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: white;
-  margin: 20px 0;
-  
-  .search {
-    width: 300px;
-    border: none;
-    align-items: center;
-    background-color: white;
-    margin-right: 10px;
-    border: 1px solid $gray;
-  }
-  
-  .search-icon {
-    width: 30px;
-    color: $white_green;
-    margin: 0 10px;
-  }
-  
-  .search-bar {
-    border: none;
-    height: 40px;
-  }
-  
-  .btn {
-    font-size: 22px;
-    padding: 5px;
-    height: 40px;
-    width: 40px;
-
-    &.btn-outline-success {
-      width: 60px;
-    }
-  }
-}
-  
-  .table {
-    background-color: white;
-    color: gray;
-    text-align: center;
-    cursor: default;
-
-    .table-head {
-      background-color: $white_green;
-    }
-}
-
-.text-format {
-  padding-left: 20px;
-  text-align: left;
-}
-
-.icon-container {
-  width: 75px;
-}
-
-.icon-btn {
-  font-size: 20px;
-  cursor: pointer;
-}
-
-.main {
-  color: initial;
-  font-weight: bold;
-}
-
-.table-row:hover {
-  border: none;
-  background-color: #5eeb8b62;
-}
-
 .loading {
+  * {
+    margin: 10px;
+  }
+
   display: flex;
   flex-direction: column;
   align-items: center;
 
-  * {
-    margin: 10px;
-  }
-  
   .loader-animation {
-    border: 16px solid #f3f3f3; /* Light grey */
-    border-top: 16px solid $white_green; /* Green */
+    border: 16px solid #f3f3f3;
+    border-top: 16px solid $white_green;
     border-radius: 50%;
     width: 120px;
     height: 120px;
@@ -134,12 +21,18 @@ input:focus {
   .loader-text {
     font-size: 24px;
   }
+
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
 }
 
-@keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-}
+/*responsive*/
 
 @media only screen and (max-width: 1200px) {
   .form-grid {
@@ -176,7 +69,8 @@ input:focus {
     font-size: 16px;
   }
 
-  .icon-container, .id-container {
+  .icon-container,
+  .id-container {
     display: none;
   }
 
@@ -205,7 +99,8 @@ input:focus {
     background: whitesmoke;
   }
 
-  td,.main-sub-container {
+  td,
+  .main-sub-container {
     /* Behave  like a "row" */
     border: none;
     border-bottom: 1px solid #eee;

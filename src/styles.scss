@@ -11,76 +11,183 @@ body {
   font-family: Georgia, "Times New Roman", Times, serif;
 }
 
-// CSS OF TABLES
-.table-container {
-  margin: 20px 0;
+p {
+  padding: 0;
+  margin: 0;
+  font-size: 14px;
 }
 
-.table {
+.btn.focus,
+.btn:focus,
+input:focus {
+  outline: 0;
+  box-shadow: none !important;
+}
+
+.main-container {
   background-color: white;
-  color: gray;
-  text-align: center;
-  cursor: default;
+  padding: 0 50px;
 
-  .table-head {
-    background-color: $white_green;
-
-    .column-title {
-      border: none;
-      font-size: 20px;
-      padding-left: 25px;
-      font-weight: normal;
-      color: white;
-      border-bottom: 1px solid rgb(232, 232, 232);
-
-      &:first-child {
-        border-radius: $table-border-radius 0 0 0;
-      }
-
-      &:last-child {
-        border-radius: 0 $table-border-radius 0 0;
-      }
-
-      &:active {
-        background-color: #33824c;
-      }
-
-      &:hover {
-        cursor: pointer;
-      }
-
-      &:hover > .column-title-icon {
-        opacity: 1;
-      }
-    }
+  .title-container {
+    display: flex;
+    align-items: center;
+    padding: 20px 0;
+    border-bottom: 1px solid $gray;
   }
 
-  .table-body {
-    .table-row {
-      &:hover {
-        border: none;
-        background-color: #5eeb8b62;
-      }
-    }
+  .title {
+    font-size: 30px;
+    font-weight: bold;
+  }
 
-    td {
+  .subtitle {
+    font-size: 20px;
+    color: gray;
+  }
+
+  .filter-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: white;
+    margin: 20px 0;
+
+    .search {
+      width: 300px;
       border: none;
-      vertical-align: middle;
       align-items: center;
-      padding: 5px 10px;
-      border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+      background-color: white;
+      margin-right: 10px;
+      border: 1px solid $gray;
+    }
+
+    .search-icon {
+      width: 30px;
+      color: $white_green;
+      margin: 0 10px;
+    }
+
+    .search-bar {
+      border: none;
+      height: 40px;
+    }
+
+    .btn {
+      font-size: 22px;
+      padding: 5px;
+      height: 40px;
+      width: 40px;
+
+      &.btn-outline-success {
+        width: 60px;
+      }
     }
   }
-}
 
-.column-title-icon {
-  opacity: 0;
-}
+  // CSS OF TABLES
+  .table-container {
+    margin: 20px 0;
+  }
 
-.has-btn .has-btn {
-  &:hover,
-  &:active {
+  .table {
+    background-color: white;
+    color: gray;
+    text-align: center;
     cursor: default;
-    background-color: initial;
+
+    .table-head {
+      background-color: $white_green;
+
+      .column-title {
+        border: none;
+        font-size: 20px;
+        padding-left: 25px;
+        font-weight: normal;
+        color: white;
+        border-bottom: 1px solid rgb(232, 232, 232);
+
+        &:first-child {
+          border-radius: $table-border-radius 0 0 0;
+        }
+
+        &:last-child {
+          border-radius: 0 $table-border-radius 0 0;
+        }
+
+        &:active {
+          background-color: #33824c;
+        }
+
+        &:hover {
+          cursor: pointer;
+        }
+
+        &:hover > .column-title-icon {
+          opacity: 1;
+        }
+      }
+    }
+
+    .table-body {
+      .table-row {
+        &:hover {
+          transition: all 1.25s;
+          border: none;
+          background-color: #5eeb8b62;
+        }
+      }
+
+      td {
+        border: none;
+        vertical-align: middle;
+        align-items: center;
+        padding: 5px 10px;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+
+        &.icon-container {
+          width: 75px;
+        }
+
+        .icon-btn {
+          cursor: pointer;
+          font-size: 20px;
+        }
+
+        &.main-sub-container {
+          padding-left: 20px;
+          text-align: left;
+
+          .main {
+            color: initial;
+            font-weight: bold;
+          }
+        }
+
+        .number {
+          border: 1px solid rgba(128, 128, 128, 0.516);
+          display: inline-block;
+          width: auto;
+          padding: 2px;
+          min-width: 50px;
+
+          &.is-negative {
+            color: $red;
+            border-color: $red;
+          }
+        }
+      }
+    }
+  }
+
+  .column-title-icon {
+    opacity: 0;
+  }
+
+  .has-btn .has-btn {
+    &:hover,
+    &:active {
+      cursor: default;
+      background-color: initial;
+    }
   }
 }

@@ -18,22 +18,18 @@
                 <i class="fas fa-filter"></i>
             </button>
             &nbsp;
-            <!-- <button type="button" class="btn btn-outline-success" routerLink="/produtos/novo">
-                <i class="fas fa-exchange-alt" style="margin-right: 2px;"></i>
-                <i class="fas fa-plus"></i>
-            </button> -->
         </div>
     </div>
 
     <form class="form-container" [formGroup]="form" (ngSubmit)="onSubmit(form)">
         <p class="collapsible">Nova Movimentação</p>
         <div class="content form-grid">
-            <input formControlName="mover" class="form-control form-select-box employee-form" list="employees"/>
+            <input formControlName="mover" class="form-control form-select-box" list="employees"/>
             <datalist id="employees">
                 <option *ngFor="let employee of employees" [ngValue]="employee">{{ employee.name }} {{
                     employee.lastName }}</option>
             </datalist>
-            <input formControlName="product" class="form-control form-select-box product-form" list="products">
+            <input formControlName="product" class="form-control form-select-box" list="products">
             <datalist id="products">
                 <option *ngFor="let product of products" [ngValue]="product">{{ product.name }}</option>
             </datalist>
@@ -61,9 +57,9 @@
             </thead>
             <tbody class="table-body">
                 <tr *ngFor="let moviment of moviments" class="table-row">
-                    <td class="mover-container">
-                        <p class="name">{{ moviment.mover.name }}</p>
-                        <p class="last-name">{{ moviment.mover.lastName }}</p>
+                    <td class="main-sub-container">
+                        <p class="main text-format">{{ moviment.mover.name }}</p>
+                        <p class="sub text-format">{{ moviment.mover.lastName }}</p>
                     </td>
                     <td class="product-container">
                         <P class="product">{{ moviment.product.name }}</P>
