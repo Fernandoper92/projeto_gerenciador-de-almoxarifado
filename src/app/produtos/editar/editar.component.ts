@@ -45,7 +45,7 @@ export class EditarComponent implements OnInit {
       group: [null, Validators.required],
       code: [null, Validators.required],
       provider: [null],
-      stock: [null],
+      stock: [0],
       minStock: [null]
     });
   }

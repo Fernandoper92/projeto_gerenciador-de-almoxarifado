@@ -3,6 +3,7 @@
 p {
     padding: 0;
     margin: 0;
+    font-family: Verdana, Geneva, Tahoma, sans-serif
 }
 
 mat-sidenav-container {
@@ -10,40 +11,41 @@ mat-sidenav-container {
 }
 
 mat-sidenav {
-    border-radius: 0 15px 15px 0;
     border: 0;
-    background-color: $white_green;
-    width: 100px;
+    background-color: white;
+    width: 150px;
+    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
 }
 
 .logo {
     font-size: 70px;
     text-align: center;
-    color: white;
-    background-color: $white_green;
+    background-color: white;
     padding: 5px 0;
+    margin-bottom: 50px;
 }
 
 .nav-item {
-    height: 100px;
+    padding: 10px;
+    margin-bottom: 5px;
     width: auto;
     text-decoration: none;
-    color: white;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    align-items: center;
     text-align: center;
-    justify-content: center;
+    justify-content: flex-start;
     outline: none;
     cursor: pointer;
-    transition: all 0.25s;
+    color: rgba(128, 128, 128, 0.701);
 
     &:hover {
-        background-color: whitesmoke;
-        color: $white_green;
+        color: black;
     }
 
     i {
-        font-size: 40px;
+        font-size: 20px;
+        margin-right: 10px;
     }
     
     p {
@@ -53,11 +55,12 @@ mat-sidenav {
 
 .active {
     background-color: white;
-    color: $white_green;
+    color: black;
+    border-right: 5px solid $white_green;
 }
 
 .main-container {
-    background-color: white;
+    background-color: whitesmoke;
 }
 
 .btn-toggle {

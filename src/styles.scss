@@ -1,6 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 @import "./app/shared/colors.scss";
 $table-border-radius: 8px;
+$box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
 
 html,
 body {
@@ -13,7 +14,7 @@ body {
 
 p {
   padding: 0;
-  margin: 0;
+  margin: 0 !important;
   font-size: 14px;
 }
 
@@ -21,16 +22,36 @@ p {
 .btn:focus,
 input:focus {
   outline: 0;
-  box-shadow: none !important;
+}
+
+.btn {
+  font-size: 22px;
+  padding: 5px;
+  height: 40px;
+  width: 40px;
+  background-color: $white_green;
+  color: white;
+  box-shadow: $box-shadow;
+
+  &.primary {
+    width: 60px;
+  }
+
+  &:hover {
+    background-color: #51c475;
+    color: white;
+  }
+
+  &:active {
+    background-color: #36804d;
+
+  }
 }
 
 .main-container {
-  background-color: white;
   padding: 0 50px;
 
   .title-container {
-    display: flex;
-    align-items: center;
     padding: 20px 0;
     border-bottom: 1px solid $gray;
   }
@@ -38,27 +59,22 @@ input:focus {
   .title {
     font-size: 30px;
     font-weight: bold;
-  }
-
-  .subtitle {
-    font-size: 20px;
-    color: gray;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   }
 
   .filter-container {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: white;
     margin: 20px 0;
 
     .search {
       width: 300px;
       border: none;
       align-items: center;
+      border-radius: 20px;
       background-color: white;
-      margin-right: 10px;
-      border: 1px solid $gray;
+      box-shadow: $box-shadow;
     }
 
     .search-icon {
@@ -69,18 +85,8 @@ input:focus {
 
     .search-bar {
       border: none;
+      border-radius: 20px;
       height: 40px;
-    }
-
-    .btn {
-      font-size: 22px;
-      padding: 5px;
-      height: 40px;
-      width: 40px;
-
-      &.btn-outline-success {
-        width: 60px;
-      }
     }
   }
 
@@ -93,29 +99,21 @@ input:focus {
     background-color: white;
     color: gray;
     text-align: center;
+    font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
     cursor: default;
+    border-radius: 5px;
+    box-shadow: $box-shadow;
 
-    .table-head {
-      background-color: $white_green;
-
+    .table-head-box {
       .column-title {
+        font-weight: normal;
         border: none;
         font-size: 20px;
         padding-left: 25px;
-        font-weight: normal;
-        color: white;
         border-bottom: 1px solid rgb(232, 232, 232);
 
-        &:first-child {
-          border-radius: $table-border-radius 0 0 0;
-        }
-
-        &:last-child {
-          border-radius: 0 $table-border-radius 0 0;
-        }
-
         &:active {
-          background-color: #33824c;
+          color: #33824c;
         }
 
         &:hover {
@@ -131,9 +129,9 @@ input:focus {
     .table-body {
       .table-row {
         &:hover {
-          transition: all 1.25s;
+          transition: all 0.25s;
           border: none;
-          background-color: #5eeb8b62;
+          background-color: #ebfaf3;
         }
       }
 
@@ -141,8 +139,7 @@ input:focus {
         border: none;
         vertical-align: middle;
         align-items: center;
-        padding: 5px 10px;
-        border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        padding: 10px 10px;
 
         &.icon-container {
           width: 75px;
@@ -153,18 +150,13 @@ input:focus {
           font-size: 20px;
         }
 
-        &.main-sub-container {
+        &.name-container {
           padding-left: 20px;
           text-align: left;
-
-          .main {
-            color: initial;
-            font-weight: bold;
-          }
+          color: rgb(33, 33, 33);
         }
 
         .number {
-          border: 1px solid rgba(128, 128, 128, 0.516);
           display: inline-block;
           width: auto;
           padding: 2px;
@@ -172,7 +164,6 @@ input:focus {
 
           &.is-negative {
             color: $red;
-            border-color: $red;
           }
         }
       }

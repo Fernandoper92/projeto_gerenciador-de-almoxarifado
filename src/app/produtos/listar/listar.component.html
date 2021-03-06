@@ -1,7 +1,6 @@
 <div class="main-container">
     <div class="title-container">
-        <p class="title">PRODUTOS</p>
-        <p class="subtitle">&nbsp;/&nbsp;LISTAR</p>
+        <p class="title">Produtos</p>
     </div>
 
     <div class="filter-container">
@@ -10,15 +9,15 @@
             <span class="fas fa-search search-icon"></span>
         </div>
         <div class="buttons">
-            <button type="button" class="btn btn-outline-secondary">
+            <button type="button" class="btn secondary">
                 <i class="fas fa-file-export"></i>
             </button>
             &nbsp;
-            <button type="button" class="btn btn-outline-secondary">
+            <button type="button" class="btn secondary">
                 <i class="fas fa-filter"></i>
             </button>
             &nbsp;
-            <button type="button" class="btn btn-outline-success" routerLink="/produtos/novo">
+            <button type="button" class="btn primary" routerLink="/produtos/novo">
                 <i class="fas fa-hard-hat" style="margin-right: 2px;"></i>
                 <i class="fas fa-plus"></i>
             </button>
@@ -27,8 +26,8 @@
 
     <div class="table-container">
         <table class="table" *ngIf="products; else loading">
-            <thead>
-                <tr class="table-head">
+            <thead class="table-head-container">
+                <tr class="table-head-box">
                     <th class="column-title" scope="col" *ngFor="let column of columns" (click)="organizar(column)">
                         {{ column | titlecase }}&nbsp;<i class="fas fa-sort column-title-icon"></i></th>
                     <th class="column-title has-btn" scope="col"></th>
@@ -36,8 +35,8 @@
             </thead>
             <tbody class="table-body">
                 <tr *ngFor="let product of products" class="table-row">
-                    <td class="main-sub-container">
-                        <p class="main">{{ product.name }}</p>
+                    <td class="name-container">
+                        <p class="name">{{ product.name }}</p>
                     </td>
                     <td class="cod">
                         <p class="number">{{ product.code }}</p>
@@ -49,9 +48,7 @@
                         <p class="number" [ngClass]="ifZero(product.stock)">{{ product.stock }}</p>
                     </td>
                     <td class="icon-container">
-                        <!-- <i class="fas fa-edit icon-btn"></i> -->
-                        &nbsp;&nbsp;
-                        <i class="fas fa-trash-alt icon-btn" (click)='deleteProduct(product.key)'></i>
+                        <i class="far fa-trash-alt icon-btn" (click)='deleteProduct(product.key)'></i>
                     </td>
                 </tr>
             </tbody>

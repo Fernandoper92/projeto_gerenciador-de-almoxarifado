@@ -1,18 +1,18 @@
 <div class="main-container">
 
     <div class="title-container">
-        <p class="title">CONFIGURAÇÕES</p>
+        <p class="title">Configurações</p>
     </div>
 
     <div class="Collapse-container">
         <div class="container-menu">
-            <button class="collapsible">PRODUTOS</button>
+            <button class="collapsible">Produtos</button>
             <div class="content">
                 <div class="select-container">
                     <h3 class="title-select-container">Editar seleção de grupos</h3>
                     <label for="groupName">Nome do grupo</label>
                     <input class="input-box" type="text" name="groupName" #groupName>
-                    <button class="btn btn-success" (click)="pushOption(groupName.value, 'group')">Adicionar</button>
+                    <button class="btn" (click)="pushOption(groupName.value, 'group')">Adicionar  <i class="fas fa-plus"></i></button>
                     <div class="items-container">
                         <div *ngFor="let group of groups">
                             {{ group.value }}
@@ -22,14 +22,14 @@
             </div>
         </div>
         <div class="container-menu">
-            <button class="collapsible">FUNCIONÁRIOS</button>
+            <button class="collapsible">Colaboradores</button>
             <div class="content">
                 <div class="select-container">
                     <div class="select-box">
                         <h3 class="title-select-container">Editar seleção de setores</h3>
                         <label for="sectorName">Nome do setor</label>
                         <input class="input-box" type="text" name="sectorName" #sectorName>
-                        <button class="btn btn-success" (click)="pushOption(sectorName.value, 'sector')">Adicionar</button>
+                        <button class="btn" (click)="pushOption(sectorName.value, 'sector')">Adicionar  <i class="fas fa-plus"></i></button>
                         <div *ngIf="sectors" class="items-container">
                             <div *ngFor="let sector of sectors">
                                 {{ sector.value }}
@@ -40,7 +40,7 @@
                         <h3 class="title-select-container">Editar seleção de funções</h3>
                         <label for="positionName">Nome do cargo</label>
                         <input class="input-box" type="text" name="positionName" #positionName>
-                        <button class="btn btn-success" (click)="pushOption(positionName.value, 'position')">Adicionar</button>
+                        <button class="btn" (click)="pushOption(positionName.value, 'position')">Adicionar  <i class="fas fa-plus"></i></button>
                         <div *ngIf="positions" class="items-container">
                             <div *ngFor="let position of positions">
                                 {{ position.value }}
@@ -51,7 +51,7 @@
             </div>
         </div>
         <div class="container-menu">
-            <button class="collapsible">MOVIMENTAÇÕES</button>
+            <button class="collapsible">Movimentações</button>
             <div class="content">
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore
                     et

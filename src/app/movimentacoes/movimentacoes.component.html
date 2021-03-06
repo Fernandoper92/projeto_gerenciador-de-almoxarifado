@@ -1,7 +1,6 @@
 <div class="main-container">
     <div class="title-container">
-        <p class="title">MOVIMENTAÇÕES</p>
-        <p class="subtitle">&nbsp;/&nbsp;LISTAR</p>
+        <p class="title">Movimentações</p>
     </div>
 
     <div class="filter-container">
@@ -10,11 +9,11 @@
             <span class="fas fa-search search-icon"></span>
         </div>
         <div class="buttons">
-            <button type="button" class="btn btn-outline-secondary">
+            <button type="button" class="btn secondary">
                 <i class="fas fa-file-export"></i>
             </button>
             &nbsp;
-            <button type="button" class="btn btn-outline-secondary">
+            <button type="button" class="btn secondary">
                 <i class="fas fa-filter"></i>
             </button>
             &nbsp;
@@ -26,8 +25,7 @@
         <div class="content form-grid">
             <input formControlName="mover" class="form-control form-select-box" list="employees"/>
             <datalist id="employees">
-                <option *ngFor="let employee of employees" [ngValue]="employee">{{ employee.name }} {{
-                    employee.lastName }}</option>
+                <option *ngFor="let employee of employees" [ngValue]="employee">{{ employee.name }} {{ employee.lastName }}</option>
             </datalist>
             <input formControlName="product" class="form-control form-select-box" list="products">
             <datalist id="products">
@@ -39,7 +37,7 @@
             <div class="output form-number-box">
                 <input type="number" class="form-control" formControlName="output" placeholder="Saida">
             </div>
-            <button type="submit" class="btn btn-success">
+            <button type="submit" class="btn">
                 Enviar</button>
         </div>
     </form>
@@ -48,8 +46,8 @@
 
     <div class="table-container">
         <table class="table">
-            <thead>
-                <tr class="table-head">
+            <thead class="table-head-container">
+                <tr class="table-head-box">
                     <th class="column-title" scope="col" *ngFor="let column of columns" (click)="organize(column)">
                         {{ column | titlecase}}&nbsp;<i class="fas fa-sort column-title-icon"></i></th>
                     <th class="column-title has-btn" scope="col"></th>
@@ -57,11 +55,10 @@
             </thead>
             <tbody class="table-body">
                 <tr *ngFor="let moviment of moviments" class="table-row">
-                    <td class="main-sub-container">
-                        <p class="main text-format">{{ moviment.mover.name }}</p>
-                        <p class="sub text-format">{{ moviment.mover.lastName }}</p>
+                    <td class="name-container">
+                        <p class="main text-format">{{ moviment.mover.name }} {{ moviment.mover.lastName }}</p>
                     </td>
-                    <td class="product-container">
+                    <td class="name-container">
                         <P class="product">{{ moviment.product.name }}</P>
                     </td>
                     <td>
