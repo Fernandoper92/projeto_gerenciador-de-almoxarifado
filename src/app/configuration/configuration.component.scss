@@ -1,41 +1,39 @@
 @import "../shared/colors";
-$box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+$box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
 
 .Collapse-container {
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 20px 0;
-}
 
-
-.collapsible {
-  cursor: pointer;
-  padding: 18px;
-  width: 100%;
-  border: none;
-  text-align: left;
-  outline: none;
-  font-size: 15px;
-  border-radius: 5px;
-  background-color: white;
-  }
-  
-  .collapsible:hover {
+  .collapsible {
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 15px;
+    border-radius: 5px;
     background-color: white;
-    color: $white_green;
-  }
-  
-  .collapsible:after {
-    color: #49b96d;
-    content: '\002B';
-    font-weight: bold;
-    float: right;
-    margin-left: 5px;
-  }
-  
-  .active:after {
-    content: "\2212";
+
+    &:hover {
+      background-color: white;
+      color: $white_green;
+    }
+
+    &:after {
+      color: #49b96d;
+      content: "\002B";
+      font-weight: bold;
+      float: right;
+      margin-left: 5px;
+    }
+
+    &.active:after {
+      content: "\2212";
+    }
   }
 
   .container-menu {
@@ -47,37 +45,37 @@ $box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px
     margin-bottom: 10px;
     background-color: white;
     box-shadow: $box-shadow;
-  }
-  
-  .content {
-    display: block;
-    width: 100%;
-    padding: 0 20px;
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.2s ease-out;
-  }
 
-  .content:after {
-    padding: 50px;
-  }
-  
-  .items-container {
-    background-color: white;
-    margin: 10px;
-    border: 1px solid rgba(0, 0, 0, 0.1);
-  }
+    .content {
+      display: block;
+      width: 100%;
+      padding: 0 20px;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.2s ease-out;
 
-  .title-select-container {
-    border-top: 1px solid rgba(0, 0, 0, 0.1);
-  }
+      &:after {
+        padding: 50px;
+      }
 
-  .input-box {
-    height: 30px;
-    width: 300px;
-    border:1px solid rgba(0, 0, 0, 0.3);
-    border-radius: 5px;
-    margin: 0 5px;
+      .items-container {
+        background-color: white;
+        margin: 10px;
+        border: 1px solid rgba(0, 0, 0, 0.1);
+      }
+
+      .title-select-container {
+        border-top: 1px solid rgba(0, 0, 0, 0.1);
+      }
+
+      .input-box {
+        height: 30px;
+        width: 300px;
+        border: 1px solid rgba(0, 0, 0, 0.3);
+        border-radius: 5px;
+        margin: 0 5px;
+      }
+    }
   }
 
   .btn {
@@ -85,3 +83,4 @@ $box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px
     width: auto;
     height: auto;
   }
+}

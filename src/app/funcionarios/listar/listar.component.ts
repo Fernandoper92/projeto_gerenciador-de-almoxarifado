@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { debounceTime, delay, distinctUntilChanged, map } from 'rxjs/operators';
+import { debounceTime, distinctUntilChanged, map } from 'rxjs/operators';
 
 import { Employee } from './../../models/employee.model';
 import { EmployeesService } from '../employees.service';
@@ -15,6 +15,7 @@ export class ListarComponent implements OnInit {
   ordemCrescente = true;
   employees: Employee[];
   employeesTemp: Employee[];
+  entry = 0;
   public busca = new FormControl('');
   
   colunas = ['name', 'code', 'role', 'sector'];
@@ -44,6 +45,7 @@ deleteEmployee(key) {
 reactiveFilter(data) {
   this.employeesTemp = data;
   this.employees = data;
+  this.entry = this.employees.length;
   this.busca.valueChanges.pipe(
     map(value => value.trim()),
     debounceTime(500),
@@ -51,12 +53,16 @@ reactiveFilter(data) {
   ).subscribe((filterWord: string) => {
     if (this.busca.value) this.filterArray(filterWord);
     if (!this.busca.value) this.employees = this.employeesTemp;
+    this.entry = this.employees.length;
   })
 }
 
 filterArray(filterWord) {
-  filterWord = filterWord.toLowerCase()
-  this.employees = this.employeesTemp.filter((el: Employee) => el.name.toLocaleLowerCase().includes(filterWord))
+  filterWord = filterWord.toLowerCase();
+  this.employees = this.employeesTemp.filter((el: Employee) => {
+    let name = `${el.name}${el.lastName}`
+    if (name.toLocaleLowerCase().includes(filterWord)) return true
+  });
 }
 
 organizar(param: string) {

@@ -1,41 +1,5 @@
 @import "../../shared/colors.scss";
 
-.loading {
-  * {
-    margin: 10px;
-  }
-
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-
-  .loader-animation {
-    border: 16px solid #f3f3f3;
-    border-top: 16px solid $white_green;
-    border-radius: 50%;
-    width: 120px;
-    height: 120px;
-    animation: spin 2s linear infinite;
-  }
-
-  .loader-text {
-    font-size: 24px;
-  }
-
-  @keyframes spin {
-    0% {
-      transform: rotate(0deg);
-    }
-    100% {
-      transform: rotate(360deg);
-    }
-  }
-}
-
-.icon-employee {
-  color: $white_green;
-}
-
 /*responsive*/
 
 @media only screen and (max-width: 1200px) {

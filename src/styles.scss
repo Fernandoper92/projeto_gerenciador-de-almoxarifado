@@ -1,7 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 @import "./app/shared/colors.scss";
 $table-border-radius: 8px;
-$box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+$box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
 
 html,
 body {
@@ -20,8 +20,10 @@ p {
 
 .btn.focus,
 .btn:focus,
-input:focus {
+input:focus,
+select:focus {
   outline: 0;
+  box-shadow: none !important;
 }
 
 .btn {
@@ -34,17 +36,29 @@ input:focus {
   box-shadow: $box-shadow;
 
   &.primary {
-    width: 60px;
+    width: 65px;
   }
 
   &:hover {
-    background-color: #51c475;
+    background-color: #55d07c;
     color: white;
   }
 
   &:active {
     background-color: #36804d;
+  }
 
+  &.secondary {
+    background-color: rgb(165, 164, 164);
+
+    &:hover {
+      background-color: rgb(188, 188, 188);
+      color: white;
+    }
+
+    &:active {
+      background-color: rgb(120, 120, 120);
+    }
   }
 }
 
@@ -74,7 +88,7 @@ input:focus {
       align-items: center;
       border-radius: 20px;
       background-color: white;
-      box-shadow: $box-shadow;
+      // box-shadow: $box-shadow;
     }
 
     .search-icon {
@@ -97,7 +111,7 @@ input:focus {
 
   .table {
     background-color: white;
-    color: gray;
+    color: rgb(57, 57, 57);
     text-align: center;
     font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
     cursor: default;
@@ -110,61 +124,73 @@ input:focus {
         border: none;
         font-size: 20px;
         padding-left: 25px;
-        border-bottom: 1px solid rgb(232, 232, 232);
+        color: gray;
+        border-bottom: 1px solid $gray;
 
         &:active {
-          color: #33824c;
+          color: black;
+
+          i:focus {
+            color: black;
+          }
         }
 
         &:hover {
           cursor: pointer;
-        }
 
-        &:hover > .column-title-icon {
-          opacity: 1;
+          .column-title-icon {
+            opacity: 1;
+          }
         }
       }
     }
 
     .table-body {
       .table-row {
+        td {
+          border: none;
+          vertical-align: middle;
+          align-items: center;
+          padding: 10px 10px;
+
+          &.name-container {
+            padding-left: 20px;
+            text-align: left;
+          }
+
+          &.number {
+            display: inline-block;
+            width: auto;
+            padding: 2px;
+            min-width: 50px;
+
+            &.is-negative {
+              color: $red;
+            }
+          }
+
+          &.icon-container {
+            width: 75px;
+
+            .icon-btn {
+              padding: 5px 15px;
+              border-radius: 5px;
+              cursor: pointer;
+              font-size: 20px;
+              background-color: rgb(255, 220, 220);
+              color: rgba(255, 0, 0, 0.571);
+
+              &:hover {
+                color: rgba(255, 0, 0, 0.783);
+              }
+            }
+          }
+        }
         &:hover {
           transition: all 0.25s;
           border: none;
-          background-color: #ebfaf3;
-        }
-      }
-
-      td {
-        border: none;
-        vertical-align: middle;
-        align-items: center;
-        padding: 10px 10px;
-
-        &.icon-container {
-          width: 75px;
-        }
-
-        .icon-btn {
-          cursor: pointer;
-          font-size: 20px;
-        }
-
-        &.name-container {
-          padding-left: 20px;
-          text-align: left;
-          color: rgb(33, 33, 33);
-        }
-
-        .number {
-          display: inline-block;
-          width: auto;
-          padding: 2px;
-          min-width: 50px;
-
-          &.is-negative {
-            color: $red;
-          }
+          background-color: #5AE692;
+          color: white;
         }
       }
     }
@@ -179,6 +205,38 @@ input:focus {
     &:active {
       cursor: default;
       background-color: initial;
+    }
+  }
+}
+
+.loading {
+  * {
+    margin: 10px;
+  }
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .loader-animation {
+    border: 16px solid #f3f3f3;
+    border-top: 16px solid $white_green;
+    border-radius: 50%;
+    width: 120px;
+    height: 120px;
+    animation: spin 2s linear infinite;
+  }
+
+  .loader-text {
+    font-size: 24px;
+  }
+
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
     }
   }
 }

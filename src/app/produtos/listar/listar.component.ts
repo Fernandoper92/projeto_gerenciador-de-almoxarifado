@@ -17,7 +17,7 @@ export class ListarComponent implements OnInit {
   productsTemp: Product[] = []
   public busca = new FormControl('');
 
-  columns = ['name', 'code', 'provider', 'stock'];
+  columns = ['name', 'code', 'group', 'provider', 'stock'];
 
   constructor(private productsService: ProductsService) { }
 

@@ -1,7 +1,6 @@
 <div class="main-container">
     <div class="title-container">
-        <p class="title">Colaboradores</p>
-        
+        <p class="title">Empresas</p>
     </div>
 
     <div class="filter-container">
@@ -18,17 +17,15 @@
                 <i class="fas fa-filter"></i>
             </button>
             &nbsp;
-            <button type="button" class="btn primary" routerLink="/funcionarios/novo">
-                <i class="fas fa-user" style="margin-right: 2px;"></i>
+            <button type="button" class="btn primary" routerLink="/fornecedor-filial/novo">
+                <i class="fas fa-user-friends" style="margin-right: 2px;"></i>
                 <i class="fas fa-plus"></i>
             </button>
         </div>
     </div>
 
-    <P class="entry">{{ entry }} entradas</P>
-
     <div class="table-container">
-        <table class="table" *ngIf="employees; else loading">
+        <table class="table">
             <thead class="table-head-container">
                 <tr class="table-head-box">
                     <th class="column-title" scope="col" *ngFor="let coluna of colunas" (click)="organizar(coluna)">
@@ -37,21 +34,32 @@
                 </tr>
             </thead>
             <tbody class="table-body">
-                <tr *ngFor="let employee of employees" class="table-row">
+                <tr *ngFor="let provider of providers" class="table-row">
                     <td class="name-container">
-                        <p class="main text-format">{{ employee.name }} {{ employee.lastName }}</p>
+                        <p class="main text-format">{{ provider.name }}</p>
                     </td>
                     <td>
-                        <p class="number">{{ employee.code }}</p>
+                        <p class="number">{{ provider.code }}</p>
                     </td>
                     <td>
-                        <p class="text-format">{{ employee.position.position }}</p>
-                    </td>
-                    <td>
-                        <p class="text-format">{{ employee.position.sector }}</p>
+                        <p class="text-format">{{ provider.type }}</p>
                     </td>
                     <td class="icon-container">
-                        <i class="far fa-trash-alt delete-icon icon-btn" (click)='deleteEmployee(employee.key)'></i>
+                        <i class="far fa-trash-alt delete-icon icon-btn" (click)='deleteProvider(provider.key)'></i>
+                    </td>
+                </tr>
+                <tr *ngFor="let branch of branchs" class="table-row">
+                    <td class="name-container">
+                        <p class="main text-format">{{ branch.name }}</p>
+                    </td>
+                    <td>
+                        <p class="number">{{ branch.code }}</p>
+                    </td>
+                    <td>
+                        <p class="text-format">{{ branch.type }}</p>
+                    </td>
+                    <td class="icon-container">
+                        <i class="far fa-trash-alt delete-icon icon-btn" (click)='deletebranch(branch.key)'></i>
                     </td>
                 </tr>
             </tbody>
@@ -59,9 +67,8 @@
         <ng-template #loading>
             <div class="loading">
                 <div class="loader-animation"></div>
-                <span class="loader-text">Carregando Funcionários...</span>
+                <span class="loader-text">Carregando...</span>
             </div>
         </ng-template>
     </div>
-
-</div>
+</div><router-outlet></router-outlet>

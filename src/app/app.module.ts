@@ -1,6 +1,6 @@
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
-import { LOCALE_ID, NgModule } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
@@ -20,6 +20,7 @@ import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { environment } from 'src/environments/environment';
 import { ConfigurationModule } from './configuration/configuration.module';
+import { ProvidersBranchsModule } from './providers-branchs/providers-branchs.module';
 
 
 @NgModule({
@@ -43,7 +44,8 @@ import { ConfigurationModule } from './configuration/configuration.module';
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireDatabaseModule,
     AngularFirestoreModule,
-    ConfigurationModule
+    ConfigurationModule,
+    ProvidersBranchsModule
   ],
   bootstrap: [AppComponent]
 })

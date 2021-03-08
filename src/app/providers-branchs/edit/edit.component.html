@@ -1,0 +1,40 @@
+<div class="main-container">
+    <div class="title-container">
+        <p class="title">Nova Empresa</p>
+    </div>
+
+    <div class="form-container">
+        <form [formGroup]="form" (ngSubmit)="onSubmit(form)">
+            <div class="form-row">
+                <div class="form-group col-md-12">
+                    <label for="name">Nome</label>
+                    <input type="text" class="form-control" formControlName="name" [ngClass]="cssErro('name')">
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group col-md-12">
+                    <label for="cod">Código</label>
+                    <input type="text" class="form-control" formControlName="code" [ngClass]="cssErro('code')">
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group col-md-12">
+                    <label for="type">Tipo da Empresa</label>
+                    <select id="type" class="form-control" formControlName="type">
+                        <option>Fornecedor</option>
+                        <option>Filial</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-row flex-row-btn">
+                <button type="button" class="btn secondary" routerLink="/fornecedor-filial/listar">voltar</button>
+                <button type="submit" class="btn">Confirmar</button>
+            </div>
+        </form>
+
+    </div>
+    <!-- <app-form-debug [form]="form"></app-form-debug> -->
+</div>
