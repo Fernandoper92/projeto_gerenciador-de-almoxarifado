@@ -48,8 +48,9 @@
         <table class="table">
             <thead class="table-head-container">
                 <tr class="table-head-box">
-                    <th class="column-title" scope="col" *ngFor="let column of columns" (click)="organize(column)">
-                        {{ column | titlecase}}&nbsp;<i class="fas fa-sort column-title-icon"></i></th>
+                    <th class="column-title" scope="col" *ngFor="let column of columns" (click)="organize(column)"
+                    [ngClass]="{'column-selected': column === orderColumn}">
+                        <span>{{ column | titlecase}}</span><mat-icon class="arrow">{{ascendingOrder ? 'arrow_drop_up' : 'arrow_drop_down'}}</mat-icon></th>
                     <th class="column-title has-btn" scope="col"></th>
                 </tr>
             </thead>

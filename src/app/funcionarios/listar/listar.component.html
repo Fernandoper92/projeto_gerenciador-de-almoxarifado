@@ -33,7 +33,7 @@
                 <tr class="table-head-box">
                     <th class="column-title" scope="col" *ngFor="let coluna of colunas" (click)="organizar(coluna)"
                     [ngClass]="{'column-selected': coluna === colunaOrdenada}">
-                        <span>{{ coluna | titlecase }}</span><mat-icon *ngIf="coluna === colunaOrdenada">{{ordemCrescente ? 'arrow_drop_up' : 'arrow_drop_down'}}</mat-icon> </th>
+                        <span>{{ coluna | titlecase }}</span><mat-icon class="arrow">{{ordemCrescente ? 'arrow_drop_up' : 'arrow_drop_down'}}</mat-icon> </th>
                     <th class="column-title has-btn" scope="col"></th>
                 </tr>
             </thead>

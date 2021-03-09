@@ -16,6 +16,7 @@ import { EmployeesService } from '../funcionarios/employees.service';
 })
 export class MovimentacoesComponent implements OnInit {
 
+  orderColumn: string;
   ascendingOrder = true;
   form: FormGroup;
   moviments: Moviment[] = [];
@@ -187,6 +188,7 @@ export class MovimentacoesComponent implements OnInit {
   }
 
   organize(param: string) {
+    this.orderColumn = param;
     this.moviments.sort((a, b) => this.sort(a, b, param))
     this.ascendingOrder = !this.ascendingOrder;
   }

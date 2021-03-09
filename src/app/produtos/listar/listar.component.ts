@@ -12,6 +12,7 @@ import { Product } from './../../models/product.model';
 })
 export class ListarComponent implements OnInit {
 
+  orderColumn: string;
   ordemCrescente = true;
   products: Product[] = []
   productsTemp: Product[] = []
@@ -64,6 +65,7 @@ filterArray(filterWord) {
 }
 
 organizar(param: string) {
+  this.orderColumn = param;
   this.products.sort((a, b) => this.ordenar(a, b, param))
   this.ordemCrescente = !this.ordemCrescente;
 }
@@ -72,22 +74,8 @@ ordenar(a, b, param) {
   let modeloA;
   let modeloB;
 
-  param = param.toLowerCase();
-
-  if (param === 'role' || param === 'sector') {
-    modeloA = a['role'];
-    modeloA = modeloA[param];
-    modeloB = b['role'];
-    modeloB = modeloB[param];
-  } else {
     modeloA = a[param];
     modeloB = b[param];
-  }
-
-  // if(typeof modeloA === 'string' && typeof modeloB === 'string') {
-  // modeloA = modeloA.toUpperCase();
-  // modeloB = modeloB.toUpperCase();
-  // }
 
   if (this.ordemCrescente) return this.ordenarCrescente(modeloA, modeloB);
   return this.ordernarDecrescente(modeloA, modeloB);

@@ -19,7 +19,7 @@ export class ListarComponent implements OnInit {
   entry = 0;
   public busca = new FormControl('');
   
-  colunas = ['name', 'code', 'role', 'sector'];
+  colunas = ['name', 'code', 'position', 'sector'];
 
   constructor(private employeeService: EmployeesService) { }
 
@@ -67,9 +67,7 @@ filterArray(filterWord) {
 }
 
 organizar(param: string) {
-  console.log(param);
   this.colunaOrdenada = param;
-  console.log(this.colunaOrdenada);
   this.employees.sort((a, b) => this.ordenar(a, b, param))
   this.ordemCrescente = !this.ordemCrescente;
 }
@@ -78,10 +76,10 @@ ordenar(a, b, param) {
   let modeloA;
   let modeloB;
 
-  if (param === 'role' || param === 'sector') {
-    modeloA = a['role'];
+  if (param === 'position' || param === 'sector') {
+    modeloA = a['position'];
     modeloA = modeloA[param];
-    modeloB = b['role'];
+    modeloB = b['position'];
     modeloB = modeloB[param];
   } else {
     modeloA = a[param];

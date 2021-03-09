@@ -14,6 +14,7 @@ import { BranchsService } from '../branchs.service';
 })
 export class ListComponent implements OnInit {
 
+  ordenarColuna: string;
   ordemCrescente = true;
   providers: Provider[];
   providersTemp: Provider[];
@@ -97,6 +98,7 @@ filterArray(filterWord) {
 }
 
 organizar(param: string) {
+  this.ordenarColuna = param;
   this.providers.sort((a, b) => this.ordenar(a, b, param))
   this.ordemCrescente = !this.ordemCrescente;
 }

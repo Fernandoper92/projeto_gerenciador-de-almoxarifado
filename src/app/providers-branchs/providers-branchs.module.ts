@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
+import { MatIconModule } from '@angular/material/icon';
 
 import { ProvidersBranchsRoutingModule } from './providers-branchs-routing.module';
 import { ProvidersBranchsComponent } from './providers-branchs.component';
@@ -17,7 +18,8 @@ import { ListComponent } from './list/list.component';
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    ProvidersBranchsRoutingModule
+    ProvidersBranchsRoutingModule,
+    MatIconModule
   ]
 })
 export class ProvidersBranchsModule { }

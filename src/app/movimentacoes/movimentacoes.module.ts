@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
+import { MatIconModule } from '@angular/material/icon';
 
 import { MovimentacoesComponent } from './movimentacoes.component';
 import { SharedModule } from './../shared/shared.module';
@@ -13,7 +14,8 @@ import { SharedModule } from './../shared/shared.module';
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    SharedModule
+    SharedModule,
+    MatIconModule
   ]
 })
 export class MovimentacoesModule { }
