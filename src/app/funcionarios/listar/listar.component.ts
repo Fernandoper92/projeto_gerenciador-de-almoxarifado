@@ -12,6 +12,7 @@ import { EmployeesService } from '../employees.service';
 })
 export class ListarComponent implements OnInit {
 
+  colunaOrdenada: string;
   ordemCrescente = true;
   employees: Employee[];
   employeesTemp: Employee[];
@@ -66,6 +67,9 @@ filterArray(filterWord) {
 }
 
 organizar(param: string) {
+  console.log(param);
+  this.colunaOrdenada = param;
+  console.log(this.colunaOrdenada);
   this.employees.sort((a, b) => this.ordenar(a, b, param))
   this.ordemCrescente = !this.ordemCrescente;
 }

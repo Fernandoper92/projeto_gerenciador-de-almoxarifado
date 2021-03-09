@@ -135,13 +135,17 @@ select:focus {
           }
         }
 
-        &:hover {
-          cursor: pointer;
-
-          .column-title-icon {
-            opacity: 1;
-          }
+        span {
+          margin-right: 10px;
         }
+      }
+
+      .column-selected {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #36804d;
+        color: white;
       }
     }
 

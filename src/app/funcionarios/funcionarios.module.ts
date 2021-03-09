@@ -6,6 +6,7 @@ import { EditarComponent } from './editar/editar.component';
 import { ListarComponent } from './listar/listar.component';
 import { FuncionariosRoutingModule } from './funcionarios-routing.module';
 import { SharedModule } from '../shared/shared.module';
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { SharedModule } from '../shared/shared.module';
     CommonModule,
     ReactiveFormsModule,
     FuncionariosRoutingModule,
-    SharedModule
+    SharedModule,
+    MatIconModule
   ]
 })
 export class FuncionariosModule { }
