@@ -14,6 +14,7 @@ import { BranchsService } from '../branchs.service';
 })
 export class ListComponent implements OnInit {
 
+  tableSelector = 'providers';
   ordenarColuna: string;
   ordemCrescente = true;
   providers: Provider[];
@@ -21,13 +22,13 @@ export class ListComponent implements OnInit {
   branchs: Branch[];
   branchsTemp: Branch[];
   public busca = new FormControl('');
-  
+
   colunas = ['name', 'code', 'type'];
 
   constructor(
     private ProvidersService: ProvidersService,
     private branchService: BranchsService
-    ) { }
+  ) { }
 
   ngOnInit(): void {
     this.listAllProviders();
@@ -44,11 +45,11 @@ export class ListComponent implements OnInit {
     ).subscribe(data => {
       this.reactiveProvidersFilter(data);
     });
-}
+  }
 
-deleteProvider(key) {
-  this.ProvidersService.deleteProvider(key);
-}
+  deleteProvider(key) {
+    this.ProvidersService.deleteProvider(key);
+  }
 
   listAllBranchs() {
     this.branchService.listAllBranchs().snapshotChanges().pipe(
@@ -58,72 +59,83 @@ deleteProvider(key) {
         )
       )
     ).subscribe(data => {
-      this.reactiveBranchsFilter(data);
+      this.reactiveBranchsFilter(data, 'branch');
     });
-}
+  }
 
-deleteBranch(key) {
-  this.branchService.deleteBranch(key);
-}
+  deleteBranch(key) {
+    this.branchService.deleteBranch(key);
+  }
 
-reactiveProvidersFilter(data) {
-  this.providersTemp = data;
-  this.providers = data;
-  this.busca.valueChanges.pipe(
-    map(value => value.trim()),
-    debounceTime(500),
-    distinctUntilChanged(),
-  ).subscribe((filterWord: string) => {
-    if (this.busca.value) this.filterArray(filterWord);
-    if (!this.busca.value) this.providers = this.providersTemp;
-  })
-}
+  setSelector(string) {
+    this.tableSelector = string;
+  }
 
-reactiveBranchsFilter(data) {
-  this.branchsTemp = data;
-  this.branchs = data;
-  this.busca.valueChanges.pipe(
-    map(value => value.trim()),
-    debounceTime(500),
-    distinctUntilChanged(),
-  ).subscribe((filterWord: string) => {
-    if (this.busca.value) this.filterArray(filterWord);
-    if (!this.busca.value) this.providers = this.providersTemp;
-  })
-}
+  reactiveProvidersFilter(data) {
+    this.providersTemp = data;
+    this.providers = data;
+    this.busca.valueChanges.pipe(
+      map(value => value.trim()),
+      debounceTime(500),
+      distinctUntilChanged(),
+    ).subscribe((filterWord: string) => {
+      if (this.busca.value) this.filterProvidersArray(filterWord);
+      if (!this.busca.value) this.providers = this.providersTemp;
+    })
+  }
 
-filterArray(filterWord) {
-  filterWord = filterWord.toLowerCase()
-  this.providers = this.providersTemp.filter((el: Provider) => el.name.toLocaleLowerCase().includes(filterWord))
-}
+  reactiveBranchsFilter(data, string: String) {
+    this.branchsTemp = data;
+    this.branchs = data;
+    console.log()
+    this.busca.valueChanges.pipe(
+      map(value => value.trim()),
+      debounceTime(500),
+      distinctUntilChanged(),
+    ).subscribe((filterWord: string) => {
+      if (this.busca.value) this.filterBranchsArray(filterWord);
+      if (!this.busca.value) this.branchs = this.branchsTemp;
+    })
+  }
 
-organizar(param: string) {
-  this.ordenarColuna = param;
-  this.providers.sort((a, b) => this.ordenar(a, b, param))
-  this.ordemCrescente = !this.ordemCrescente;
-}
+  filterProvidersArray(filterWord) {
+    filterWord = filterWord.toLowerCase()
+    this.providers = this.providersTemp.filter((el: Provider) => el.name.toLocaleLowerCase().includes(filterWord))
+  }
 
-ordenar(a, b, param) {
-  let modelA;
-  let modelB;
+  filterBranchsArray(filterWord) {
+    filterWord = filterWord.toLowerCase()
+    this.branchs = this.branchsTemp.filter((el: Provider) => el.name.toLocaleLowerCase().includes(filterWord))
+  }
 
-  
+  organizar(param: string) {
+    this.ordenarColuna = param;
+    this.providers.sort((a, b) => this.ordenar(a, b, param));
+    this.branchs.sort((a, b) => this.ordenar(a, b, param));
+    this.ordemCrescente = !this.ordemCrescente;
+  }
+
+  ordenar(a, b, param) {
+    let modelA;
+    let modelB;
+
+
     modelA = a[param];
     modelB = b[param];
 
-  if (this.ordemCrescente) return this.ordenarCrescente(modelA, modelB);
-  return this.ordernarDecrescente(modelA, modelB);
-}
+    if (this.ordemCrescente) return this.ordenarCrescente(modelA, modelB);
+    return this.ordernarDecrescente(modelA, modelB);
+  }
 
-ordenarCrescente(modeloA, modeloB): number {
-  if (modeloA > modeloB) return 1;
-  return -1;
-}
+  ordenarCrescente(modeloA, modeloB): number {
+    if (modeloA > modeloB) return 1;
+    return -1;
+  }
 
-ordernarDecrescente(modeloA, modeloB): number {
-  if (modeloA < modeloB) return 1;
-  return -1;
-}
+  ordernarDecrescente(modeloA, modeloB): number {
+    if (modeloA < modeloB) return 1;
+    return -1;
+  }
 
 
 

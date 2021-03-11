@@ -1,0 +1,23 @@
+@import "../../shared/colors.scss";
+
+.table-selector-container {
+    display: flex;
+    flex-direction: row;
+
+    :first-child {
+        margin-right: 10px;
+    }
+
+    .table-selector {
+        color: gray;
+        &:hover {
+            color: black;
+            cursor: pointer;
+        }
+
+        &.selector-activated {
+            color: black;
+            border-bottom: 5px solid $white_green;
+        }
+    }
+}

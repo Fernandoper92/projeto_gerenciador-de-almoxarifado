@@ -80,7 +80,7 @@ select:focus {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin: 20px 0;
+    margin: 20px 0 70px 0;
 
     .search {
       width: 300px;
@@ -162,16 +162,16 @@ select:focus {
 
     .table-body {
       .table-row {
+        transition: background-color 0.1s ease-in-out;
+        transition: transform 0.1s ease-in-out;
+        transition: box-shadow 0.1s ease-in-out;
+        background-color: white;
+        
         td {
           border: none;
           vertical-align: middle;
           align-items: center;
           padding: 10px 10px;
-
-          &.name-container {
-            // padding-left: 20px;
-            // text-align: left;
-          }
 
           &.number {
             display: inline-block;
@@ -202,7 +202,8 @@ select:focus {
           }
         }
         &:hover {
-          transition: all 0.25s;
+          transform: scale(1.05, 1.05);
+          box-shadow: $box-shadow;
           border: none;
           background-color: #5ae692;
           color: white;

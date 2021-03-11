@@ -24,16 +24,30 @@
         </div>
     </div>
 
+    <div class="table-selector-container">
+        <span class="table-selector" [ngClass]="{'selector-activated': tableSelector === 'providers'}"
+            (click)="setSelector('providers')">
+            Fornecedores
+        </span>
+        <span class="table-selector" [ngClass]="{'selector-activated': tableSelector === 'branchs'}"
+            (click)="setSelector('branchs')">
+            Filiais
+        </span>
+    </div>
+
     <div class="table-container">
         <table class="table">
             <thead class="table-head-container">
                 <tr class="table-head-box">
-                    <th class="column-title" scope="col" *ngFor="let coluna of colunas" (click)="organizar(coluna)"[ngClass]="{'column-selected': coluna === ordenarColuna}">
-                        <span>{{ coluna | titlecase}}</span><mat-icon class="arrow">{{ordemCrescente ? 'arrow_drop_up' : 'arrow_drop_down'}}</mat-icon></th>
+                    <th class="column-title" scope="col" *ngFor="let coluna of colunas" (click)="organizar(coluna)"
+                        [ngClass]="{'column-selected': coluna === ordenarColuna}">
+                        <span>{{ coluna | titlecase}}</span>
+                        <mat-icon class="arrow">{{ordemCrescente ? 'arrow_drop_up' : 'arrow_drop_down'}}</mat-icon>
+                    </th>
                     <th class="column-title has-btn" scope="col"></th>
                 </tr>
             </thead>
-            <tbody class="table-body">
+            <tbody class="table-body" *ngIf="tableSelector === 'providers'">
                 <tr *ngFor="let provider of providers" class="table-row">
                     <td class="name-container">
                         <p class="main text-format">{{ provider.name }}</p>
@@ -48,6 +62,8 @@
                         <i class="far fa-trash-alt delete-icon icon-btn" (click)='deleteProvider(provider.key)'></i>
                     </td>
                 </tr>
+            </tbody>
+            <tbody *ngIf="tableSelector === 'branchs'" class="table-body">
                 <tr *ngFor="let branch of branchs" class="table-row">
                     <td class="name-container">
                         <p class="main text-format">{{ branch.name }}</p>
@@ -71,4 +87,5 @@
             </div>
         </ng-template>
     </div>
-</div><router-outlet></router-outlet>
+</div>
+<router-outlet></router-outlet>
