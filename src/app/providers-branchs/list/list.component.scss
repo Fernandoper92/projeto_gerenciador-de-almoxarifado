@@ -1,15 +1,21 @@
 @import "../../shared/colors.scss";
 
 .table-selector-container {
+    width: auto;
     display: flex;
     flex-direction: row;
-
+    font-size: 18px;
+    margin-bottom: 10px;
+    
     :first-child {
-        margin-right: 10px;
+        margin-right: 20px;
     }
-
+    
     .table-selector {
+        border-bottom: 3.5px solid rgba(177, 177, 177, 0);
         color: gray;
+        transition: border 0.1s ease-in-out;
+        
         &:hover {
             color: black;
             cursor: pointer;
@@ -17,7 +23,7 @@
 
         &.selector-activated {
             color: black;
-            border-bottom: 5px solid $white_green;
+            border-bottom: 3.5px solid $white_green;
         }
     }
 }

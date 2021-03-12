@@ -14,6 +14,8 @@ import { BranchsService } from '../branchs.service';
 })
 export class ListComponent implements OnInit {
 
+  providersEntry = 0;
+  branchsEntry = 0;
   tableSelector = 'providers';
   ordenarColuna: string;
   ordemCrescente = true;
@@ -74,6 +76,7 @@ export class ListComponent implements OnInit {
   reactiveProvidersFilter(data) {
     this.providersTemp = data;
     this.providers = data;
+    this.providersEntry = this.providers.length;
     this.busca.valueChanges.pipe(
       map(value => value.trim()),
       debounceTime(500),
@@ -81,12 +84,14 @@ export class ListComponent implements OnInit {
     ).subscribe((filterWord: string) => {
       if (this.busca.value) this.filterProvidersArray(filterWord);
       if (!this.busca.value) this.providers = this.providersTemp;
+      this.providersEntry = this.providers.length;
     })
   }
 
   reactiveBranchsFilter(data, string: String) {
     this.branchsTemp = data;
     this.branchs = data;
+    this.branchsEntry = this.branchs.length;
     console.log()
     this.busca.valueChanges.pipe(
       map(value => value.trim()),
@@ -95,6 +100,7 @@ export class ListComponent implements OnInit {
     ).subscribe((filterWord: string) => {
       if (this.busca.value) this.filterBranchsArray(filterWord);
       if (!this.busca.value) this.branchs = this.branchsTemp;
+      this.branchsEntry = this.branchs.length;
     })
   }
 

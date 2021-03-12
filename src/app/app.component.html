@@ -1,26 +1,41 @@
 <mat-sidenav-container autosize>
-  <mat-sidenav #sideNav [opened]="mobileQuery.matches ? 'false' : 'true'" [mode]="mobileQuery.matches ? 'over' : 'side'">
+  <mat-sidenav #sideNav [opened]="mobileQuery.matches ? 'false' : 'true'"
+    [mode]="mobileQuery.matches ? 'over' : 'side'">
 
     <div class="flex-menu-container logo">
       <i class="fab fa-gofore"></i>
     </div>
 
     <div class="nav-item router-link" routerLink="/movimentações" routerLinkActive="active">
-      <i class="fas fa-exchange-alt"></i><p>Movimentações</p>
+      <span class="material-icons">
+        multiple_stop
+      </span>
+      <p>Movimentações</p>
     </div>
     <div class="nav-item router-link" routerLink="/fornecedor-filial" routerLinkActive="active">
-      <i class="fas fa-user-friends"></i><p>Empresas</p>
+      <span class="material-icons">
+        maps_home_work
+      </span>
+      <p>Empresas</p>
     </div>
     <div class="nav-item router-link" routerLink="/funcionarios" routerLinkActive="active">
-      <i class="fas fa-user"></i><p>Colaboradores</p>
+      <span class="material-icons">
+        perm_identity
+      </span>
+      <p>Colaboradores</p>
     </div>
     <div class="nav-item router-link" routerLink="/produtos" routerLinkActive="active">
-      <i class="fas fa-hard-hat"></i><p>Produtos</p>
+      <span class="material-icons">
+        sports_mma
+      </span>
+      <p>Produtos</p>
     </div>
-    <div class="nav-item router-link"  routerLink="/configurações" routerLinkActive="active">
-      <i class="fas fa-cog"></i><p>Configurações</p>
+    <div class="nav-item router-link" routerLink="/configurações" routerLinkActive="active">
+      <span class="material-icons">
+        settings
+      </span>
+      <p>Configurações</p>
     </div>
-
   </mat-sidenav>
   <mat-sidenav-content class="main-container">
     <i class="fas fa-bars btn-toggle" (click)="sideNav.toggle()"></i>

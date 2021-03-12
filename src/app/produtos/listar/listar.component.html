@@ -25,6 +25,7 @@
     </div>
 
     <div class="table-container">
+        <div class="entry"><p>{{ entry }} entradas</p></div>
         <table class="table" *ngIf="products; else loading">
             <thead class="table-head-container">
                 <tr class="table-head-box">
@@ -48,7 +49,7 @@
                         <p class="provider">{{ product.provider }}</p>
                     </td>
                     <td>
-                        <p class="number" [ngClass]="ifZero(product.stock)">{{ product.stock }}</p>
+                        <p class="number" [ngClass]="isNegative(product.stock)">{{ product.stock }}</p>
                     </td>
                     <td class="icon-container">
                         <i class="far fa-trash-alt icon-btn" (click)='deleteProduct(product.key)'></i>

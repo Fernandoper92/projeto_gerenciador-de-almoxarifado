@@ -16,6 +16,7 @@ import { EmployeesService } from '../funcionarios/employees.service';
 })
 export class MovimentacoesComponent implements OnInit {
 
+  entry = 0;
   orderColumn: string;
   ascendingOrder = true;
   form: FormGroup;
@@ -138,9 +139,7 @@ export class MovimentacoesComponent implements OnInit {
   }
 
   onProductChange(productName) {
-    console.log(productName);
     this.selectedEmployee = this.getEmployeeByName(productName);
-    console.log(this.selectedProduct);
 }
 
   getProductByName(name: string): Product {
@@ -151,13 +150,13 @@ export class MovimentacoesComponent implements OnInit {
     let formProduct = formValue.product;
     let key = formProduct.key;
     formProduct.stock = formProduct.stock + formValue.quantity;
-    console.log(formProduct.stock)
     this.productsService.updateProduct(key, formProduct);
   }
 
   reactiveFilter(data) {
     this.movimentsTemp = data;
     this.moviments = data;
+    this.entry = this.moviments.length;
     this.busca.valueChanges.pipe(
       map(value => value.trim()),
       debounceTime(500),
@@ -165,6 +164,7 @@ export class MovimentacoesComponent implements OnInit {
     ).subscribe((filterWord: string) => {
       if (this.busca.value) this.filterArray(filterWord);
       if (!this.busca.value) this.moviments = this.movimentsTemp;
+      this.entry = this.moviments.length;
     });
   }
 

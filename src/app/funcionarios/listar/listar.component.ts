@@ -12,11 +12,11 @@ import { EmployeesService } from '../employees.service';
 })
 export class ListarComponent implements OnInit {
 
+  entry = 0;
   colunaOrdenada: string;
   ordemCrescente = true;
   employees: Employee[];
   employeesTemp: Employee[];
-  entry = 0;
   public busca = new FormControl('');
   
   colunas = ['name', 'code', 'position', 'sector'];

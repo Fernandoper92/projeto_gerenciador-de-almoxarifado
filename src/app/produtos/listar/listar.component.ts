@@ -12,6 +12,7 @@ import { Product } from './../../models/product.model';
 })
 export class ListarComponent implements OnInit {
 
+  entry = 0;
   orderColumn: string;
   ordemCrescente = true;
   products: Product[] = []
@@ -38,8 +39,8 @@ export class ListarComponent implements OnInit {
     });
 }
 
-ifZero(number) {
-  if(number < 1) return 'is-zero';
+isNegative(number) {
+  if (number < 0) return 'is-negative';
 }
 
 deleteProduct(key) {
@@ -49,6 +50,7 @@ deleteProduct(key) {
 reactiveFilter(data) {
   this.productsTemp = data;
   this.products = data;
+  this.entry = this.products.length;
   this.busca.valueChanges.pipe(
     map(value => value.trim()),
     debounceTime(500),
@@ -56,6 +58,7 @@ reactiveFilter(data) {
   ).subscribe((filterWord: string) => {
     if (this.busca.value) this.filterArray(filterWord);
     if (!this.busca.value) this.products = this.productsTemp;
+    this.entry = this.products.length;
   });
 }
 

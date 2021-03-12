@@ -27,40 +27,71 @@ select:focus {
 }
 
 .btn {
-  font-size: 22px;
-  padding: 5px;
-  height: 40px;
-  width: 40px;
-  background-color: $white_green;
-  color: white;
-  box-shadow: $box-shadow;
+  box-shadow:inset 0px -3px 7px 0px #ffffff;
+	background-color:#ffffff;
+	border-radius:3px;
+	border:1px solid #dcdcdc;
+	display:inline-block;
+	cursor:pointer;
+	color:#666666;
+	font-family:Arial;
+	font-size:15px;
+	padding:9px 23px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #ffffff;
 
   &.primary {
-    width: 65px;
-  }
-
-  &:hover {
-    background-color: #55d07c;
-    color: white;
-  }
-
-  &:active {
-    background-color: #36804d;
-  }
-
-  &.secondary {
-    background-color: rgb(165, 164, 164);
+    color: $white_green;
 
     &:hover {
-      background-color: rgb(188, 188, 188);
-      color: white;
-    }
-
-    &:active {
-      background-color: rgb(120, 120, 120);
+      color: #3e9b5c;
     }
   }
+  &:hover {
+    background: linear-gradient(to bottom, #f6f6f6 5%, #ffffff 100%);
+    background-color: #f6f6f6;
+  }
+  &:active {
+    position: relative;
+    top: 1px;
+  }
 }
+
+// .btn {
+//   font-size: 22px;
+//   padding: 5px;
+//   height: 40px;
+//   width: 40px;
+//   background-color: $white_green;
+//   color: white;
+//   box-shadow: $box-shadow;
+
+//   &.primary {
+//     width: 65px;
+//   }
+
+//   &:hover {
+//     background-color: #55d07c;
+//     color: white;
+//   }
+
+//   &:active {
+//     background-color: #36804d;
+//   }
+
+//   &.secondary {
+//     background-color: rgb(165, 164, 164);
+
+//     &:hover {
+//       background-color: rgb(188, 188, 188);
+//       color: white;
+//     }
+
+//     &:active {
+//       background-color: rgb(120, 120, 120);
+//     }
+//   }
+// }
 
 .main-container {
   padding: 0 50px;
@@ -107,6 +138,10 @@ select:focus {
   // CSS OF TABLES
   .table-container {
     margin: 20px 0;
+
+    .entry {
+      color: rgb(196, 193, 193);
+    }
   }
 
   .table {
@@ -166,18 +201,20 @@ select:focus {
         transition: transform 0.1s ease-in-out;
         transition: box-shadow 0.1s ease-in-out;
         background-color: white;
-        
+
         td {
           border: none;
           vertical-align: middle;
           align-items: center;
           padding: 10px 10px;
 
-          &.number {
-            display: inline-block;
-            width: auto;
-            padding: 2px;
-            min-width: 50px;
+          .number {
+            min-width: 40px;
+            width: fit-content;
+            padding: 5px;
+            border: 1px solid $gray;
+            border-radius: 5px;
+            background-color: whitesmoke;
 
             &.is-negative {
               color: $red;
@@ -202,11 +239,19 @@ select:focus {
           }
         }
         &:hover {
-          transform: scale(1.05, 1.05);
+          transform: scale(1.02, 1.02);
           box-shadow: $box-shadow;
           border: none;
           background-color: #5ae692;
           color: white;
+
+          .number {
+            color: rgb(57, 57, 57);
+
+            &.is-negative {
+              color: $red;
+            }
+          }
         }
       }
     }

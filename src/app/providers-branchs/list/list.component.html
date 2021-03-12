@@ -24,18 +24,23 @@
         </div>
     </div>
 
-    <div class="table-selector-container">
-        <span class="table-selector" [ngClass]="{'selector-activated': tableSelector === 'providers'}"
-            (click)="setSelector('providers')">
-            Fornecedores
-        </span>
-        <span class="table-selector" [ngClass]="{'selector-activated': tableSelector === 'branchs'}"
-            (click)="setSelector('branchs')">
-            Filiais
-        </span>
-    </div>
 
     <div class="table-container">
+        <div class="table-selector-container">
+            <span class="table-selector" [ngClass]="{'selector-activated': tableSelector === 'providers'}"
+                (click)="setSelector('providers')">
+                Fornecedores
+            </span>
+            <span class="table-selector" [ngClass]="{'selector-activated': tableSelector === 'branchs'}"
+                (click)="setSelector('branchs')">
+                Filiais
+            </span>
+        </div>
+
+        <div class="entry">
+            <p>{{ tableSelector === "providers" ? providersEntry : branchsEntry }} entradas</p>
+        </div>
+        
         <table class="table">
             <thead class="table-head-container">
                 <tr class="table-head-box">
@@ -65,7 +70,7 @@
             </tbody>
             <tbody *ngIf="tableSelector === 'branchs'" class="table-body">
                 <tr *ngFor="let branch of branchs" class="table-row">
-                    <td class="name-container">
+                    <td class="name-container text-format">
                         <p class="main text-format">{{ branch.name }}</p>
                     </td>
                     <td>
