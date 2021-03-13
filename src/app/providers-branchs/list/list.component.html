@@ -10,16 +10,22 @@
         </div>
         <div class="buttons">
             <button type="button" class="btn secondary">
-                <i class="fas fa-file-export"></i>
+                <span class="material-icons">
+                    exit_to_app
+                </span>
             </button>
-            &nbsp;
             <button type="button" class="btn secondary">
-                <i class="fas fa-filter"></i>
+                <span class="material-icons">
+                    filter_alt
+                </span>
             </button>
-            &nbsp;
-            <button type="button" class="btn primary" routerLink="/fornecedor-filial/novo">
-                <i class="fas fa-user-friends" style="margin-right: 2px;"></i>
-                <i class="fas fa-plus"></i>
+            <button type="button" class="btn primary" routerLink="/funcionarios/novo">
+                <span class="material-icons">
+                    maps_home_work
+                </span>
+                <span class="material-icons">
+                    add
+                </span>
             </button>
         </div>
     </div>
@@ -40,7 +46,7 @@
         <div class="entry">
             <p>{{ tableSelector === "providers" ? providersEntry : branchsEntry }} entradas</p>
         </div>
-        
+
         <table class="table">
             <thead class="table-head-container">
                 <tr class="table-head-box">
@@ -58,7 +64,13 @@
                         <p class="main text-format">{{ provider.name }}</p>
                     </td>
                     <td>
-                        <p class="number">{{ provider.code }}</p>
+                        <p *ngIf="provider.code" class="number">{{ provider.code }}</p>
+                    </td>
+                    <td>
+                        <p class="text.format">{{ provider.address }}</p>
+                    </td>
+                    <td>
+                        <p *ngIf="provider.phoneNumber" class="number">{{ provider.phoneNumber }}</p>
                     </td>
                     <td>
                         <p class="text-format">{{ provider.type }}</p>
@@ -74,13 +86,19 @@
                         <p class="main text-format">{{ branch.name }}</p>
                     </td>
                     <td>
-                        <p class="number">{{ branch.code }}</p>
+                        <p *ngIf="branch.code" class="number">{{ branch.code }}</p>
+                    </td>
+                    <td>
+                        <p class="text.format">{{ branch.address }}</p>
+                    </td>
+                    <td>
+                        <p *ngIf="branch.phoneNumber" class="number">{{ branch.phoneNumber }}</p>
                     </td>
                     <td>
                         <p class="text-format">{{ branch.type }}</p>
                     </td>
                     <td class="icon-container">
-                        <i class="far fa-trash-alt delete-icon icon-btn" (click)='deletebranch(branch.key)'></i>
+                        <i class="far fa-trash-alt delete-icon icon-btn" (click)='deleteBranch(branch.key)'></i>
                     </td>
                 </tr>
             </tbody>

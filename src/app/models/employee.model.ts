@@ -7,6 +7,8 @@ export class Employee implements Mover {
     type = "employee";
     name: string;
     lastName: string;
+    address?: string;
+    phoneNumber?: number;
     uniformSize?: string;
     shoeSize?: number;
     gloveSize?: number;

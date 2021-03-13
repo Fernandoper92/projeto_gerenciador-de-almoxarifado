@@ -19,7 +19,7 @@ export class ListarComponent implements OnInit {
   employeesTemp: Employee[];
   public busca = new FormControl('');
   
-  colunas = ['name', 'code', 'position', 'sector'];
+  colunas = ['name', 'code', 'address', 'phoneNumber', 'position', 'sector'];
 
   constructor(private employeeService: EmployeesService) { }
 

@@ -10,16 +10,22 @@
         </div>
         <div class="buttons">
             <button type="button" class="btn secondary">
-                <i class="fas fa-file-export"></i>
+                <span class="material-icons">
+                    exit_to_app
+                </span>
             </button>
-            &nbsp;
             <button type="button" class="btn secondary">
-                <i class="fas fa-filter"></i>
+                <span class="material-icons">
+                    filter_alt
+                </span>
             </button>
-            &nbsp;
-            <button type="button" class="btn primary" routerLink="/produtos/novo">
-                <i class="fas fa-hard-hat" style="margin-right: 2px;"></i>
-                <i class="fas fa-plus"></i>
+            <button type="button" class="btn primary" routerLink="/funcionarios/novo">
+                <span class="material-icons">
+                    sports_mma
+                </span>
+                <span class="material-icons">
+                    add
+                </span>
             </button>
         </div>
     </div>
@@ -40,7 +46,7 @@
                         <p class="name">{{ product.name }}</p>
                     </td>
                     <td class="cod">
-                        <p class="number">{{ product.code }}</p>
+                        <p *ngIf="product.code" class="number">{{ product.code }}</p>
                     </td>
                     <td class="cod">
                         <p class="group">{{ product.group }}</p>
@@ -49,7 +55,10 @@
                         <p class="provider">{{ product.provider }}</p>
                     </td>
                     <td>
-                        <p class="number" [ngClass]="isNegative(product.stock)">{{ product.stock }}</p>
+                        <p *ngIf="product.value" class="number">{{ product.value }}</p>
+                    </td>
+                    <td>
+                        <p *ngIf="product.stock" class="number" [ngClass]="isNegative(product.stock)">{{ product.stock }}</p>
                     </td>
                     <td class="icon-container">
                         <i class="far fa-trash-alt icon-btn" (click)='deleteProduct(product.key)'></i>

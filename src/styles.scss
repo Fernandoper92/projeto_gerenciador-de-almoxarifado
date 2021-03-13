@@ -27,20 +27,28 @@ select:focus {
 }
 
 .btn {
-  box-shadow:inset 0px -3px 7px 0px #ffffff;
-	background-color:#ffffff;
-	border-radius:3px;
+  height: 40px;
+  width: 40px;
+  padding: 0;
+  margin-right: 5px;
 	border:1px solid #dcdcdc;
+	border-radius:3px;
+	background-color:#ffffff;
 	display:inline-block;
 	cursor:pointer;
 	color:#666666;
 	font-family:Arial;
 	font-size:15px;
-	padding:9px 23px;
 	text-decoration:none;
+  box-shadow:inset 0px -3px 7px 0px #ffffff;
 	text-shadow:0px 1px 0px #ffffff;
 
+  .material-icons {
+    padding-top: 5px;
+  }
+
   &.primary {
+    width: 60px;
     color: $white_green;
 
     &:hover {
@@ -55,43 +63,11 @@ select:focus {
     position: relative;
     top: 1px;
   }
+
+  &:last-of-type {
+    margin: 0;
+  }
 }
-
-// .btn {
-//   font-size: 22px;
-//   padding: 5px;
-//   height: 40px;
-//   width: 40px;
-//   background-color: $white_green;
-//   color: white;
-//   box-shadow: $box-shadow;
-
-//   &.primary {
-//     width: 65px;
-//   }
-
-//   &:hover {
-//     background-color: #55d07c;
-//     color: white;
-//   }
-
-//   &:active {
-//     background-color: #36804d;
-//   }
-
-//   &.secondary {
-//     background-color: rgb(165, 164, 164);
-
-//     &:hover {
-//       background-color: rgb(188, 188, 188);
-//       color: white;
-//     }
-
-//     &:active {
-//       background-color: rgb(120, 120, 120);
-//     }
-//   }
-// }
 
 .main-container {
   padding: 0 50px;
@@ -119,7 +95,7 @@ select:focus {
       align-items: center;
       border-radius: 20px;
       background-color: white;
-      // box-shadow: $box-shadow;
+      box-shadow: $box-shadow;
     }
 
     .search-icon {
@@ -140,6 +116,7 @@ select:focus {
     margin: 20px 0;
 
     .entry {
+      padding: 0 0 10px 10px;
       color: rgb(196, 193, 193);
     }
   }
@@ -157,6 +134,7 @@ select:focus {
       .column-title {
         font-weight: normal;
         border: none;
+        padding: 5px;
         font-size: 20px;
         color: gray;
         border-bottom: 1px solid $gray;

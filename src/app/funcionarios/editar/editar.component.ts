@@ -53,12 +53,12 @@ export class EditarComponent implements OnInit {
       name: [null, Validators.required],
       lastName: [null, Validators.required],
       type: ["employee"],
-
+      address: [null],
+      phoneNumber: [null],
       position: this.formBuilder.group({
         position: [null],
         sector: [null]
       }),
-
       uniformSize: [null],
       shoeSize: [null],
       GloveSize: [null]

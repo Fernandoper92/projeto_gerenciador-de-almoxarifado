@@ -7,25 +7,35 @@
     <form [formGroup]="form" (ngSubmit)="onSubmit(form)">
       <div class="form-row">
 
-        <div class="form-group col-md-12">
+        <div class="form-group col-md-8">
           <label for="code">Código</label>
           <input type="text" class="form-control" formControlName="code" [ngClass]="cssErro('code')">
         </div>
 
-        <div class="form-group col-md-12">
+        <div class="form-group col-md-6">
           <label for="name">Nome</label>
           <input type="text" class="form-control" formControlName="name" [ngClass]="cssErro('name')">
         </div>
 
-        <div class="form-group col-md-12">
+        <div class="form-group col-md-6">
           <label for="lastName">Último nome</label>
           <input type="text" class="form-control" formControlName="lastName" [ngClass]="cssErro('lastName')">
+        </div>
+
+        <div class="form-group col-md-12">
+          <label for="address">Endereço</label>
+          <input type="text" class="form-control" formControlName="address">
+        </div>
+
+        <div class="form-group col-md-8">
+          <label for="phoneNumber">Telefone</label>
+          <input type="text" class="form-control" formControlName="phoneNumber">
         </div>
       </div>
 
       <div formGroupName="position">
         <div class="form-row">
-          <div class="form-group col-md-12">
+          <div class="form-group col-md-6">
             <label for="position">Cargo</label>
             <input formControlName="position" class="form-control" list="positions">
             <datalist id="positions">
@@ -33,7 +43,7 @@
             </datalist>
           </div>
 
-          <div class="form-group col-md-12">
+          <div class="form-group col-md-6">
             <label for="sector">Setor</label>
             <input formControlName="sector" class="form-control" list="sectors">
             <datalist id="sectors">

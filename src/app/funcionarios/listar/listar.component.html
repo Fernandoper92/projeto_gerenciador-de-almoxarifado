@@ -1,7 +1,7 @@
 <div class="main-container">
     <div class="title-container">
         <p class="title">Colaboradores</p>
-        
+
     </div>
 
     <div class="filter-container">
@@ -11,29 +11,39 @@
         </div>
         <div class="buttons">
             <button type="button" class="btn secondary">
-                <i class="fas fa-file-export"></i>
+                <span class="material-icons">
+                    exit_to_app
+                </span>
             </button>
-            &nbsp;
             <button type="button" class="btn secondary">
-                <i class="fas fa-filter"></i>
+                <span class="material-icons">
+                    filter_alt
+                </span>
             </button>
-            &nbsp;
             <button type="button" class="btn primary" routerLink="/funcionarios/novo">
-                <i class="fas fa-user" style="margin-right: 2px;"></i>
-                <i class="fas fa-plus"></i>
+                <span class="material-icons">
+                    perm_identity
+                </span>
+                <span class="material-icons">
+                    add
+                </span>
             </button>
         </div>
     </div>
 
-    
+
     <div class="table-container">
-        <div class="entry"><p>{{ entry }} entradas</p></div>
+        <div class="entry">
+            <p>{{ entry }} entradas</p>
+        </div>
         <table class="table" *ngIf="employees; else loading">
             <thead class="table-head-container">
                 <tr class="table-head-box">
                     <th class="column-title" scope="col" *ngFor="let coluna of colunas" (click)="organizar(coluna)"
-                    [ngClass]="{'column-selected': coluna === colunaOrdenada}">
-                        <span>{{ coluna | titlecase }}</span><mat-icon class="arrow">{{ordemCrescente ? 'arrow_drop_up' : 'arrow_drop_down'}}</mat-icon> </th>
+                        [ngClass]="{'column-selected': coluna === colunaOrdenada}">
+                        <span>{{ coluna | titlecase }}</span>
+                        <mat-icon class="arrow">{{ordemCrescente ? 'arrow_drop_up' : 'arrow_drop_down'}}</mat-icon>
+                    </th>
                     <th class="column-title has-btn" scope="col"></th>
                 </tr>
             </thead>
@@ -43,7 +53,13 @@
                         <p class="main text-format">{{ employee.name }} {{ employee.lastName }}</p>
                     </td>
                     <td>
-                        <p class="number">{{ employee.code }}</p>
+                        <p *ngIf="employee.code" class="number">{{ employee.code }}</p>
+                    </td>
+                    <td>
+                        <p class="text-format">{{ employee.address }}</p>
+                    </td>
+                    <td>
+                        <p *ngIf="employee.phoneNumber" class="number">{{ employee.phoneNumber }}</p>
                     </td>
                     <td>
                         <p class="text-format">{{ employee.position.position }}</p>

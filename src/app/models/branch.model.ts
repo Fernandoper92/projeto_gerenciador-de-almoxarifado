@@ -5,4 +5,6 @@ export class Branch implements Mover{
     code?: number;
     name: string;
     type = "branch";
+    address?: string;
+    phoneNumber?: number;
 }

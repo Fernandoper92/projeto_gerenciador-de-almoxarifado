@@ -4,7 +4,7 @@
   </div>
 
   <div class="form-container">
-    <form  [formGroup]="form" (ngSubmit)="onSubmit(form)">
+    <form [formGroup]="form" (ngSubmit)="onSubmit(form)">
       <div class="form-row">
         <div class="form-group col-md-12">
           <label for="name">Nome</label>
@@ -37,6 +37,12 @@
       </div>
 
       <div class="form-row flex-row-input">
+
+        <div class="form-group">
+          <label for="value">Valor</label>
+          <input type="number" class="form-control" formControlName="value">
+        </div>
+
         <div class="form-group">
           <label for="stock">Estoque</label>
           <input type="number" class="form-control" formControlName="stock">
@@ -53,7 +59,7 @@
         <button type="submit" class="btn">Confirmar</button>
       </div>
     </form>
-    
+
   </div>
   <!-- <app-form-debug [form]="form"></app-form-debug> -->
 </div>

@@ -5,4 +5,6 @@ export class Provider implements Mover{
     code?: number;
     name: string;
     type = "provider";
+    address?: string;
+    phoneNumber?: number;
 }

@@ -3,66 +3,70 @@
 p {
     padding: 0;
     margin: 0;
-    font-family: Verdana, Geneva, Tahoma, sans-serif
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 mat-sidenav-container {
     height: 100%;
-}
 
-mat-sidenav {
-    border: 0;
-    background-color: white;
-    width: 150px;
-    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
-}
+    mat-sidenav {
+        border: 0;
+        background-color: white;
+        width: 150px;
+        box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
 
-.logo {
-    font-size: 70px;
-    text-align: center;
-    color: $white_green;
-    padding: 5px 0;
-    margin-bottom: 50px;
-}
+        .logo {
+            font-size: 70px;
+            text-align: center;
+            color: $white_green;
+            padding: 5px 0;
+            margin-bottom: 50px;
+        }
 
-.nav-item {
-    padding: 10px;
-    margin-bottom: 5px;
-    width: auto;
-    text-decoration: none;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    text-align: center;
-    justify-content: flex-start;
-    outline: none;
-    cursor: pointer;
-    color: rgba(128, 128, 128, 0.701);
+        .nav-item {
+            padding: 10px;
+            margin-bottom: 5px;
+            width: auto;
+            text-decoration: none;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            text-align: center;
+            justify-content: flex-start;
+            outline: none;
+            cursor: pointer;
+            color: rgba(128, 128, 128, 0.701);
 
-    &:hover {
-        color: black;
-    }
+            .material-icons {
+                margin-right: 5px;
+            }
 
-    i {
-        font-size: 20px;
-        margin-right: 10px;
+            &:hover {
+                color: black;
+            }
+
+            i {
+                font-size: 20px;
+                margin-right: 10px;
+            }
+
+            p {
+                font-size: 12px;
+            }
+        }
+
+        .active {
+            background-color: white;
+            color: black;
+            border-right: 5px solid $white_green;
+        }
     }
     
-    p {
-        font-size: 12px;
+    .main-container {
+        background-color: whitesmoke;
+
     }
 }
-
-.active {
-    background-color: white;
-    color: black;
-    border-right: 5px solid $white_green;
-}
-
-.main-container {
-    background-color: whitesmoke;
-}
-
 .btn-toggle {
     display: none;
     font-size: 35px;

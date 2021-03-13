@@ -3,4 +3,6 @@ export interface Mover {
     code?: number;
     type: string;
     name: string;
+    address?: string;
+    phoneNumber?: number;
 }

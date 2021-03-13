@@ -29,6 +29,8 @@ export class EditComponent implements OnInit {
     this.form = this.formBuilder.group({
       name: [null, Validators.required],
       code: [null, Validators.required],
+      address: [null],
+      phoneNumber: [null],
       type: [null]
     });
   }
