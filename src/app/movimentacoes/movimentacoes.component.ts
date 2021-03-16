@@ -6,8 +6,12 @@ import { map, distinctUntilChanged, debounceTime } from 'rxjs/operators';
 import { Moviment } from './../models/moviment.model';
 import { Product } from '../models/product.model';
 import { Employee } from './../models/employee.model';
+import { Provider } from '../models/provider.model';
+import { Branch } from '../models/branch.model';
 import { ProductsService } from '../produtos/products.service';
 import { EmployeesService } from '../funcionarios/employees.service';
+import { ProvidersService } from '../providers-branchs/providers.service';
+import { BranchsService } from '../providers-branchs/branchs.service';
 
 @Component({
   selector: 'app-movimentacoes',
@@ -24,26 +28,32 @@ export class MovimentacoesComponent implements OnInit {
   movimentsTemp: Moviment[] = [];
   products: Product[] = [];
   employees: Employee[] = [];
+  providers: Provider[] = [];
+  branchs: Branch[] = [];
   currentEmployee: string = "";
   selectedEmployee: Employee;
   currentProduct: string = "";
   selectedProduct: Product;
   public busca = new FormControl('');
 
-  columns = ['mover', 'product', 'quantity', 'date']
+  columns = ['mover', 'product', 'quantity', 'cost', 'date'];
 
 
   constructor(
     private formBuilder: FormBuilder,
     private movimentsService: MovimentsService,
     private productsService: ProductsService,
-    private employeesService: EmployeesService
+    private employeesService: EmployeesService,
+    private providersService: ProvidersService,
+    private branchsService: BranchsService
   ) { }
 
   ngOnInit(): void {
     this.listAllMoviments();
     this.listAllProducts();
     this.listAllEmployees();
+    this.listAllProviders();
+    this.listAllBranchs();
     this.createFormGroup();
     this.collapseMenu();
   }
@@ -69,6 +79,29 @@ export class MovimentacoesComponent implements OnInit {
       )
     ).subscribe(data => {
       this.employees = data;
+    });
+  } 
+  listAllProviders() {
+    return this.providersService.listAllProviders().snapshotChanges().pipe(
+      map(changes =>
+        changes.map(c =>
+          ({ key: c.payload.key, ...c.payload.val() })
+        )
+      )
+    ).subscribe(data => {
+      this.providers = data;
+    });
+  }
+
+  listAllBranchs() {
+    return this.branchsService.listAllBranchs().snapshotChanges().pipe(
+      map(changes =>
+        changes.map(c =>
+          ({ key: c.payload.key, ...c.payload.val() })
+        )
+      )
+    ).subscribe(data => {
+      this.branchs = data;
     });
   }
 
@@ -100,6 +133,7 @@ export class MovimentacoesComponent implements OnInit {
       input: [0],
       output: [0],
       date: [null],
+      cost: [null],
       mover: [null, Validators.required],
       product: [null, Validators.required]
     });
@@ -110,15 +144,17 @@ export class MovimentacoesComponent implements OnInit {
   }
 
   onSubmit(form) {
+    const mover = this.getEmployeeByName(form.value.mover);
+    const product = this.getProductByName(form.value.product);
     const quantity = this.form.value.input - this.form.value.output;
     const newDate = Date.now();
     this.form.patchValue({
       quantity: quantity,
       date: newDate,
-      mover: this.getEmployeeByName(form.value.mover),
-      product: this.getProductByName(form.value.product)
+      mover: mover,
+      product: product,
+      cost: this.getCost(product.value, quantity)
     })
-    console.log(form.value);
     this.pushMoviments(form.value);
     this.productStockAdjust(form.value);
     this.form.reset({
@@ -144,6 +180,18 @@ export class MovimentacoesComponent implements OnInit {
 
   getProductByName(name: string): Product {
     return this.products.find(product => `${product.name}` === name);
+  }
+
+  getCost(price, quantity) {
+    let cost: number;
+    console.log(price, quantity)
+    if (price && quantity) {
+      cost = price * quantity;
+    } else {
+      cost = null;
+    }
+    console.log(cost);
+    return cost;
   }
 
   productStockAdjust(formValue) {

@@ -19,7 +19,7 @@
                     filter_alt
                 </span>
             </button>
-            <button type="button" class="btn primary" routerLink="/funcionarios/novo">
+            <button type="button" class="btn primary" routerLink="/produtos/novo">
                 <span class="material-icons">
                     sports_mma
                 </span>
@@ -35,8 +35,8 @@
         <table class="table" *ngIf="products; else loading">
             <thead class="table-head-container">
                 <tr class="table-head-box">
-                    <th class="column-title" scope="col" *ngFor="let column of columns" (click)="organizar(column)"[ngClass]="{'column-selected': column === orderColumn}">
-                        <span>{{ column | titlecase}}</span><mat-icon class="arrow">{{ordemCrescente ? 'arrow_drop_up' : 'arrow_drop_down'}}</mat-icon></th>
+                    <th class="column-title" scope="col" *ngFor="let column of columns" (click)="organizar(column)" id="column" [ngClass]="{'column-selected': column === orderColumn}">
+                        <span>{{ column | translate }}</span><mat-icon class="arrow">{{ordemCrescente ? 'arrow_drop_up' : 'arrow_drop_down'}}</mat-icon></th>
                     <th class="column-title has-btn" scope="col"></th>
                 </tr>
             </thead>
@@ -52,10 +52,10 @@
                         <p class="group">{{ product.group }}</p>
                     </td>
                     <td>
-                        <p class="provider">{{ product.provider }}</p>
+                        <p class="text-format">{{ product.provider }}</p>
                     </td>
                     <td>
-                        <p *ngIf="product.value" class="number">{{ product.value }}</p>
+                        <p *ngIf="product.value" class="number">{{ product.value | currency:'BRL' }}</p>
                     </td>
                     <td>
                         <p *ngIf="product.stock" class="number" [ngClass]="isNegative(product.stock)">{{ product.stock }}</p>

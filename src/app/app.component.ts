@@ -18,7 +18,7 @@ export class AppComponent {
   @ViewChild('sideNav') sideNav: MatSelect
 
   constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher) {
-    this.mobileQuery = media.matchMedia('(max-width: 1200px)');
+    this.mobileQuery = media.matchMedia('(max-width: 1400px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
   }

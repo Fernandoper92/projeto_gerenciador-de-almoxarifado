@@ -50,9 +50,9 @@
         <table class="table">
             <thead class="table-head-container">
                 <tr class="table-head-box">
-                    <th class="column-title" scope="col" *ngFor="let coluna of colunas" (click)="organizar(coluna)"
-                        [ngClass]="{'column-selected': coluna === ordenarColuna}">
-                        <span>{{ coluna | titlecase}}</span>
+                    <th class="column-title" scope="col" *ngFor="let column of columns" (click)="organizar(column)"
+                        [ngClass]="{'column-selected': column === ordenarColuna}">
+                        <span>{{ column | translate }}</span>
                         <mat-icon class="arrow">{{ordemCrescente ? 'arrow_drop_up' : 'arrow_drop_down'}}</mat-icon>
                     </th>
                     <th class="column-title has-btn" scope="col"></th>
@@ -70,7 +70,7 @@
                         <p class="text.format">{{ provider.address }}</p>
                     </td>
                     <td>
-                        <p *ngIf="provider.phoneNumber" class="number">{{ provider.phoneNumber }}</p>
+                        <p *ngIf="provider.phoneNumber" class="number">{{ provider.phoneNumber | phone }}</p>
                     </td>
                     <td>
                         <p class="text-format">{{ provider.type }}</p>

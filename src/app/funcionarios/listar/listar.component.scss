@@ -1,107 +1,25 @@
 @import "../../shared/colors.scss";
 
-/*responsive*/
-
-@media only screen and (max-width: 1200px) {
-  .form-grid {
-    grid-template-columns: auto auto;
-  }
-}
-
-@media only screen and (max-width: 450px) {
-  .filter-container {
-    flex-direction: column;
-    align-items: start;
-  }
-
-  .search {
-    width: 100%;
-  }
-
-  .btn-success {
-    margin-top: 20px;
-  }
-}
-
-@media only screen and (max-device-width: 700px) {
-  .main-container {
-    background-color: white;
-    padding: 0 50px;
-  }
-
-  .title {
-    font-size: 20px;
-  }
-
-  .subtitle {
-    font-size: 16px;
-  }
-
-  .icon-container,
-  .id-container {
-    display: none;
-  }
-
-  /* Force table to not be like tables anymore */
-  table,
-  thead,
-  tbody,
-  th,
-  td,
-  tr {
-    display: block;
-  }
-
-  /* Hide table headers (but not display: none;, for accessibility) */
-  thead tr {
-    position: absolute;
-    top: -9999px;
-    left: -9999px;
-  }
-
-  tr {
-    border: 1px solid #ccc;
-  }
-
-  tr:nth-child(odd) {
-    background: whitesmoke;
-  }
-
-  td,
-  .main-sub-container {
-    /* Behave  like a "row" */
-    border: none;
-    border-bottom: 1px solid #eee;
-    position: relative;
-    padding-left: 50%;
-    text-align: left;
-  }
-
-  .table-row {
-    color: black;
-  }
-
-  td:before {
-    /* Now like a table header */
-    position: absolute;
-    /* Top/left values mimic padding */
-    top: 6px;
-    left: 6px;
-    width: 45%;
-    padding-right: 10px;
-    white-space: nowrap;
-  }
-
+@media (max-device-width: 900px) {
   /*
 	Label the data
 	*/
   td:nth-of-type(1):before {
-    content: "Nome";
+    content: "Nome :";
+  }
+  td:nth-of-type(2):before {
+    content: "Código :";
   }
   td:nth-of-type(3):before {
-    content: "Cargo";
+    content: "Endereço :";
   }
   td:nth-of-type(4):before {
-    content: "Função";
+    content: "Telefone :";
+  }
+  td:nth-of-type(5):before {
+    content: "Função :";
+  }
+  td:nth-of-type(6):before {
+    content: "Setor :";
   }
 }

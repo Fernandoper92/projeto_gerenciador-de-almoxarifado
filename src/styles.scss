@@ -31,17 +31,17 @@ select:focus {
   width: 40px;
   padding: 0;
   margin-right: 5px;
-	border:1px solid #dcdcdc;
-	border-radius:3px;
-	background-color:#ffffff;
-	display:inline-block;
-	cursor:pointer;
-	color:#666666;
-	font-family:Arial;
-	font-size:15px;
-	text-decoration:none;
-  box-shadow:inset 0px -3px 7px 0px #ffffff;
-	text-shadow:0px 1px 0px #ffffff;
+  border: 1px solid #dcdcdc;
+  border-radius: 3px;
+  background-color: #ffffff;
+  display: inline-block;
+  cursor: pointer;
+  color: #666666;
+  font-family: Arial;
+  font-size: 15px;
+  text-decoration: none;
+  box-shadow: inset 0px -3px 7px 0px #ffffff;
+  text-shadow: 0px 1px 0px #ffffff;
 
   .material-icons {
     padding-top: 5px;
@@ -95,7 +95,6 @@ select:focus {
       align-items: center;
       border-radius: 20px;
       background-color: white;
-      box-shadow: $box-shadow;
     }
 
     .search-icon {
@@ -134,10 +133,12 @@ select:focus {
       .column-title {
         font-weight: normal;
         border: none;
-        padding: 5px;
+        padding: 10px;
         font-size: 20px;
         color: gray;
         border-bottom: 1px solid $gray;
+        min-width: fit-content;
+        max-height: 47px;
 
         &:active {
           color: black;
@@ -183,8 +184,6 @@ select:focus {
         td {
           border: none;
           vertical-align: middle;
-          align-items: center;
-          padding: 10px 10px;
 
           .number {
             min-width: 40px;
@@ -276,6 +275,112 @@ select:focus {
     }
     100% {
       transform: rotate(360deg);
+    }
+  }
+}
+
+// RESPONSIVE
+
+@media only screen and (max-width: 1200px) {
+  .table-head-box > .column-title > .arrow {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 450px) {
+  .filter-container {
+    flex-direction: column;
+    align-items: start;
+  }
+
+  .search {
+    width: 100%;
+  }
+
+  .btn-success {
+    margin-top: 20px;
+  }
+}
+
+@media only screen and (max-width: 760px), (min-device-width: 450px) and (max-device-width: 900px) {
+
+  p {
+    font-size: 20px;
+  }
+
+  /* Force table to not be like tables anymore */
+  table.table,
+  div.table-container,
+  thead,
+  tbody,
+  th,
+  td,
+  tr {
+    display: block;
+    background-color: whitesmoke;
+    box-shadow: none;
+    border: none;
+    width: 400px;
+    align-content: center;
+    align-self: center;
+  }
+
+  .main-container {
+    display: grid;
+    justify-content: center;
+    justify-self: center;
+    justify-items: center;
+
+    div.filter-container {
+      flex-direction: column;
+      height: 100px;
+      margin: 0;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+
+    td {
+      width: 400px;
+      padding: 0;
+      border: none;
+      border-bottom: 1px solid #eee !important;
+      position: relative;
+      padding: 5px 0 0 40%;
+      text-align: left;
+      background-color: white;
+      color: black;
+      min-height: 45px;
+      height: auto;
+      font-size: 20px;
+    }
+
+    /* Hide table headers (but not display: none;, for accessibility) */
+    thead tr {
+      position: absolute;
+      top: -9999px;
+      left: -9999px;
+    }
+
+    tr {
+      width: 400px;
+      margin-bottom: 10px;
+      box-shadow: $box-shadow;
+      font-size: 30px !important;
+    }
+
+    td:before {
+      /* Now like a table header */
+      position: absolute;
+      /* Top/left values mimic padding */
+      top: 6px;
+      left: 6px;
+      width: 45%;
+      padding-right: 10px;
+      white-space: nowrap;
+    }
+
+    .icon-container {
+      display: none;
     }
   }
 }

@@ -41,7 +41,7 @@
                 <tr class="table-head-box">
                     <th class="column-title" scope="col" *ngFor="let coluna of colunas" (click)="organizar(coluna)"
                         [ngClass]="{'column-selected': coluna === colunaOrdenada}">
-                        <span>{{ coluna | titlecase }}</span>
+                        <span>{{ coluna | translate }}</span>
                         <mat-icon class="arrow">{{ordemCrescente ? 'arrow_drop_up' : 'arrow_drop_down'}}</mat-icon>
                     </th>
                     <th class="column-title has-btn" scope="col"></th>
@@ -59,7 +59,7 @@
                         <p class="text-format">{{ employee.address }}</p>
                     </td>
                     <td>
-                        <p *ngIf="employee.phoneNumber" class="number">{{ employee.phoneNumber }}</p>
+                        <p *ngIf="employee.phoneNumber" class="number">{{ employee.phoneNumber | phone }}</p>
                     </td>
                     <td>
                         <p class="text-format">{{ employee.position.position }}</p>

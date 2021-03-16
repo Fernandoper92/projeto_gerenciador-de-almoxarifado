@@ -25,7 +25,7 @@ export class ListComponent implements OnInit {
   branchsTemp: Branch[];
   public busca = new FormControl('');
 
-  colunas = ['name', 'code', 'address', 'phoneNumber', 'type'];
+  columns = ['name', 'code', 'address', 'phoneNumber', 'type'];
 
   constructor(
     private ProvidersService: ProvidersService,

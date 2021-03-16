@@ -8,5 +8,6 @@ export class Moviment {
     output: boolean;
     date: Date;
     mover: Mover;
+    cost?: number;
     product: Product;
 }
