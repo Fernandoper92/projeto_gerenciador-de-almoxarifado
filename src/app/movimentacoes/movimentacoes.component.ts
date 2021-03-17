@@ -62,7 +62,7 @@ export class MovimentacoesComponent implements OnInit {
     this.productsService.listAllProducts().snapshotChanges().pipe(
       map(changes =>
         changes.map(c =>
-          ({ key: c.payload.key, ...c.payload.val()})
+          ({ key: c.payload.key, ...c.payload.val() })
         )
       )
     ).subscribe(data => {
@@ -80,7 +80,7 @@ export class MovimentacoesComponent implements OnInit {
     ).subscribe(data => {
       this.employees = data;
     });
-  } 
+  }
   listAllProviders() {
     return this.providersService.listAllProviders().snapshotChanges().pipe(
       map(changes =>
@@ -168,7 +168,7 @@ export class MovimentacoesComponent implements OnInit {
     console.log(employeeName);
     this.selectedEmployee = this.getEmployeeByName(employeeName);
     console.log(this.selectedEmployee);
-}
+  }
 
   getEmployeeByName(name: string): Employee {
     return this.employees.find(employee => `${employee.name} ${employee.lastName}` === name);
@@ -176,7 +176,7 @@ export class MovimentacoesComponent implements OnInit {
 
   onProductChange(productName) {
     this.selectedEmployee = this.getEmployeeByName(productName);
-}
+  }
 
   getProductByName(name: string): Product {
     return this.products.find(product => `${product.name}` === name);
@@ -278,5 +278,16 @@ export class MovimentacoesComponent implements OnInit {
         }
       });
     }
+  }
+
+  printDiv() {
+    var printContents = document.getElementById('printableArea').innerHTML;
+    var originalContents = document.body.innerHTML;
+
+    document.body.innerHTML = printContents;
+
+    window.print();
+
+    document.body.innerHTML = originalContents;
   }
 }

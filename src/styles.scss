@@ -279,7 +279,7 @@ select:focus {
   }
 }
 
-// RESPONSIVE
+// Responsive
 
 @media only screen and (max-width: 1200px) {
   .table-head-box > .column-title > .arrow {
@@ -287,27 +287,9 @@ select:focus {
   }
 }
 
-@media only screen and (max-width: 450px) {
-  .filter-container {
-    flex-direction: column;
-    align-items: start;
-  }
+// Alternative table
 
-  .search {
-    width: 100%;
-  }
-
-  .btn-success {
-    margin-top: 20px;
-  }
-}
-
-@media only screen and (max-width: 760px), (min-device-width: 450px) and (max-device-width: 900px) {
-
-  p {
-    font-size: 20px;
-  }
-
+@media only screen and (max-width: 900px) {
   /* Force table to not be like tables anymore */
   table.table,
   div.table-container,
@@ -323,12 +305,16 @@ select:focus {
     width: 400px;
     align-content: center;
     align-self: center;
+    font-size: 16px;
+
+    p {
+      font-size: 16px;
+    }
   }
 
   .main-container {
+    padding: 0;
     display: grid;
-    justify-content: center;
-    justify-self: center;
     justify-items: center;
 
     div.filter-container {
@@ -339,21 +325,6 @@ select:focus {
       align-items: flex-start;
     }
 
-    td {
-      width: 400px;
-      padding: 0;
-      border: none;
-      border-bottom: 1px solid #eee !important;
-      position: relative;
-      padding: 5px 0 0 40%;
-      text-align: left;
-      background-color: white;
-      color: black;
-      min-height: 45px;
-      height: auto;
-      font-size: 20px;
-    }
-
     /* Hide table headers (but not display: none;, for accessibility) */
     thead tr {
       position: absolute;
@@ -361,26 +332,88 @@ select:focus {
       left: -9999px;
     }
 
-    tr {
-      width: 400px;
+    tbody tr {
       margin-bottom: 10px;
       box-shadow: $box-shadow;
-      font-size: 30px !important;
-    }
 
-    td:before {
-      /* Now like a table header */
-      position: absolute;
-      /* Top/left values mimic padding */
-      top: 6px;
-      left: 6px;
-      width: 45%;
-      padding-right: 10px;
-      white-space: nowrap;
+      td {
+        padding: 0;
+        border: none;
+        border-bottom: 1px solid #eee !important;
+        position: relative;
+        padding: 5px 0 0 40%;
+        text-align: left;
+        background-color: white;
+        color: gray;
+        min-height: 45px;
+        height: auto;
+
+        &:before {
+          /* Now like a table header */
+          position: absolute;
+          /* Top/left values mimic padding */
+          top: 6px;
+          left: 6px;
+          width: 45%;
+          padding-right: 10px;
+          white-space: nowrap;
+        }
+
+        p {
+          color: black;
+        }
+      }
     }
 
     .icon-container {
       display: none;
+    }
+  }
+}
+
+@media only screen and (max-width: 540px) {
+  table.table,
+  div.table-container,
+  thead,
+  tbody,
+  th,
+  td,
+  tr {
+    width: 300px;
+  }
+}
+
+@media only screen and (max-width: 469px) {
+  .main-container {
+    .filter-container {
+      width: 200px;
+
+      .search {
+        width: 200px;
+      }
+    }
+
+    .form-container {
+      width: 200px;
+    }
+
+    .table-container {
+      width: 200px;
+
+      table.table,
+      div.table-container,
+      thead,
+      tbody,
+      th,
+      td,
+      tr {
+        width: 200px;
+        font-size: 14px;
+
+        p {
+          font-size: 14px;
+        }
+      }
     }
   }
 }

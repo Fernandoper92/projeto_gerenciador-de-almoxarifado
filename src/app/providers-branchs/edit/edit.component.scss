@@ -3,7 +3,7 @@ $box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2
 
 .main-container {
   padding: 0 50px;
-  
+
   .form-container {
     margin: 50px auto;
     height: fit-content;
@@ -18,7 +18,7 @@ $box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2
       display: flex;
       flex-direction: row;
       justify-content: space-between;
-      
+
       .btn {
         padding: 0;
         height: 40px;
@@ -28,23 +28,29 @@ $box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2
     }
   }
 }
-  
-  
-  
-  @media only screen and (max-width: 450px) {
+
+@media only screen and (max-width: 450px) {
+ 
+  .main-container {
     .title {
       font-size: 20px;
     }
-  
+
     .form-container {
-      width: 200px;
-    }
+      width: 200px !important;
+
+      .flex-row-btn {
+        height: 90px;
+        flex-direction: column;
+        justify-content: space-between;
+        align-content: center;
   
-    .btn {
-      padding: 0;
-      height: 30px;
-      width: 75px;
-      font-size: 14px;
+        .btn {
+          height: 30px;
+          width: 75px;
+          font-size: 14px;
+        }
+      }
     }
   }
-  
+}

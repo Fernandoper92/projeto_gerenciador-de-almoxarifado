@@ -9,7 +9,7 @@
             <span class="fas fa-search search-icon"></span>
         </div>
         <div class="buttons">
-            <button type="button" class="btn secondary">
+            <button type="button" class="btn secondary" (click)="printDiv()">
                 <span class="material-icons">
                     exit_to_app
                 </span>
@@ -51,7 +51,7 @@
 
     <div class="table-container">
         <div class="entry"><p>{{ entry }} entradas</p></div>
-        <table class="table">
+        <table class="table"  id="printableArea">
             <thead class="table-head-container">
                 <tr class="table-head-box">
                     <th class="column-title" scope="col" *ngFor="let column of columns" (click)="organize(column)"
@@ -75,7 +75,9 @@
                     <td>
                         <p *ngIf="moviment.cost" class="number" [ngClass]="isNegative(moviment.cost)">{{ moviment.cost | currency:'BRL' }}</p>
                     </td>
-                    <td>{{ moviment.date | date:"dd-MMM-yyyy" }}</td>
+                    <td>
+                        <p>{{ moviment.date | date:"dd-MMM-yyyy" }}</p>
+                    </td>
                     <td class="icon-container">
                         <i class="far fa-trash-alt icon-btn" (click)="deleteMoviment(moviment.key)"></i>
                     </td>

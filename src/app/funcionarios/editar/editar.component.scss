@@ -12,17 +12,6 @@ $box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2
     background-color: white;
     box-shadow: $box-shadow;
 
-    .flex-row-input {
-      padding: 5px;
-      display: flex;
-      flex-direction: row;
-      justify-content: space-between;
-
-      div {
-        width: 80px;
-      }
-    }
-
     .flex-row-btn {
       margin-top: 20px;
       padding: 5px;
@@ -41,26 +30,27 @@ $box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2
 }
 
 @media only screen and (max-width: 450px) {
-  .title {
-    font-size: 20px;
-  }
+ 
+  .main-container {
+    .title {
+      font-size: 20px;
+    }
 
-  .subtitle {
-    font-size: 16px;
-  }
+    .form-container {
+      width: 200px !important;
 
-  .form-container {
-    width: 200px;
-  }
-
-  .flex-row-input {
-    flex-direction: column;
-  }
-
-  .btn {
-    padding: 0;
-    height: 30px;
-    width: 75px;
-    font-size: 14px;
+      .flex-row-btn {
+        height: 90px;
+        flex-direction: column;
+        justify-content: space-between;
+        align-content: center;
+  
+        .btn {
+          height: 30px;
+          width: 75px;
+          font-size: 14px;
+        }
+      }
+    }
   }
 }
