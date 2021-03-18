@@ -19,7 +19,7 @@ import { AngularFireModule } from '@angular/fire';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { environment } from 'src/environments/environment';
-import { ConfigurationModule } from './configuration/configuration.module';
+// import { ConfigurationModule } from './configuration/configuration.module';
 import { ProvidersBranchsModule } from './providers-branchs/providers-branchs.module';
 
 
@@ -44,7 +44,7 @@ import { ProvidersBranchsModule } from './providers-branchs/providers-branchs.mo
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireDatabaseModule,
     AngularFirestoreModule,
-    ConfigurationModule,
+    // ConfigurationModule,
     ProvidersBranchsModule
   ],
   bootstrap: [AppComponent]
