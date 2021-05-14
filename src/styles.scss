@@ -108,6 +108,10 @@ select:focus {
       border-radius: 20px;
       height: 40px;
     }
+
+    .btn-print, .btn-excel {
+      display: none;
+    }
   }
 
   // CSS OF TABLES
