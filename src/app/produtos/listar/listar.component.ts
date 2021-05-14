@@ -15,8 +15,8 @@ export class ListarComponent implements OnInit {
   entry = 0;
   orderColumn: string;
   ordemCrescente = true;
-  products: Product[] = []
-  productsTemp: Product[] = []
+  products: Product[];
+  productsTemp: Product[];
   public busca = new FormControl('');
 
   columns = ['name', 'code', 'group', 'provider', 'value', 'stock'];
